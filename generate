@@ -1,0 +1,114 @@
+#!/usr/bin/python3
+
+from itertools import product
+from typing import Iterable
+from subprocess import run
+
+
+def open_file(name: str):
+    file = open(f'{name}_const.go', 'w')
+    file.write('package tcod\n\n')
+    file.write('// #cgo LDFLAGS: -ltcod\n')
+    file.write('// #include <libtcod.h>\n')
+    file.write('import "C"\n\n')
+    return file
+
+
+if __name__ == "__main__":
+    with open_file('color') as file:
+        colors: Iterable[str] = (
+            'red', 'flame', 'orange', 'amber', 'yellow', 'lime',
+            'chartreuse', 'green', 'sea', 'turquoise', 'cyan',
+            'sky', 'azure', 'blue', 'han', 'violet', 'purple',
+            'fuchsia', 'magenta', 'pink', 'crimson',
+        )
+        bright: Iterable[str] = (
+            'desaturated', 'lightest', 'lighter', 'light',
+            '', 'dark', 'darker', 'darkest',
+        )
+
+        alones: Iterable[str] = (
+            'brass', 'copper', 'gold', 'silver', 'celadon',
+            'peach', 'grey', 'sepia', 'black', 'white',
+        )
+        file.write('type Color struct {\n\tcolor C.TCOD_color_t\n}\n')
+        file.write('var (\n')
+        for b, c in product(bright, colors):
+            if b == '':
+                cname = f'TCOD_{c}'
+                gname = c.title()
+            else:
+                cname = f'TCOD_{b}_{c}'
+                gname = f'{b.title()}{c.title()}'
+            file.write(f'\t{gname} Color = Color')
+            file.write('{')
+            file.write(f'color: C.{cname}')
+            file.write('}\n')
+        file.write('\n')
+        for a in alones:
+            file.write(f'\t{a.title()} Color = Color')
+            file.write('{')
+            file.write(f'color: C.TCOD_{a}')
+            file.write('}\n')
+        file.write(')\n')
+    run(f'gofmt -w {file.name}', shell=True)
+
+    with open_file('console') as file:
+        flags = (
+            'none', 'set', 'multiply', 'lighten', 'darken',
+            'screen', 'add', 'burn', 'overlay', 'default'
+        )
+        file.write('type BgFlag = int32\n\n')
+        file.write('var (\n')
+        for flag in flags:
+            cname = f'TCOD_BKGND_{flag.upper()}'
+            gname = f'Bg{flag.title()}'
+            file.write(f'\t {gname} BgFlag = C.{cname}\n')
+        file.write(')\n\n')
+
+        renderers = (
+            'OpenGL', 'OpenGL2', 'SDL', 'SDL2'
+        )
+        file.write('type Renderer struct {\n\trenderer C.TCOD_renderer_t\n}\n')
+        file.write('var (\n')
+        for renderer in renderers:
+            file.write(f'\tRender{renderer} Renderer')
+            file.write(' = Renderer{')
+            file.write(f'renderer: C.TCOD_RENDERER_{renderer.upper()}')
+            file.write('}\n')
+        file.write(')\n')
+    run(f'gofmt -w {file.name}', shell=True)
+    with open_file('input') as file:
+        keys = (
+            'escape', 'backspace', 'tab', 'enter', 'shift', 'control',
+            'alt', 'pause', 'capslock', 'pageup', 'pagedown', 'end',
+            'home', 'up', 'left', 'right', 'down', 'printscreen',
+            'insert', 'delete', 'lwin', 'rwin', 'apps', 'kpAdd', 'kpSub',
+            'kpDiv', 'kpMul', 'kpDec', 'kpEnter', 'numlock', 'scrolllock',
+            'space'
+        )
+        file.write('type KeyCode = int32\n')
+        file.write('var (\n')
+        for key in keys:
+            cname = f'TCODK_{key.upper()}'
+            gname = f'Key{key.title()}'
+            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+        file.write('\n')
+        for i in range(1, 13):
+            cname = f'TCODK_F{i}'
+            gname = f'KeyF{i}'
+            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+        file.write('\n')
+        for i in range(10):
+            cname = f'TCODK_{i}'
+            gname = f'Key{i}'
+            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+        file.write('\n')
+        for i in range(10):
+            cname = f'TCODK_KP{i}'
+            gname = f'KeyKp{i}'
+            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+        file.write('\n')
+        file.write('\tKeyChar KeyCode = C.TCODK_CHAR')
+        file.write(')')
+    run(f'gofmt -w {file.name}', shell=True)
