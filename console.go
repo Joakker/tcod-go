@@ -28,6 +28,10 @@ func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) *Con
 	return &Console{ console: nil }
 }
 
+func Flush() {
+	C.TCOD_console_flush()
+}
+
 func Fullscreen() bool {
 	return bool(C.TCOD_console_is_fullscreen())
 }
@@ -38,6 +42,18 @@ func SetFullscreen(f bool) {
 
 func SetTitle(title string) {
 	C.TCOD_console_set_window_title(C.CString(title))
+}
+
+func WindowClosed() bool {
+	return bool(C.TCOD_console_is_window_closed())
+}
+
+func MouseFocus() bool {
+	return bool(C.TCOD_console_has_mouse_focus())
+}
+
+func WindowActive() bool {
+	return bool(C.TCOD_console_is_active())
 }
 
 func CreditsScreen() {
@@ -58,7 +74,7 @@ func (c *Console) LoadASC(filename string) bool {
 	)
 }
 
-func (c *Console) SaveASC(filename string) bool {
+func (c Console) SaveASC(filename string) bool {
 	return bool(
 		C.TCOD_console_save_asc(c.console, C.CString(filename)),
 	)

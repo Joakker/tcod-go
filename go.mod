@@ -1,3 +1,3 @@
-module github.com/joakker/tcod-go
+module github.com/Joakker/tcod-go
 
 go 1.15
