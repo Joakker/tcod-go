@@ -4,6 +4,16 @@ package tcod
 // #include <libtcod.h>
 import "C"
 
+import (
+	"errors"
+	"fmt"
+	"os"
+
+	"github.com/OpenPeeDeeP/xdg"
+)
+
+const mapImage = "terminal.png"
+
 type Console struct {
 	console C.TCOD_console_t
 }
@@ -20,12 +30,24 @@ func NewConsoleASC(filename string) Console {
 	}
 }
 
-func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) *Console {
+func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) (*Console, error) {
+	mapPath := fmt.Sprintf("%s/%s", xdg.CacheHome(), mapImage)
+	file, err := os.Create(mapPath)
+	if err != nil {
+		return nil, err
+	}
+	data, ok := fs.String(fmt.Sprintf("/%s", mapImage))
+	if !ok {
+		return nil, errors.New("Cannot load image data")
+	}
+	file.Write([]byte(data))
+	C.TCOD_console_set_custom_font(C.CString(mapPath), C.TCOD_FONT_LAYOUT_ASCII_INCOL, 16, 16)
 	C.TCOD_console_init_root(
 		C.int(w), C.int(h), C.CString(title),
 		C.bool(fullscreen), renderer.renderer,
 	)
-	return &Console{ console: nil }
+	os.Remove(mapPath)
+	return &Console{ console: nil }, nil
 }
 
 func Flush() {
