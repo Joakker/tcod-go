@@ -9,7 +9,7 @@ type Input struct {
 	mouse C.TCOD_mouse_t
 }
 
-
+// Wait blocks the application until the user makes an input event
 func (i *Input) Wait(flush bool) int32 {
 	return int32(C.TCOD_sys_wait_for_event(
 		C.TCOD_EVENT_ANY, &i.key,
@@ -17,6 +17,7 @@ func (i *Input) Wait(flush bool) int32 {
 	))
 }
 
+// Check checks whether the user has made an input and moves on
 func (i *Input) Check() int32 {
 	return int32(C.TCOD_sys_check_for_event(
 		C.TCOD_EVENT_ANY, &i.key, &i.mouse,

@@ -5,26 +5,29 @@ package tcod
  #include <libtcod.h>
 
  void _TCOD_console_print_frame(
-	 TCOD_console_t con,int x,int y,int w,int h,
-	 bool clear, TCOD_bkgnd_flag_t flag, const char *s) {
+			TCOD_console_t con,int x,int y,int w,int h,
+			bool clear, TCOD_bkgnd_flag_t flag, const char *s) {
 	 	TCOD_console_printf_frame(con, x, y, w, h, clear, flag, "%s", s);
 	 }
 
  void _TCOD_console_print(
-	 TCOD_console_t con, int x, int y, const char* s) {
+			TCOD_console_t con, int x, int y, const char* s) {
 	 	TCOD_console_printf(con, x, y, "%s", s);
 	 }
 */
 import "C"
 
+// SetDefaultBg sets the background that cells have in this console if none is specified
 func (c Console) SetDefaultBg(bg Color) {
 	C.TCOD_console_set_default_background(c.console, bg.color)
 }
 
+// SetDefaultFg sets the foreground that cells have in this console if none is specified
 func (c Console) SetDefaultFg(fg Color) {
 	C.TCOD_console_set_default_foreground(c.console, fg.color)
 }
 
+// Clear wipes out all cells in the console, leaving it completely clean
 func (c Console) Clear() {
 	C.TCOD_console_clear(c.console)
 }
@@ -47,6 +50,7 @@ func (c Console) Clear() {
 // 	)
 // }
 
+// PrintFrame prints a frame with the specified size, position and size
 func (c Console) PrintFrame(x, y, w, h int32, clear bool, title string) {
 	C._TCOD_console_print_frame(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
@@ -54,6 +58,7 @@ func (c Console) PrintFrame(x, y, w, h int32, clear bool, title string) {
 	)
 }
 
+// Print prints the given text in the coordinates
 func (c Console) Print(x, y int32, text string) {
 	C._TCOD_console_print(
 		c.console, C.int(x), C.int(y), C.CString(text),
