@@ -4,6 +4,9 @@ tcod-go is a port of the libtcod library to the Go language
 
 ## Installation
 
+* You must have the [libtcod](https://www.github.com/libtcod/libtcod) library already
+installed. This can be done by following the instructions in that repo.
+
 Assuming you have the `go` executable in your `PATH` and you have
 set up the `GOPATH` environment variable, simply run:
 
@@ -46,3 +49,13 @@ func main() {
 
 You should get something more or less like this:
 ![example](images/example.png)
+
+## Contributing
+
+Pull requests are not only welcome but encouraged. I started working on this
+project very recently, so there is still a lot to be done, and even more I may
+be overlooking.
+
+## License
+
+To be determined

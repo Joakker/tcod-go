@@ -10,6 +10,7 @@ import (
 	"os"
 
 	"github.com/OpenPeeDeeP/xdg"
+	"github.com/Joakker/tcod-go/assets"
 )
 
 const mapImage = "terminal.png"
@@ -19,7 +20,7 @@ type Console struct {
 	console C.TCOD_console_t
 }
 
-// NewConsole creates a console of size w x h cells
+// NewConsole creates a console of size w by h cells
 func NewConsole(w, h int32) Console {
 	return Console{
 		console : C.TCOD_console_new(C.int(w), C.int(h)),
@@ -40,7 +41,7 @@ func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) (*Co
 	if err != nil {
 		return nil, fmt.Errorf("Error initializing window: %w\n", err)
 	}
-	data, ok := fs.String(fmt.Sprintf("/%s", mapImage))
+	data, ok := assets.FS.String(fmt.Sprintf("/%s", mapImage))
 	if !ok {
 		return nil, errors.New("Error initializing window: Cannot load image data")
 	}
