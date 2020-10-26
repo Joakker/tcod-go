@@ -58,4 +58,4 @@ be overlooking.
 
 ## License
 
-To be determined
+See [here](LICENSE)
