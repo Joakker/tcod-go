@@ -1,4 +1,4 @@
-package tcod
+package tinput
 
 // #cgo LDFLAGS: -ltcod
 // #include <libtcod.h>

@@ -16,6 +16,9 @@ go get -v "github.com/Joakker/tcod-go"
 
 and go should do everything else for you.
 
+Unlike the C library, this binding provides a default font image, so you don't need
+to provide your own.
+
 ## Minimal Program
 
 Copy this into your text editor of choice and `go run` it
@@ -27,6 +30,7 @@ import (
     "log"
 
     "github.com/Joakker/tcod-go"
+    "github.com/Joakker/tcod-go/input"
 )
 
 func main() {
@@ -36,7 +40,7 @@ func main() {
         log.Fatal(err)
     }
 
-    input := tcod.Input{}
+    input := tinput.Input{}
 
     for !tcod.WindowClosed() {
         input.Check()

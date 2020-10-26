@@ -5,9 +5,9 @@ from typing import Iterable
 from subprocess import run
 
 
-def open_file(name: str):
+def open_file(name: str, package: str='tcod'):
     file = open(f'{name}_const.go', 'w')
-    file.write('package tcod\n\n')
+    file.write(f'package {package}\n\n')
     file.write('// #cgo LDFLAGS: -ltcod\n')
     file.write('// #include <libtcod.h>\n')
     file.write('import "C"\n\n')
@@ -78,7 +78,7 @@ if __name__ == "__main__":
             file.write('}\n')
         file.write(')\n')
     run(f'gofmt -w {file.name}', shell=True)
-    with open_file('input') as file:
+    with open_file('input/input', 'tinput') as file:
         keys = (
             'escape', 'backspace', 'tab', 'enter', 'shift', 'control',
             'alt', 'pause', 'capslock', 'pageup', 'pagedown', 'end',
