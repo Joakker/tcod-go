@@ -8,6 +8,9 @@ tcod-go is a port of the libtcod library to the Go language
 
 * You must have the [libtcod](https://www.github.com/libtcod/libtcod) library already
 installed. This can be done by following the instructions in that repo.
+* You must also have the [SDL2](https://www.libsdl.org/download-2.0.php) development
+files installed. You can get them from your package manager or directly from the
+website, but if you are compiling libtcod from source, you should already have them.
 
 Assuming you have the `go` executable in your `PATH` and you have
 set up the `GOPATH` environment variable, simply run:

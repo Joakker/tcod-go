@@ -1,18 +1,19 @@
 package tsys
 
-// #cgo LDFLAGS: -ltcod
+// #cgo LDFLAGS: -ltcod -lSDL2
+// #include <SDL2/SDL.h>
 // #include <libtcod.h>
 import "C"
 import "github.com/Joakker/tcod-go"
 
 // SetClipboard sets the system's cliboard to the specified value
 func SetClipboard(value string) {
-	C.TCOD_sys_clipboard_set(C.CString(value))
+	C.SDL_SetClipboardText(C.CString(value))
 }
 
 // GetClipboard gets the clipboard contents
 func GetClipboard() string {
-	return C.GoString(C.TCOD_sys_clipboard_get())
+	return C.GoString(C.SDL_GetClipboardText())
 }
 
 // GetResolution returns the current screen resolution
