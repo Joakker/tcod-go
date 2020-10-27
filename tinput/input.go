@@ -23,3 +23,23 @@ func (i *Input) Check() int32 {
 		C.TCOD_EVENT_ANY, &i.key, &i.mouse,
 	))
 }
+
+func (i Input) GetVk() KeyCode {
+	return KeyCode{code: i.key.vk}
+}
+
+func (i Input) GetC() byte {
+	return byte(i.key.c)
+}
+
+func (i Input) KeyPressed() bool {
+	return bool(i.key.pressed)
+}
+
+func (i Input) GetText() string {
+	return C.GoString(&i.key.text[0])
+}
+
+// func KeyPressed(code KeyCode) bool {
+// 	return bool(C.TCOD_console_is_key_pressed(code.code))
+// }

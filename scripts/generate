@@ -78,7 +78,8 @@ if __name__ == "__main__":
             file.write('}\n')
         file.write(')\n')
     run(f'gofmt -w {file.name}', shell=True)
-    with open_file('input/input', 'tinput') as file:
+
+    with open_file('tinput/input', 'tinput') as file:
         keys = (
             'escape', 'backspace', 'tab', 'enter', 'shift', 'control',
             'alt', 'pause', 'capslock', 'pageup', 'pagedown', 'end',
@@ -87,28 +88,40 @@ if __name__ == "__main__":
             'kpDiv', 'kpMul', 'kpDec', 'kpEnter', 'numlock', 'scrolllock',
             'space'
         )
-        file.write('type KeyCode = int32\n')
+        file.write('type KeyCode struct{\n\tcode C.TCOD_keycode_t\n}\n')
         file.write('var (\n')
         for key in keys:
             cname = f'TCODK_{key.upper()}'
             gname = f'Key{key.title()}'
-            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+            file.write(f'\t{gname} KeyCode = ')
+            file.write('KeyCode{')
+            file.write(f'code: C.{cname}')
+            file.write('}\n')
         file.write('\n')
         for i in range(1, 13):
             cname = f'TCODK_F{i}'
             gname = f'KeyF{i}'
-            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+            file.write(f'\t{gname} = ')
+            file.write('KeyCode{')
+            file.write(f'code: C.{cname}')
+            file.write('}\n')
         file.write('\n')
         for i in range(10):
             cname = f'TCODK_{i}'
             gname = f'Key{i}'
-            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+            file.write(f'\t{gname} KeyCode = ')
+            file.write('KeyCode{')
+            file.write(f'code: C.{cname}')
+            file.write('}\n')
         file.write('\n')
         for i in range(10):
             cname = f'TCODK_KP{i}'
             gname = f'KeyKp{i}'
-            file.write(f'\t{gname} KeyCode = C.{cname}\n')
+            file.write(f'\t{gname} KeyCode = ')
+            file.write('KeyCode{')
+            file.write(f'code: C.{cname}')
+            file.write('}\n')
         file.write('\n')
-        file.write('\tKeyChar KeyCode = C.TCODK_CHAR')
+        file.write('\tKeyChar KeyCode = KeyCode{ code: C.TCODK_CHAR }\n')
         file.write(')')
     run(f'gofmt -w {file.name}', shell=True)
