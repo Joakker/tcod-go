@@ -1,5 +1,3 @@
-// Package tinput provides utilities to monitor user input on windows
-// created by the tcod package
 package tinput
 
 // #cgo LDFLAGS: -ltcod
@@ -11,7 +9,7 @@ type Input struct {
 	mouse C.TCOD_mouse_t
 }
 
-// Wait blocks the application until the user makes an input event
+// Wait pauses the application until the user makes an input event
 func (i *Input) Wait(flush bool) int32 {
 	return int32(C.TCOD_sys_wait_for_event(
 		C.TCOD_EVENT_ANY, &i.key,

@@ -32,7 +32,7 @@ import (
     "log"
 
     "github.com/Joakker/tcod-go"
-    "github.com/Joakker/tcod-go/input"
+    "github.com/Joakker/tcod-go/tinput"
 )
 
 func main() {
@@ -54,6 +54,7 @@ func main() {
 ```
 
 You should get something more or less like this:
+
 ![example](images/example.png)
 
 ## Contributing

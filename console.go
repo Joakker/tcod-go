@@ -1,4 +1,3 @@
-// Package tcod provides a wrapper around the C library of the same name
 package tcod
 
 // #cgo LDFLAGS: -ltcod
@@ -35,7 +34,13 @@ func NewConsoleASC(filename string) Console {
 	}
 }
 
-// InitRoot initializes the game window, including the font image
+/*
+	InitRoot initializes the game window, also known as the root console. It creates a console
+	that is w tiles wide and h tiles high, with the given window title and using the specified
+	renderer, and in fullscreen if so desired. The newly created window will make use of the
+	default font image, bundled with this library in binary form, if no image has been selected
+	explicitly by calling SetFontImage before calling this function.
+*/
 func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) (*Console, error) {
 	mapPath := fmt.Sprintf("%s/%s", xdg.CacheHome(), mapImage)
 	file, err := os.Create(mapPath)
@@ -91,12 +96,48 @@ func WindowActive() bool {
 	return bool(C.TCOD_console_is_active())
 }
 
-// CreditsScreen renders a screen with a version message
+/*
+	CreditsScreen presents an animated screen with a message of the form "Powered
+	by libtcod x.y.z". It halts the progression of the program, so it's best to
+	call it as a splash screen right after the window has been created, rather than
+	in the game loop. Any key press will interrupt the spash screen and give control
+	back to the program.
+
+		root, err := tcod.InitRoot(80, 50, "The Adventures of Go", false, tcod.RenderSDL2)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		// The program will stop here until the animation is finished or the user
+		// presses a key
+		tcod.CreditsScreen()
+
+		for !tcod.WindowClosed() {
+			// Game Loop goes here
+		}
+*/
 func CreditsScreen() {
 	C.TCOD_console_credits()
 }
 
-// CreditsEmbed renders a version message to the (x, y) coordinates in the root console
+/*
+	CreditsEmbed renders the message in CreditsScreen, but instead of taking the
+	entire screen, it will be presented at the specified coordinates, and the
+	alpha argument determines whether it should be drawn transparently, i.e., not
+	overwriting existing images at that position. Similar to Print, the alignment
+	of the root console will determine if the coordinates are the center of the
+	image or one of it's corners. The function should be called over multiple
+	frames, as every time, it renders the next frame in the animation. For example:
+
+		endCredits := false
+		for !tcod.WindowClosed() {
+			if !endCredits {
+				endCredits = tcod.CreditsEmbed(25, 25, true)
+			}
+		}
+
+	The function will return false while the animation is not finished.
+*/
 func CreditsEmbed(x, y int32, alpha bool) bool {
 	return bool(C.TCOD_console_credits_render(C.int(x), C.int(y), C.bool(alpha)))
 }
@@ -106,35 +147,75 @@ func CreditsReset() {
 	C.TCOD_console_credits_reset()
 }
 
-// LoadASC loads a .asc file's contents to the console
+/*
+	LoadASC loads a .asc ascii art file specified by filename, and writes the
+	contents to the console, returning true if the operation was successful.
+	Files with the .asc extension are created by the Ascii Paint program. For
+	exaple, suppose you have a foo.asc file, so if you want to load them onto
+	a console, simply call
+
+		c := tcod.NewConsole(40, 40)
+		c.LoadASC("foo.asc")
+
+	and the file contents will be renderered to that console. Of course, you
+	still have to blit the console onto the root one to see it.
+*/
 func (c *Console) LoadASC(filename string) bool {
 	return bool(
 		C.TCOD_console_load_asc(c.console, C.CString(filename)),
 	)
 }
 
-// SaveASC saves a .asc file specified by filename, with the console's contents
+/*
+	SaveASC creates an Ascii Paint file from the current contents of the console,
+	and saves them to the specified filename, returning true if the operation was
+	successful.
+*/
 func (c Console) SaveASC(filename string) bool {
 	return bool(
 		C.TCOD_console_save_asc(c.console, C.CString(filename)),
 	)
 }
 
-// Blit renders the console's contents in the specified coordinates
-// to the target console's coordinates
-func (c Console) Blit(x, y, w, h int32, to Console, x2, y2 int32, w2, h2 float32) {
+/*
+	Blit renders the console's contents to the target, within the specified coordinates.
+	For example:
+
+		c := tcod.NewConsole(100, 100)
+		c.Blit(0, 0, 10, 10, root, 5, 5, 5.0f, 5.0f)
+
+	renders the contents of c in the coordinates from (0, 0) to (10, 10), to the root
+	console starting from coordinates (5, 5), using the specified background and
+	foreground alpha.
+*/
+func (c Console) Blit(x, y, w, h int32, target Console, x2, y2 int32, bgAlpha, fgAlpha float32) {
 	C.TCOD_console_blit(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
-		to.console, C.int(x2), C.int(y2), C.float(w2), C.float(h2),
+		target.console, C.int(x2), C.int(y2), C.float(bgAlpha), C.float(fgAlpha),
 	)
 }
 
-// SetKeyColor sets the transparent color for the console
+/*
+	SetKeyColor sets which color should be treated as transparent when blitting it
+	onto another console. For example:
+
+		c := tcod.NewConsole(10, 10)
+		c.SetKeyColor(tcod.Magenta)
+
+	will tell the program that it should treat any cell with Magenta background
+	as transparent when blitting it to another console. The foreground remmains
+	untouched.
+*/
 func (c Console) SetKeyColor(color Color) {
 	C.TCOD_console_set_key_color(c.console, color.color)
 }
 
-// Delete deletes the console from memory. Doesn't work on the root console
+/*
+	Delete deletes the console from memory. In most cases you shouldn't have to
+	worry about calling this method, as the Go garbage collector would take care
+	of it. It only works with consoles created by the NewConsole function, not
+	with the root one.
+*/
 func (c Console) Delete() {
 	if c.console != nil {
 		C.TCOD_console_delete(c.console)
