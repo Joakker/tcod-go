@@ -1,6 +1,7 @@
 # tcod-go
 
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/Joakker/tcod-go)](https://pkg.go.dev/github.com/Joakker/tcod-go)
+
 tcod-go is a port of the libtcod library to the Go language
 
 ## Installation
