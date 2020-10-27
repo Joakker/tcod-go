@@ -1,3 +1,4 @@
+// Package tcod provides a wrapper around the C library of the same name
 package tcod
 
 // #cgo LDFLAGS: -ltcod
@@ -119,7 +120,8 @@ func (c Console) SaveASC(filename string) bool {
 	)
 }
 
-// Blit renders the console's contents in the specified coordinates to the target console's coordinates
+// Blit renders the console's contents in the specified coordinates
+// to the target console's coordinates
 func (c Console) Blit(x, y, w, h int32, to Console, x2, y2 int32, w2, h2 float32) {
 	C.TCOD_console_blit(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h),

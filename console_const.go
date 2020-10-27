@@ -1,3 +1,4 @@
+// Package tcod provides a wrapper around the C library of the same name
 package tcod
 
 // #cgo LDFLAGS: -ltcod
