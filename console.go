@@ -221,3 +221,36 @@ func (c Console) Delete() {
 		C.TCOD_console_delete(c.console)
 	}
 }
+
+func (c Console) SetCellBg(x, y int32, color Color, flag BgFlag) {
+	C.TCOD_console_set_char_background(c.console, C.int(x), C.int(y), color.color,
+		flag.flag)
+}
+
+func (c Console) SetCellFg(x, y int32, color Color) {
+	C.TCOD_console_set_char_foreground(c.console, C.int(x), C.int(y), color.color)
+}
+
+func (c Console) SetChar(x, y int32, b byte) {
+	C.TCOD_console_set_char(c.console, C.int(x), C.int(y), C.int(b))
+}
+
+func (c Console) PutChar(x, y int32, b byte, flag BgFlag) {
+	C.TCOD_console_put_char(c.console, C.int(x), C.int(y), C.int(b), flag.flag)
+}
+
+func (c Console) SetBgFlag(flag BgFlag) {
+	C.TCOD_console_set_background_flag(c.console, flag.flag)
+}
+
+func (c Console) GetBgFlag() BgFlag {
+	return BgFlag{ flag: C.TCOD_console_get_background_flag(c.console) }
+}
+
+func (c Console) SetAlign(align Alignment) {
+	C.TCOD_console_set_alignment(c.console, align.alignment)
+}
+
+func (c Console) GetAlign() Alignment {
+	return Alignment{ alignment: C.TCOD_console_get_alignment(c.console) }
+}

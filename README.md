@@ -45,10 +45,10 @@ func main() {
         log.Fatal(err)
     }
 
-    input := tinput.Input{}
+    i := tinput.NewInput()
 
     for !tcod.WindowClosed() {
-        input.Check()
+        i.Check()
         root.Clear()
             root.PrintFrame(0, 0, 80, 50, false, "The adventures of Go")
         root.Flush()
@@ -57,6 +57,8 @@ func main() {
 ```
 
 You should get something more or less like this:
+
+In the future there should be a complete tutorial in this repo's wiki.
 
 ![example](images/example.png)
 

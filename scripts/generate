@@ -1,127 +1,275 @@
-#!/usr/bin/python3
+#!/bin/bash
 
-from itertools import product
-from typing import Iterable
-from subprocess import run
+function open_file() {
+    package=$(dirname ${1:-.})
+    if [ $package == "." ]; then
+        package="tcod"
+    fi
+    file="${1:-const}_const.go"
 
+    cat > $file << EOF
+        package $package
 
-def open_file(name: str, package: str='tcod'):
-    file = open(f'{name}_const.go', 'w')
-    file.write(f'package {package}\n\n')
-    file.write('// #cgo LDFLAGS: -ltcod\n')
-    file.write('// #include <libtcod.h>\n')
-    file.write('import "C"\n\n')
-    return file
+        // #cgo LDFLAGS: -ltcod
+        // #include <libtcod.h>
+        import "C"
 
+EOF
+    echo $file
+}
 
-if __name__ == "__main__":
-    with open_file('color') as file:
-        colors: Iterable[str] = (
-            'red', 'flame', 'orange', 'amber', 'yellow', 'lime',
-            'chartreuse', 'green', 'sea', 'turquoise', 'cyan',
-            'sky', 'azure', 'blue', 'han', 'violet', 'purple',
-            'fuchsia', 'magenta', 'pink', 'crimson',
-        )
-        bright: Iterable[str] = (
-            'desaturated', 'lightest', 'lighter', 'light',
-            '', 'dark', 'darker', 'darkest',
-        )
+function do_colors() {
+    COLORS=(
+        'red' 'flame' 'orange' 'amber' 'yellow' 'lime'
+        'chartreuse' 'green' 'sea' 'turquoise' 'cyan'
+        'sky' 'azure' 'blue' 'han' 'violet' 'purple'
+        'fuchsia' 'magenta' 'pink' 'crimson'
+    )
 
-        alones: Iterable[str] = (
-            'brass', 'copper', 'gold', 'silver', 'celadon',
-            'peach', 'grey', 'sepia', 'black', 'white',
-        )
-        file.write('type Color struct {\n\tcolor C.TCOD_color_t\n}\n')
-        file.write('var (\n')
-        for b, c in product(bright, colors):
-            if b == '':
-                cname = f'TCOD_{c}'
-                gname = c.title()
-            else:
-                cname = f'TCOD_{b}_{c}'
-                gname = f'{b.title()}{c.title()}'
-            file.write(f'\t{gname} Color = Color')
-            file.write('{')
-            file.write(f'color: C.{cname}')
-            file.write('}\n')
-        file.write('\n')
-        for a in alones:
-            file.write(f'\t{a.title()} Color = Color')
-            file.write('{')
-            file.write(f'color: C.TCOD_{a}')
-            file.write('}\n')
-        file.write(')\n')
-    run(f'gofmt -w {file.name}', shell=True)
+    BRGHTS=(
+        'desaturated' 'lightest' 'lighter' 'light'
+        '-' 'dark' 'darker' 'darkest'
+    )
 
-    with open_file('console') as file:
-        flags = (
-            'none', 'set', 'multiply', 'lighten', 'darken',
-            'screen', 'add', 'burn', 'overlay', 'default'
-        )
-        file.write('type BgFlag = int32\n\n')
-        file.write('var (\n')
-        for flag in flags:
-            cname = f'TCOD_BKGND_{flag.upper()}'
-            gname = f'Bg{flag.title()}'
-            file.write(f'\t {gname} BgFlag = C.{cname}\n')
-        file.write(')\n\n')
+    ALONES=(
+        'brass' 'copper' 'gold' 'silver' 'celadon' 'peach'
+        'grey' 'sepia' 'black' 'white'
+    )
 
-        renderers = (
-            'OpenGL', 'OpenGL2', 'SDL', 'SDL2'
-        )
-        file.write('type Renderer struct {\n\trenderer C.TCOD_renderer_t\n}\n')
-        file.write('var (\n')
-        for renderer in renderers:
-            file.write(f'\tRender{renderer} Renderer')
-            file.write(' = Renderer{')
-            file.write(f'renderer: C.TCOD_RENDERER_{renderer.upper()}')
-            file.write('}\n')
-        file.write(')\n')
-    run(f'gofmt -w {file.name}', shell=True)
+    cat << EOF
 
-    with open_file('tinput/input', 'tinput') as file:
-        keys = (
-            'escape', 'backspace', 'tab', 'enter', 'shift', 'control',
-            'alt', 'pause', 'capslock', 'pageup', 'pagedown', 'end',
-            'home', 'up', 'left', 'right', 'down', 'printscreen',
-            'insert', 'delete', 'lwin', 'rwin', 'apps', 'kpAdd', 'kpSub',
-            'kpDiv', 'kpMul', 'kpDec', 'kpEnter', 'numlock', 'scrolllock',
-            'space'
-        )
-        file.write('type KeyCode struct{\n\tcode C.TCOD_keycode_t\n}\n')
-        file.write('var (\n')
-        for key in keys:
-            cname = f'TCODK_{key.upper()}'
-            gname = f'Key{key.title()}'
-            file.write(f'\t{gname} KeyCode = ')
-            file.write('KeyCode{')
-            file.write(f'code: C.{cname}')
-            file.write('}\n')
-        file.write('\n')
-        for i in range(1, 13):
-            cname = f'TCODK_F{i}'
-            gname = f'KeyF{i}'
-            file.write(f'\t{gname} = ')
-            file.write('KeyCode{')
-            file.write(f'code: C.{cname}')
-            file.write('}\n')
-        file.write('\n')
-        for i in range(10):
-            cname = f'TCODK_{i}'
-            gname = f'Key{i}'
-            file.write(f'\t{gname} KeyCode = ')
-            file.write('KeyCode{')
-            file.write(f'code: C.{cname}')
-            file.write('}\n')
-        file.write('\n')
-        for i in range(10):
-            cname = f'TCODK_KP{i}'
-            gname = f'KeyKp{i}'
-            file.write(f'\t{gname} KeyCode = ')
-            file.write('KeyCode{')
-            file.write(f'code: C.{cname}')
-            file.write('}\n')
-        file.write('\n')
-        file.write('\tKeyChar KeyCode = KeyCode{ code: C.TCODK_CHAR }\n')
-        file.write(')')
-    run(f'gofmt -w {file.name}', shell=True)
+    type Color struct {
+        color C.TCOD_color_t
+    }
+
+    var (
+
+EOF
+
+    for b in ${BRGHTS[@]}; do
+        for c in ${COLORS[@]}; do
+            if [ $b == '-' ]; then
+                cname="C.TCOD_$c"
+                gname="${c^}"
+            else
+                cname="C.TCOD_${b}_${c}"
+                gname="${b^}${c^}"
+            fi
+
+            echo "$gname Color = Color{ color: $cname }"
+        done
+    done
+
+    echo
+
+    for a in ${ALONES[@]}; do
+        cname="C.TCOD_$a"
+        echo "${a^} Color = Color{ color: ${cname} }"
+    done
+
+    echo ")"
+}
+
+function do_input() {
+    KEYS=(
+        'escape' 'backspace' 'tab' 'enter' 'shift' 'control'
+        'alt' 'pause' 'capslock' 'pageup' 'pagedown' 'end'
+        'home' 'up' 'left' 'right' 'down' 'printscreen'
+        'insert' 'delete' 'lwin' 'rwin' 'apps' 'kpAdd' 'kpSub'
+        'kpDiv' 'kpMul' 'kpDec' 'kpEnter' 'numlock' 'scrolllock'
+        'space' 'text'
+    )
+
+    cat << EOF
+
+    type KeyCode struct {
+        code C.TCOD_keycode_t
+    }
+
+    var (
+
+EOF
+
+    for k in ${KEYS[@]}; do
+        cname="C.TCODK_${k^^}"
+        gname="Key${k^}"
+        echo "$gname KeyCode = KeyCode{ code: $cname }"
+    done
+
+    for i in {1..12}; do
+        cname="C.TCODK_F$i"
+        gname="KeyF$i"
+        echo "$gname KeyCode = KeyCode{ code: $cname }"
+    done
+
+    for i in {0..9}; do
+        cname="C.TCODK_$i"
+        gname="Key$i"
+        echo "$gname KeyCode = KeyCode{ code: $cname }"
+
+        cname="C.TCODK_KP$i"
+        gname="KeyKp$i"
+        echo "$gname KeyCode = KeyCode{ code: $cname }"
+    done
+
+    echo ")"
+}
+
+function do_console() {
+    FLAGS=(
+    )
+
+    cat << EOF
+    type BgFlag struct {
+        flag C.TCOD_bkgnd_flag_t
+    }
+
+    type Renderer struct {
+        renderer C.TCOD_renderer_t
+    }
+
+    type Alignment struct {
+        alignment C.TCOD_alignment_t
+    }
+
+    var (
+EOF
+
+    for f in 'none' 'set' 'multiply' 'lighten' \
+            'darken' 'screen' 'add' 'burn' 'overlay' 'default'; do
+        cname="C.TCOD_BKGND_${f^^}"
+        gname="Bg${f^}"
+        echo "$gname BgFlag = BgFlag{ flag: $cname }"
+    done
+
+    echo ")"
+    echo
+
+    echo "var ("
+    for l in 'HLine' 'VLine' 'NE' 'NW' 'SE' 'SW' 'TeeW' 'TeeE' 'TeeN' 'TeeS'; do
+        cname="C.TCOD_CHAR_${l^^}"
+        gname="Char$l"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for l in 'HLine' 'VLine' 'NE' 'NW' 'SE' 'SW' 'TeeW' 'TeeE' 'TeeN' 'TeeS'; do
+        cname="C.TCOD_CHAR_D${l^^}"
+        gname="CharD$l"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for g in 'CheckBox' 'Radio'; do
+        for s in 'Set' 'Unset'; do
+            cname="C.TCOD_CHAR_${g^^}_${s^^}"
+            gname="Char${g}${s}"
+            echo "$gname byte = $cname"
+        done
+    done
+    echo
+
+    for s in 'NW' 'NE' 'SW' 'SE' 'Diag' 'N' 'E'; do
+        cname="C.TCOD_CHAR_SUBP_${s^^}"
+        gname="CharSubp$s"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for i in {1..3}; do
+        cname="C.TCOD_CHAR_BLOCK$i"
+        gname="CharBlock$i"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for d in 'N' 'E' 'S' 'W'; do
+        cname="C.TCOD_CHAR_ARROW_$d"
+        gname="CharArrow$d"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for d in 'N' 'E' 'S' 'W'; do
+        cname="C.TCOD_CHAR_ARROW2_$d"
+        gname="CharArrowNT$d"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for c in 'Cross' 'Heart' 'Diamond' 'Club' 'Spade' 'Male' \
+            'Female' 'Light' 'Pilcrow' 'Section' 'Pound'     \
+            'Multiplication' 'Function' 'Reserved' 'Half'    \
+            'Cent' 'Yen' 'Currency' 'Division' 'Grade' 'Umlaut'; do
+        cname="C.TCOD_CHAR_${c^^}"
+        gname="Char$c"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    for i in {1..3}; do
+        cname="C.TCOD_CHAR_POW$i"
+        gname="CharPow$i"
+        echo "$gname byte = $cname"
+    done
+    echo
+
+    echo "CharDArrowH byte = C.TCOD_CHAR_DARROW_H"
+    echo "CharDArrowV byte = C.TCOD_CHAR_DARROW_V"
+    echo
+
+    for n in '-' 'Inv'; do
+        for c in 'Smilie' 'Bullet'; do
+            if [ "$n" == '-' ]; then
+                cname="C.TCOD_CHAR_${c^^}"
+                gname="Char$c"
+            else
+                cname="C.TCOD_CHAR_${c^^}_${n^^}"
+                gname="Char$c$n"
+            fi
+            echo "$gname byte = $cname"
+        done
+        echo
+    done
+    echo
+
+    echo "CharNote byte = C.TCOD_CHAR_NOTE"
+    echo "CharNoteDouble byte = C.TCOD_CHAR_NOTE_DOUBLE"
+    echo "CharOneQuarter byte = C.TCOD_CHAR_ONE_QUARTER"
+    echo "CharBulletSquare byte = C.TCOD_CHAR_BULLET_SQUARE"
+
+    echo ")"
+    echo
+
+    echo "var ("
+
+    for r in  'OpenGL' 'OpenGL2' 'SDL' 'SDL2'; do
+        cname="C.TCOD_RENDERER_${r^^}"
+        gname="Render$r"
+        echo "$gname Renderer = Renderer{ renderer: $cname }"
+    done
+
+    echo ")"
+    echo
+
+    echo "var ("
+
+    for a in 'Left' 'Right' 'Center'; do
+        cname="C.TCOD_${a^^}"
+        gname="Align$a"
+        echo "$gname Alignment = Alignment{ alignment: $cname }"
+    done
+    echo ")"
+}
+
+file=$(open_file "color")
+    do_colors >> $file
+    gofmt -w $file
+
+file=$(open_file "tinput/input")
+    do_input >> $file
+    gofmt -w $file
+
+file=$(open_file "console")
+    do_console >> $file
+    gofmt -w $file
