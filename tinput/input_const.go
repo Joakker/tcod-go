@@ -42,6 +42,7 @@ var (
 	KeyScrolllock  KeyCode = KeyCode{code: C.TCODK_SCROLLLOCK}
 	KeySpace       KeyCode = KeyCode{code: C.TCODK_SPACE}
 	KeyText        KeyCode = KeyCode{code: C.TCODK_TEXT}
+	KeyChar        KeyCode = KeyCode{code: C.TCODK_CHAR}
 	KeyF1          KeyCode = KeyCode{code: C.TCODK_F1}
 	KeyF2          KeyCode = KeyCode{code: C.TCODK_F2}
 	KeyF3          KeyCode = KeyCode{code: C.TCODK_F3}
@@ -74,4 +75,20 @@ var (
 	KeyKp8         KeyCode = KeyCode{code: C.TCODK_KP8}
 	Key9           KeyCode = KeyCode{code: C.TCODK_9}
 	KeyKp9         KeyCode = KeyCode{code: C.TCODK_KP9}
+)
+
+var (
+	EvAny           int32 = int32(C.TCOD_EVENT_ANY)
+	EvNone          int32 = int32(C.TCOD_EVENT_NONE)
+	EvFinger        int32 = int32(C.TCOD_EVENT_FINGER)
+	EvFingerMove    int32 = int32(C.TCOD_EVENT_FINGER_MOVE)
+	EvFingerPress   int32 = int32(C.TCOD_EVENT_FINGER_PRESS)
+	EvFingerRelease int32 = int32(C.TCOD_EVENT_FINGER_RELEASE)
+	EvKey           int32 = int32(C.TCOD_EVENT_KEY)
+	EvKeyPress      int32 = int32(C.TCOD_EVENT_KEY_PRESS)
+	EvKeyRelease    int32 = int32(C.TCOD_EVENT_KEY_RELEASE)
+	EvMouse         int32 = int32(C.TCOD_EVENT_MOUSE)
+	EvMouseMove     int32 = int32(C.TCOD_EVENT_MOUSE_MOVE)
+	EvMousePress    int32 = int32(C.TCOD_EVENT_MOUSE_PRESS)
+	EvMouseRelease  int32 = int32(C.TCOD_EVENT_MOUSE_RELEASE)
 )

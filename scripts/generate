@@ -77,7 +77,7 @@ function do_input() {
         'home' 'up' 'left' 'right' 'down' 'printscreen'
         'insert' 'delete' 'lwin' 'rwin' 'apps' 'kpAdd' 'kpSub'
         'kpDiv' 'kpMul' 'kpDec' 'kpEnter' 'numlock' 'scrolllock'
-        'space' 'text'
+        'space' 'text' 'char'
     )
 
     cat << EOF
@@ -110,6 +110,33 @@ EOF
         cname="C.TCODK_KP$i"
         gname="KeyKp$i"
         echo "$gname KeyCode = KeyCode{ code: $cname }"
+    done
+
+    echo ")"
+    echo
+
+    echo "var ("
+
+    echo "EvAny int32 = int32(C.TCOD_EVENT_ANY)"
+    echo "EvNone int32 = int32(C.TCOD_EVENT_NONE)"
+
+    for ev in 'Finger' 'Key' 'Mouse'
+    do
+        for st in '-' 'Move' 'Press' 'Release'
+        do
+            if [ "$st" == '-' ]
+            then
+                cname="C.TCOD_EVENT_${ev^^}"
+                gname="Ev$ev"
+            elif [ "$ev" == "Key" ] && [ "$st" == "Move" ]
+            then
+                continue
+            else
+                cname="C.TCOD_EVENT_${ev^^}_${st^^}"
+                gname="Ev$ev$st"
+            fi
+            echo "$gname int32 = int32($cname)"
+        done
     done
 
     echo ")"
