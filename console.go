@@ -147,6 +147,16 @@ func CreditsReset() {
 	C.TCOD_console_credits_reset()
 }
 
+// GetW returns the width of the console
+func (c Console) GetW() int {
+	return int(c.console.w)
+}
+
+// GetW returns the height of the console
+func (c Console) GetH() int {
+	return int(c.console.h)
+}
+
 /*
 	LoadASC loads a .asc ascii art file specified by filename, and writes the
 	contents to the console, returning true if the operation was successful.
@@ -253,4 +263,12 @@ func (c Console) SetAlign(align Alignment) {
 
 func (c Console) GetAlign() Alignment {
 	return Alignment{ alignment: C.TCOD_console_get_alignment(c.console) }
+}
+
+func (c Console) VLine(x, y, l int, flag BgFlag) {
+	C.TCOD_console_vline(c.console, C.int(x), C.int(y), C.int(l), flag.flag)
+}
+
+func (c Console) HLine(x, y, l int, flag BgFlag) {
+	C.TCOD_console_hline(c.console, C.int(x), C.int(y), C.int(l), flag.flag)
 }
