@@ -13,7 +13,7 @@ import (
 	"github.com/Joakker/tcod-go/assets"
 )
 
-const mapImage = "terminal.png"
+const mapImage = "16x16-rogue-yun.png"
 
 // Console is a wrapper around the C struct of the same name.
 type Console struct {
@@ -47,12 +47,12 @@ func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) (*Co
 	if err != nil {
 		return nil, fmt.Errorf("Error initializing window: %w\n", err)
 	}
-	data, ok := assets.FS.String(fmt.Sprintf("/%s", mapImage))
+	data, ok := assets.FS.String(fmt.Sprintf("/resources/%s", mapImage))
 	if !ok {
 		return nil, errors.New("Error initializing window: Cannot load image data")
 	}
 	file.Write([]byte(data))
-	C.TCOD_console_set_custom_font(C.CString(mapPath), C.TCOD_FONT_LAYOUT_ASCII_INCOL, 16, 16)
+	C.TCOD_console_set_custom_font(C.CString(mapPath), C.TCOD_FONT_LAYOUT_ASCII_INROW, 16, 16)
 	C.TCOD_console_init_root(
 		C.int(w), C.int(h), C.CString(title),
 		C.bool(fullscreen), renderer.renderer,
