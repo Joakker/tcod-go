@@ -21,7 +21,7 @@ type Console struct {
 }
 
 // NewConsole creates a console of size w by h cells
-func NewConsole(w, h int32) Console {
+func NewConsole(w, h int) Console {
 	return Console{
 		console : C.TCOD_console_new(C.int(w), C.int(h)),
 	}
@@ -41,7 +41,7 @@ func NewConsoleASC(filename string) Console {
 	default font image, bundled with this library in binary form, if no image has been selected
 	explicitly by calling SetFontImage before calling this function.
 */
-func InitRoot(w, h int32, title string, fullscreen bool, renderer Renderer) (*Console, error) {
+func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Console, error) {
 	mapPath := fmt.Sprintf("%s/%s", xdg.CacheHome(), mapImage)
 	file, err := os.Create(mapPath)
 	if err != nil {
@@ -138,7 +138,7 @@ func CreditsScreen() {
 
 	The function will return false while the animation is not finished.
 */
-func CreditsEmbed(x, y int32, alpha bool) bool {
+func CreditsEmbed(x, y int, alpha bool) bool {
 	return bool(C.TCOD_console_credits_render(C.int(x), C.int(y), C.bool(alpha)))
 }
 
@@ -188,7 +188,7 @@ func (c Console) SaveASC(filename string) bool {
 	console starting from coordinates (5, 5), using the specified background and
 	foreground alpha.
 */
-func (c Console) Blit(x, y, w, h int32, target Console, x2, y2 int32, bgAlpha, fgAlpha float32) {
+func (c Console) Blit(x, y, w, h int, target Console, x2, y2 int, bgAlpha, fgAlpha float32) {
 	C.TCOD_console_blit(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
 		target.console, C.int(x2), C.int(y2), C.float(bgAlpha), C.float(fgAlpha),
@@ -222,20 +222,20 @@ func (c Console) Delete() {
 	}
 }
 
-func (c Console) SetCellBg(x, y int32, color Color, flag BgFlag) {
+func (c Console) SetCellBg(x, y int, color Color, flag BgFlag) {
 	C.TCOD_console_set_char_background(c.console, C.int(x), C.int(y), color.color,
 		flag.flag)
 }
 
-func (c Console) SetCellFg(x, y int32, color Color) {
+func (c Console) SetCellFg(x, y int, color Color) {
 	C.TCOD_console_set_char_foreground(c.console, C.int(x), C.int(y), color.color)
 }
 
-func (c Console) SetChar(x, y int32, b byte) {
+func (c Console) SetChar(x, y int, b byte) {
 	C.TCOD_console_set_char(c.console, C.int(x), C.int(y), C.int(b))
 }
 
-func (c Console) PutChar(x, y int32, b byte, flag BgFlag) {
+func (c Console) PutChar(x, y int, b byte, flag BgFlag) {
 	C.TCOD_console_put_char(c.console, C.int(x), C.int(y), C.int(b), flag.flag)
 }
 

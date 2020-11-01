@@ -117,8 +117,8 @@ EOF
 
     echo "var ("
 
-    echo "EvAny int32 = int32(C.TCOD_EVENT_ANY)"
-    echo "EvNone int32 = int32(C.TCOD_EVENT_NONE)"
+    echo "EvAny int = int(C.TCOD_EVENT_ANY)"
+    echo "EvNone int = int(C.TCOD_EVENT_NONE)"
 
     for ev in 'Finger' 'Key' 'Mouse'
     do
@@ -135,7 +135,7 @@ EOF
                 cname="C.TCOD_EVENT_${ev^^}_${st^^}"
                 gname="Ev$ev$st"
             fi
-            echo "$gname int32 = int32($cname)"
+            echo "$gname int = int($cname)"
         done
     done
 

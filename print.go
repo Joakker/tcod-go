@@ -55,7 +55,7 @@ func (c Console) Clear() {
 	to print the string specified by title. The argument clear tells whether
 	the region within the frame should be cleared out or left alone.
 */
-func (c Console) PrintFrame(x, y, w, h int32, clear bool, title string) {
+func (c Console) PrintFrame(x, y, w, h int, clear bool, title string) {
 	C._TCOD_console_print_frame(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
 		C.bool(clear), C.TCOD_BKGND_NONE, C.CString(title),
@@ -67,6 +67,6 @@ func (c Console) PrintFrame(x, y, w, h int32, clear bool, title string) {
 	(x, y) as a starting point. The console's alignment will tell whether to
 	use it as the center of the text, or one of it's ends.
 */
-func (c Console) Print(x, y int32, text string) {
+func (c Console) Print(x, y int, text string) {
 	C._TCOD_console_print(c.console, C.int(x), C.int(y), C.CString(text))
 }
