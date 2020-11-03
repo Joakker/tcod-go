@@ -178,16 +178,16 @@ var (
 	// CharUmlaut is char Umlaut
 	CharUmlaut byte = C.TCOD_CHAR_UMLAUT
 
-	// Char Pow 1
+	// CharPow1 Char Pow 1
 	CharPow1 byte = C.TCOD_CHAR_POW1
-	// Char Pow 2
+	// CharPow2 Char Pow 2
 	CharPow2 byte = C.TCOD_CHAR_POW2
-	// Char Pow 3
+	// CharPow3 Char Pow 3
 	CharPow3 byte = C.TCOD_CHAR_POW3
 
-	// Char DArrowH
+	// CharDArrowH Char DArrowH
 	CharDArrowH byte = C.TCOD_CHAR_DARROW_H
-	// Char DArrowV
+	// CharDArrowV Char DArrowV
 	CharDArrowV byte = C.TCOD_CHAR_DARROW_V
 
 	// CharSmilie is char Smilie -

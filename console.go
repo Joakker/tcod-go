@@ -141,7 +141,7 @@ func (c Console) GetW() int {
 	return int(c.console.w)
 }
 
-// GetW returns the height of the console
+// GetH returns the height of the console
 func (c Console) GetH() int {
 	return int(c.console.h)
 }

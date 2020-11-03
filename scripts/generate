@@ -260,14 +260,14 @@ EOF
     for i in {1..3}; do
         cname="C.TCOD_CHAR_POW$i"
         gname="CharPow$i"
-        echo "// Char Pow $i"
+        echo "// $gname Char Pow $i"
         echo "$gname byte = $cname"
     done
     echo
 
-    echo "// Char DArrowH"
+    echo "// CharDArrowH Char DArrowH"
     echo "CharDArrowH byte = C.TCOD_CHAR_DARROW_H"
-    echo "// Char DArrowV"
+    echo "// CharDArrowV Char DArrowV"
     echo "CharDArrowV byte = C.TCOD_CHAR_DARROW_V"
     echo
 

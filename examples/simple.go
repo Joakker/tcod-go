@@ -9,10 +9,10 @@ import (
 
 func main() {
 	/*
-			Initialize the main window using the default font file. In the future the
-	        user should be able to specify other files.
+				Initialize the main window using the default font file. In the future the
+		        user should be able to specify other files.
 
-	        tcod.InitRoot returns *tcod.Console and error objects
+		        tcod.InitRoot returns *tcod.Console and error objects
 	*/
 	root, err := tcod.InitRoot(80, 50, "The adventures of Go", false, tcod.RenderSDL2)
 
