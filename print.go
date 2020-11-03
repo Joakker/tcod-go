@@ -12,13 +12,13 @@ package tcod
 	void _TCOD_console_print_ex(
 				TCOD_console_t con, int x, int y, TCOD_bkgnd_flag_t flag,
 				TCOD_alignment_t alignment, const char* s) {
-			TCOD_console_print_ex(con, x, y, flag, alignment, "%s", s);
+			TCOD_console_printf_ex(con, x, y, flag, alignment, "%s", s);
 		}
 
 	void _TCOD_console_print_rect(
 				TCOD_console_t con, int x, int y,
 				int w,int h, const char* s) {
-			TCOD_console_print_rect(
+			TCOD_console_printf_rect(
 				con, x, y, w, h, "%s", s
 			);
 		}
