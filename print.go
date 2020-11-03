@@ -4,18 +4,33 @@ package tcod
 	#cgo LDFLAGS: -ltcod
 	#include <libtcod.h>
 
+	void _TCOD_console_print(
+				TCOD_console_t con, int x, int y, const char* s) {
+			TCOD_console_printf(con, x, y, "%s", s);
+		}
+
+	void _TCOD_console_print_ex(
+				TCOD_console_t con, int x, int y, TCOD_bkgnd_flag_t flag,
+				TCOD_alignment_t alignment, const char* s) {
+			TCOD_console_print_ex(con, x, y, flag, alignment, "%s", s);
+		}
+
+	void _TCOD_console_print_rect(
+				TCOD_console_t con, int x, int y,
+				int w,int h, const char* s) {
+			TCOD_console_print_rect(
+				con, x, y, w, h, "%s", s
+			);
+		}
+
 	void _TCOD_console_print_frame(
 				TCOD_console_t con,int x,int y,int w,int h,
 				bool clear, TCOD_bkgnd_flag_t flag, const char *s) {
 			TCOD_console_printf_frame(con, x, y, w, h, clear, flag, "%s", s);
 		}
-
-	void _TCOD_console_print(
-				TCOD_console_t con, int x, int y, const char* s) {
-			TCOD_console_printf(con, x, y, "%s", s);
-		}
 */
 import "C"
+import "fmt"
 
 // SetDefaultBg sets which color a console's background should have by default.
 // For example:
@@ -42,19 +57,50 @@ func (c Console) Clear() {
 	C.TCOD_console_clear(c.console)
 }
 
-// PrintFrame prints a frame to the console. The frame has a space above
-// to print the string specified by title. The argument clear tells whether
-// the region within the frame should be cleared out or left alone.
-func (c Console) PrintFrame(x, y, w, h int, clear bool, title string) {
-	C._TCOD_console_print_frame(
-		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
-		C.bool(clear), C.TCOD_BKGND_NONE, C.CString(title),
-	)
-}
-
 // Print renders the given text to the console, using the cell at position
 // (x, y) as a starting point. The console's alignment will tell whether to
 // use it as the center of the text, or one of it's ends.
-func (c Console) Print(x, y int, text string) {
-	C._TCOD_console_print(c.console, C.int(x), C.int(y), C.CString(text))
+// You can use Go style escape sequences in the format parameter to have
+// them formatted like in fmt.Sprintf.
+func (c Console) Print(x, y int, format string, values ...interface{}) {
+	final := fmt.Sprintf(format, values...)
+	C._TCOD_console_print(c.console, C.int(x), C.int(y), C.CString(final))
+}
+
+// PrintEx renders the given text to the console, using the specified
+// background flag and alignment.
+// You can use Go style escape sequences in the format parameter to have
+// them formatted like in fmt.Sprintf.
+func (c Console) PrintEx(x, y int, flag BgFlag,
+	alignment Alignment, format string, values ...interface{}) {
+	final := fmt.Sprintf(format, values...)
+	C._TCOD_console_print_ex(
+		c.console, C.int(x), C.int(y), flag.flag,
+		alignment.alignment, C.CString(final),
+	)
+}
+
+// PrintRect renders a string to the console within the given bounds, that is,
+// with autowrap.
+// You can use Go style escape sequences in the format parameter to have
+// them formatted like in fmt.Sprintf.
+func (c Console) PrintRect(x, y, w, h int, format string, values ...interface{}) {
+	final := fmt.Sprintf(format, values...)
+	C._TCOD_console_print_rect(
+		c.console, C.int(x), C.int(y), C.int(w), C.int(h), C.CString(final),
+	)
+}
+
+// PrintFrame prints a frame to the console. The frame has a space above
+// to print the string specified by title. The argument clear tells whether
+// the region within the frame should be cleared out or left alone.
+// You can use Go style escape sequences in the format parameter to have
+// them formatted like in fmt.Sprintf.
+func (c Console) PrintFrame(x, y, w, h int, clear bool,
+	format string, values ...interface{}) {
+	final := fmt.Sprintf(format, values...)
+	C._TCOD_console_print_frame(
+		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
+		C.bool(clear), C.TCOD_BKGND_NONE, C.CString(final),
+	)
 }

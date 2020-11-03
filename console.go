@@ -94,6 +94,31 @@ func WindowActive() bool {
 	return bool(C.TCOD_console_is_active())
 }
 
+// SetFade sets the fading strength and color of the game window.
+// A fade of 0 means the screen is filled, while a fade of 255
+// means no fading effect. You can make a fading animation easily
+// by doing something like this
+//		for i := byte(0); i < 255; i-- {
+//			tcod.SetFade(fade, tcod.Black)
+//			tcod.Flush()
+//		}
+// This way, the screen will quickly fade to black. The fading
+// parameters are persistent, so once you call them, they stay
+// like that until you change them again.
+func SetFade(fade byte, color Color) {
+	C.TCOD_console_set_fade(C.uint8_t(fade), color.color)
+}
+
+// GetFade returns the fading strength of the game window
+func GetFade() byte {
+	return byte(C.TCOD_console_get_fade())
+}
+
+// GetFadeColor returns the fading color of the game window
+func GetFadeColor() Color {
+	return Color{ color: C.TCOD_console_get_fading_color() }
+}
+
 // CreditsScreen presents an animated screen with a message of the form "Powered
 // by libtcod x.y.z". It halts the progression of the program, so it's best to
 // call it as a splash screen right after the window has been created, rather than
@@ -138,12 +163,41 @@ func CreditsReset() {
 
 // GetW returns the width of the console
 func (c Console) GetW() int {
-	return int(c.console.w)
+	return int(C.TCOD_console_get_width(c.console))
 }
 
 // GetH returns the height of the console
 func (c Console) GetH() int {
-	return int(c.console.h)
+	return int(C.TCOD_console_get_height(c.console))
+}
+
+// GetDefaultBg returns the default background colour of a console
+func (c Console) GetDefaultBg() Color {
+	return Color{ color: C.TCOD_console_get_default_background(c.console)}
+}
+
+// GetDefaultFg returns the default foreground colour of a console
+func (c Console) GetDefaultFg() Color {
+	return Color{ color: C.TCOD_console_get_default_foreground(c.console)}
+}
+
+// GetCharBg returns the background color at a specific coordinate
+func (c Console) GetCharBg(x, y int) Color {
+	return Color{ color: C.TCOD_console_get_char_background(
+		c.console, C.int(x), C.int(y),
+	) }
+}
+
+// GetCharFg returns the foreground color at a specific coordinate
+func (c Console) GetCharFg(x, y int) Color {
+	return Color{ color: C.TCOD_console_get_char_foreground(
+		c.console, C.int(x), C.int(y),
+	) }
+}
+
+// GetChar returns the ascii code at a specific coordinate
+func (c Console) GetChar(x, y int) byte {
+	return byte(C.TCOD_console_get_char(c.console, C.int(x), C.int(y)))
 }
 
 // LoadASC loads a .asc ascii art file specified by filename, and writes the
