@@ -43,7 +43,7 @@ func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Cons
 	mapPath := fmt.Sprintf("%s/%s", xdg.CacheHome(), mapImage)
 	file, err := os.Create(mapPath)
 	if err != nil {
-		return nil, fmt.Errorf("Error initializing window: %w\n", err)
+		return nil, fmt.Errorf("Error initializing window: %w", err)
 	}
 	data, ok := assets.FS.String(fmt.Sprintf("/resources/%s", mapImage))
 	if !ok {
