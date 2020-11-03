@@ -4,18 +4,23 @@ package tcod
 // #include <libtcod.h>
 import "C"
 
+// BgFlag indicates how a background should be drawn
 type BgFlag struct {
 	flag C.TCOD_bkgnd_flag_t
 }
 
+// Renderer indicates which of the available internal renderers
+// should be used
 type Renderer struct {
 	renderer C.TCOD_renderer_t
 }
 
+// Alignment indicates which alignment a console should have
 type Alignment struct {
 	alignment C.TCOD_alignment_t
 }
 
+// BgFlags follow
 var (
 	BgNone     BgFlag = BgFlag{flag: C.TCOD_BKGND_NONE}
 	BgSet      BgFlag = BgFlag{flag: C.TCOD_BKGND_SET}
@@ -29,6 +34,7 @@ var (
 	BgDefault  BgFlag = BgFlag{flag: C.TCOD_BKGND_DEFAULT}
 )
 
+// Character constants follow
 var (
 	CharHLine byte = C.TCOD_CHAR_HLINE
 	CharVLine byte = C.TCOD_CHAR_VLINE
@@ -120,6 +126,7 @@ var (
 	CharBulletSquare byte = C.TCOD_CHAR_BULLET_SQUARE
 )
 
+// Renderers follow
 var (
 	RenderOpenGL  Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL}
 	RenderOpenGL2 Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL2}

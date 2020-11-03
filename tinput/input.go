@@ -4,10 +4,8 @@ package tinput
 // #include <libtcod.h>
 import "C"
 
-/*
-	Input contains methods to survey the user's input, and to
-	query the type of that input.
-*/
+// Input contains methods to survey the user's input, and to
+// query the type of that input.
 type Input struct {
 	key   C.TCOD_key_t
 	mouse C.TCOD_mouse_t
@@ -38,29 +36,23 @@ func (i Input) GetVk() KeyCode {
 	return KeyCode{code: i.key.vk}
 }
 
-/*
-	GetC returns the letter corresponding to the key that
-	was triggered. It should only be called if calling
-	GetVk returns KeyChar
-*/
+// GetC returns the letter corresponding to the key that
+// was triggered. It should only be called if calling
+// GetVk returns KeyChar
 func (i Input) GetC() byte {
 	return byte(i.key.c)
 }
 
-/*
-	KeyPressed returns true if the triggered key is being
-	pressed, and false if it's being released.
-*/
+// KeyPressed returns true if the triggered key is being
+// pressed, and false if it's being released.
 func (i Input) KeyPressed() bool {
 	return bool(i.key.pressed)
 }
 
-/*
-	GetText returns the current character being typed by
-	the user, independent of which keys they are pressing
-	to get it. It should only be called if calling GetVk
-	returns KeyText
-*/
+// GetText returns the current character being typed by
+// the user, independent of which keys they are pressing
+// to get it. It should only be called if calling GetVk
+// returns KeyText
 func (i Input) GetText() string {
 	return C.GoString(&i.key.text[0])
 }
@@ -100,10 +92,8 @@ func (i Input) RMeta() bool {
 	return bool(i.key.rmeta)
 }
 
-/*
-	Meta returns true if either of the meta keys is being pressed.
-	The meta key is what's known as the Windows Key on Windows.
-*/
+// Meta returns true if either of the meta keys is being pressed.
+// The meta key is what's known as the Windows Key on Windows.
 func (i Input) Meta() bool {
 	return i.LMeta() || i.RMeta()
 }

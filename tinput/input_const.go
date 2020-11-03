@@ -4,10 +4,12 @@ package tinput
 // #include <libtcod.h>
 import "C"
 
+// KeyCode represents the key that the user is triggering
 type KeyCode struct {
 	code C.TCOD_keycode_t
 }
 
+// Key Codes follow
 var (
 	KeyEscape      KeyCode = KeyCode{code: C.TCODK_ESCAPE}
 	KeyBackspace   KeyCode = KeyCode{code: C.TCODK_BACKSPACE}
@@ -77,6 +79,7 @@ var (
 	KeyKp9         KeyCode = KeyCode{code: C.TCODK_KP9}
 )
 
+// Event codes follow
 var (
 	EvAny           int = int(C.TCOD_EVENT_ANY)
 	EvNone          int = int(C.TCOD_EVENT_NONE)

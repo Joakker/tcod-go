@@ -38,10 +38,13 @@ function do_colors() {
 
     cat << EOF
 
+
+    // Color represents a colour with it's RGB or HSV values
     type Color struct {
         color C.TCOD_color_t
     }
 
+    // Colours follow
     var (
 
 EOF
@@ -82,10 +85,12 @@ function do_input() {
 
     cat << EOF
 
+    // KeyCode represents the key that the user is triggering
     type KeyCode struct {
         code C.TCOD_keycode_t
     }
 
+    // Key Codes follow
     var (
 
 EOF
@@ -115,6 +120,7 @@ EOF
     echo ")"
     echo
 
+    echo "// Event codes follow"
     echo "var ("
 
     echo "EvAny int = int(C.TCOD_EVENT_ANY)"
@@ -143,22 +149,24 @@ EOF
 }
 
 function do_console() {
-    FLAGS=(
-    )
-
     cat << EOF
+    // BgFlag indicates how a background should be drawn
     type BgFlag struct {
         flag C.TCOD_bkgnd_flag_t
     }
 
+    // Renderer indicates which of the available internal renderers
+    // should be used
     type Renderer struct {
         renderer C.TCOD_renderer_t
     }
 
+    // Alignment indicates which alignment a console should have
     type Alignment struct {
         alignment C.TCOD_alignment_t
     }
 
+    // BgFlags follow
     var (
 EOF
 
@@ -172,6 +180,7 @@ EOF
     echo ")"
     echo
 
+    echo "// Character constants follow"
     echo "var ("
     for l in 'HLine' 'VLine' 'NE' 'NW' 'SE' 'SW' 'TeeW' 'TeeE' 'TeeN' 'TeeS'; do
         cname="C.TCOD_CHAR_${l^^}"
@@ -268,6 +277,7 @@ EOF
     echo ")"
     echo
 
+    echo "// Renderers follow"
     echo "var ("
 
     for r in  'OpenGL' 'OpenGL2' 'SDL' 'SDL2'; do

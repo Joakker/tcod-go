@@ -30,10 +30,8 @@ func SetRenderer(renderer tcod.Renderer) {
 	C.TCOD_sys_set_renderer(convertRenderer(renderer))
 }
 
-/*
-	SaveScreenshot saves a PNG or BMP file with the current game screen.
-	The format depends on the file extension that the path ends with.
-*/
+// SaveScreenshot saves a PNG or BMP file with the current game screen.
+// The format depends on the file extension that the path ends with.
 func SaveScreenshot(filename string) {
 	C.TCOD_sys_save_screenshot(C.CString(filename))
 }
