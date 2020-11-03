@@ -3,7 +3,7 @@
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/Joakker/tcod-go)](https://pkg.go.dev/github.com/Joakker/tcod-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Joakker/tcod-go)](https://goreportcard.com/report/github.com/Joakker/tcod-go)
 
-tcod-go is a port of the libtcod library to the Go language
+tcod-go is a port of the libtcod library to the Go language.
 
 ## Installation
 
