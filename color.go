@@ -91,7 +91,7 @@ func (c Color) Add(o Color) Color {
 	}
 }
 
-// Add substracts two colors together and returns the result. Similar
+// Sub substracts two colors together and returns the result. Similar
 // to Add, the resulting color is darker than the operands.
 func (c Color) Sub(o Color) Color {
 	return Color{

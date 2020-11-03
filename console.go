@@ -69,7 +69,7 @@ func Fullscreen() bool {
 	return bool(C.TCOD_console_is_fullscreen())
 }
 
-// Fullscreen makes the game window enter or exit fullscreen mode
+// SetFullscreen makes the game window enter or exit fullscreen mode
 func SetFullscreen(f bool) {
 	C.TCOD_console_set_fullscreen(C.bool(f))
 }
@@ -99,16 +99,13 @@ func WindowActive() bool {
 // call it as a splash screen right after the window has been created, rather than
 // in the game loop. Any key press will interrupt the spash screen and give control
 // back to the program.
-
 //		root, err := tcod.InitRoot(80, 50, "The Adventures of Go", false, tcod.RenderSDL2)
 //		if err != nil {
 //			log.Fatal(err)
 //		}
-
 //		// The program will stop here until the animation is finished or the user
 //		// presses a key
 //		tcod.CreditsScreen()
-
 //		for !tcod.WindowClosed() {
 //			// Game Loop goes here
 //		}
@@ -123,14 +120,12 @@ func CreditsScreen() {
 // of the root console will determine if the coordinates are the center of the
 // image or one of it's corners. The function should be called over multiple
 // frames, as every time, it renders the next frame in the animation. For example:
-
 // 	endCredits := false
 // 	for !tcod.WindowClosed() {
 // 		if !endCredits {
 // 			endCredits = tcod.CreditsEmbed(25, 25, true)
 // 		}
 // 	}
-
 // The function will return false while the animation is not finished.
 func CreditsEmbed(x, y int, alpha bool) bool {
 	return bool(C.TCOD_console_credits_render(C.int(x), C.int(y), C.bool(alpha)))

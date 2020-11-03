@@ -4,10 +4,12 @@ package tcod
 // #include <libtcod.h>
 import "C"
 
+// Color represents a colour with it's RGB or HSV values
 type Color struct {
 	color C.TCOD_color_t
 }
 
+// Colours follow
 var (
 	DesaturatedRed        Color = Color{color: C.TCOD_desaturated_red}
 	DesaturatedFlame      Color = Color{color: C.TCOD_desaturated_flame}
