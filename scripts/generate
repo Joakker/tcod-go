@@ -58,7 +58,7 @@ EOF
                 gname="${b^}${c^}"
             fi
 
-            echo "// Color $b $c"
+            echo "// $gname is color $b $c"
             echo "$gname Color = Color{ color: $cname }"
         done
     done
@@ -67,7 +67,7 @@ EOF
 
     for a in ${ALONES[@]}; do
         cname="C.TCOD_$a"
-        echo "// Color $a"
+        echo "// ${a^} is color $a"
         echo "${a^} Color = Color{ color: ${cname} }"
     done
 
@@ -98,26 +98,26 @@ EOF
     for k in ${KEYS[@]}; do
         cname="C.TCODK_${k^^}"
         gname="Key${k^}"
-        echo "// Key $k"
+        echo "// $gname is key $k"
         echo "$gname KeyCode = KeyCode{ code: $cname }"
     done
 
     for i in {1..12}; do
         cname="C.TCODK_F$i"
         gname="KeyF$i"
-        echo "// Key Function $i"
+        echo "// $gname is key function $i"
         echo "$gname KeyCode = KeyCode{ code: $cname }"
     done
 
     for i in {0..9}; do
         cname="C.TCODK_$i"
         gname="Key$i"
-        echo "// Key $i"
+        echo "// $gname is key $i"
         echo "$gname KeyCode = KeyCode{ code: $cname }"
 
         cname="C.TCODK_KP$i"
         gname="KeyKp$i"
-        echo "// Key Keypad $i"
+        echo "// $gname is key keypad $i"
         echo "$gname KeyCode = KeyCode{ code: $cname }"
     done
 
@@ -126,9 +126,9 @@ EOF
 
     echo "var ("
 
-    echo "// Event Any"
+    echo "// EvAny is any event"
     echo "EvAny int = int(C.TCOD_EVENT_ANY)"
-    echo "// Event None"
+    echo "// EvNone is no event"
     echo "EvNone int = int(C.TCOD_EVENT_NONE)"
 
     for ev in 'Finger' 'Key' 'Mouse'
@@ -146,7 +146,7 @@ EOF
                 cname="C.TCOD_EVENT_${ev^^}_${st^^}"
                 gname="Ev$ev$st"
             fi
-            echo "// Event $ev $st"
+            echo "// $gname Event $ev $st"
             echo "$gname int = int($cname)"
         done
     done
@@ -179,7 +179,7 @@ EOF
             'darken' 'screen' 'add' 'burn' 'overlay' 'default'; do
         cname="C.TCOD_BKGND_${f^^}"
         gname="Bg${f^}"
-        echo "// Background $f"
+        echo "// $gname background $f"
         echo "$gname BgFlag = BgFlag{ flag: $cname }"
     done
 
@@ -191,7 +191,7 @@ EOF
         cname="C.TCOD_CHAR_${l^^}"
         gname="Char$l"
 
-        echo "// Char Wall $l"
+        echo "// $gname is char wall $l"
         echo "$gname byte = $cname"
     done
     echo
@@ -199,7 +199,7 @@ EOF
     for l in 'HLine' 'VLine' 'NE' 'NW' 'SE' 'SW' 'TeeW' 'TeeE' 'TeeN' 'TeeS'; do
         cname="C.TCOD_CHAR_D${l^^}"
         gname="CharD$l"
-        echo "// Char Double Wall $l"
+        echo "// $gname is char double wall $l"
         echo "$gname byte = $cname"
     done
     echo
@@ -208,7 +208,7 @@ EOF
         for s in 'Set' 'Unset'; do
             cname="C.TCOD_CHAR_${g^^}_${s^^}"
             gname="Char${g}${s}"
-            echo "// Char $g $s"
+            echo "// $gname is char $g $s"
             echo "$gname byte = $cname"
         done
     done
@@ -217,7 +217,7 @@ EOF
     for s in 'NW' 'NE' 'SW' 'SE' 'Diag' 'N' 'E'; do
         cname="C.TCOD_CHAR_SUBP_${s^^}"
         gname="CharSubp$s"
-        echo "// Char Subpixel $s"
+        echo "// $gname char subpixel $s"
         echo "$gname byte = $cname"
     done
     echo
@@ -225,7 +225,7 @@ EOF
     for i in {1..3}; do
         cname="C.TCOD_CHAR_BLOCK$i"
         gname="CharBlock$i"
-        echo "// Char Block $i"
+        echo "// $gname char block $i"
         echo "$gname byte = $cname"
     done
     echo
@@ -233,7 +233,7 @@ EOF
     for d in 'N' 'E' 'S' 'W'; do
         cname="C.TCOD_CHAR_ARROW_$d"
         gname="CharArrow$d"
-        echo "// Char Arrow $d"
+        echo "// $gname char arrow $d"
         echo "$gname byte = $cname"
     done
     echo
@@ -241,7 +241,7 @@ EOF
     for d in 'N' 'E' 'S' 'W'; do
         cname="C.TCOD_CHAR_ARROW2_$d"
         gname="CharArrowNT$d"
-        echo "// Char Arrow No Tail $d"
+        echo "// $gname is char arrow no tail $d"
         echo "$gname byte = $cname"
     done
     echo
@@ -252,7 +252,7 @@ EOF
             'Cent' 'Yen' 'Currency' 'Division' 'Grade' 'Umlaut'; do
         cname="C.TCOD_CHAR_${c^^}"
         gname="Char$c"
-        echo "// Char $c"
+        echo "// $gname is char $c"
         echo "$gname byte = $cname"
     done
     echo
@@ -280,20 +280,20 @@ EOF
                 cname="C.TCOD_CHAR_${c^^}_${n^^}"
                 gname="Char$c$n"
             fi
-            echo "// Char $c $n"
+            echo "// $gname is char $c $n"
             echo "$gname byte = $cname"
         done
         echo
     done
     echo
 
-    echo "// Char Note"
+    echo "// CharNote Char Note"
     echo "CharNote byte = C.TCOD_CHAR_NOTE"
-    echo "// Char NoteDouble"
+    echo "// CharNoteDouble Char NoteDouble"
     echo "CharNoteDouble byte = C.TCOD_CHAR_NOTE_DOUBLE"
-    echo "// Char OneQuarter"
+    echo "// CharOneQuarter Char OneQuarter"
     echo "CharOneQuarter byte = C.TCOD_CHAR_ONE_QUARTER"
-    echo "// Char BulletSquare"
+    echo "// CharBulletSquare Char BulletSquare"
     echo "CharBulletSquare byte = C.TCOD_CHAR_BULLET_SQUARE"
 
     echo ")"
@@ -304,7 +304,7 @@ EOF
     for r in  'OpenGL' 'OpenGL2' 'SDL' 'SDL2'; do
         cname="C.TCOD_RENDERER_${r^^}"
         gname="Render$r"
-        echo "// Renderer $r"
+        echo "// $gname is renderer $r"
         echo "$gname Renderer = Renderer{ renderer: $cname }"
     done
 
@@ -316,7 +316,7 @@ EOF
     for a in 'Left' 'Right' 'Center'; do
         cname="C.TCOD_${a^^}"
         gname="Align$a"
-        echo "// Alignment $a"
+        echo "// $gname is alignment $a"
         echo "$gname Alignment = Alignment{ alignment: $cname }"
     done
     echo ")"

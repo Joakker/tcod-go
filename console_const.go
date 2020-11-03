@@ -21,161 +21,161 @@ type Alignment struct {
 }
 
 var (
-	// Background none
+	// BgNone background none
 	BgNone BgFlag = BgFlag{flag: C.TCOD_BKGND_NONE}
-	// Background set
+	// BgSet background set
 	BgSet BgFlag = BgFlag{flag: C.TCOD_BKGND_SET}
-	// Background multiply
+	// BgMultiply background multiply
 	BgMultiply BgFlag = BgFlag{flag: C.TCOD_BKGND_MULTIPLY}
-	// Background lighten
+	// BgLighten background lighten
 	BgLighten BgFlag = BgFlag{flag: C.TCOD_BKGND_LIGHTEN}
-	// Background darken
+	// BgDarken background darken
 	BgDarken BgFlag = BgFlag{flag: C.TCOD_BKGND_DARKEN}
-	// Background screen
+	// BgScreen background screen
 	BgScreen BgFlag = BgFlag{flag: C.TCOD_BKGND_SCREEN}
-	// Background add
+	// BgAdd background add
 	BgAdd BgFlag = BgFlag{flag: C.TCOD_BKGND_ADD}
-	// Background burn
+	// BgBurn background burn
 	BgBurn BgFlag = BgFlag{flag: C.TCOD_BKGND_BURN}
-	// Background overlay
+	// BgOverlay background overlay
 	BgOverlay BgFlag = BgFlag{flag: C.TCOD_BKGND_OVERLAY}
-	// Background default
+	// BgDefault background default
 	BgDefault BgFlag = BgFlag{flag: C.TCOD_BKGND_DEFAULT}
 )
 
 var (
-	// Char Wall HLine
+	// CharHLine is char wall HLine
 	CharHLine byte = C.TCOD_CHAR_HLINE
-	// Char Wall VLine
+	// CharVLine is char wall VLine
 	CharVLine byte = C.TCOD_CHAR_VLINE
-	// Char Wall NE
+	// CharNE is char wall NE
 	CharNE byte = C.TCOD_CHAR_NE
-	// Char Wall NW
+	// CharNW is char wall NW
 	CharNW byte = C.TCOD_CHAR_NW
-	// Char Wall SE
+	// CharSE is char wall SE
 	CharSE byte = C.TCOD_CHAR_SE
-	// Char Wall SW
+	// CharSW is char wall SW
 	CharSW byte = C.TCOD_CHAR_SW
-	// Char Wall TeeW
+	// CharTeeW is char wall TeeW
 	CharTeeW byte = C.TCOD_CHAR_TEEW
-	// Char Wall TeeE
+	// CharTeeE is char wall TeeE
 	CharTeeE byte = C.TCOD_CHAR_TEEE
-	// Char Wall TeeN
+	// CharTeeN is char wall TeeN
 	CharTeeN byte = C.TCOD_CHAR_TEEN
-	// Char Wall TeeS
+	// CharTeeS is char wall TeeS
 	CharTeeS byte = C.TCOD_CHAR_TEES
 
-	// Char Double Wall HLine
+	// CharDHLine is char double wall HLine
 	CharDHLine byte = C.TCOD_CHAR_DHLINE
-	// Char Double Wall VLine
+	// CharDVLine is char double wall VLine
 	CharDVLine byte = C.TCOD_CHAR_DVLINE
-	// Char Double Wall NE
+	// CharDNE is char double wall NE
 	CharDNE byte = C.TCOD_CHAR_DNE
-	// Char Double Wall NW
+	// CharDNW is char double wall NW
 	CharDNW byte = C.TCOD_CHAR_DNW
-	// Char Double Wall SE
+	// CharDSE is char double wall SE
 	CharDSE byte = C.TCOD_CHAR_DSE
-	// Char Double Wall SW
+	// CharDSW is char double wall SW
 	CharDSW byte = C.TCOD_CHAR_DSW
-	// Char Double Wall TeeW
+	// CharDTeeW is char double wall TeeW
 	CharDTeeW byte = C.TCOD_CHAR_DTEEW
-	// Char Double Wall TeeE
+	// CharDTeeE is char double wall TeeE
 	CharDTeeE byte = C.TCOD_CHAR_DTEEE
-	// Char Double Wall TeeN
+	// CharDTeeN is char double wall TeeN
 	CharDTeeN byte = C.TCOD_CHAR_DTEEN
-	// Char Double Wall TeeS
+	// CharDTeeS is char double wall TeeS
 	CharDTeeS byte = C.TCOD_CHAR_DTEES
 
-	// Char CheckBox Set
+	// CharCheckBoxSet is char CheckBox Set
 	CharCheckBoxSet byte = C.TCOD_CHAR_CHECKBOX_SET
-	// Char CheckBox Unset
+	// CharCheckBoxUnset is char CheckBox Unset
 	CharCheckBoxUnset byte = C.TCOD_CHAR_CHECKBOX_UNSET
-	// Char Radio Set
+	// CharRadioSet is char Radio Set
 	CharRadioSet byte = C.TCOD_CHAR_RADIO_SET
-	// Char Radio Unset
+	// CharRadioUnset is char Radio Unset
 	CharRadioUnset byte = C.TCOD_CHAR_RADIO_UNSET
 
-	// Char Subpixel NW
+	// CharSubpNW char subpixel NW
 	CharSubpNW byte = C.TCOD_CHAR_SUBP_NW
-	// Char Subpixel NE
+	// CharSubpNE char subpixel NE
 	CharSubpNE byte = C.TCOD_CHAR_SUBP_NE
-	// Char Subpixel SW
+	// CharSubpSW char subpixel SW
 	CharSubpSW byte = C.TCOD_CHAR_SUBP_SW
-	// Char Subpixel SE
+	// CharSubpSE char subpixel SE
 	CharSubpSE byte = C.TCOD_CHAR_SUBP_SE
-	// Char Subpixel Diag
+	// CharSubpDiag char subpixel Diag
 	CharSubpDiag byte = C.TCOD_CHAR_SUBP_DIAG
-	// Char Subpixel N
+	// CharSubpN char subpixel N
 	CharSubpN byte = C.TCOD_CHAR_SUBP_N
-	// Char Subpixel E
+	// CharSubpE char subpixel E
 	CharSubpE byte = C.TCOD_CHAR_SUBP_E
 
-	// Char Block 1
+	// CharBlock1 char block 1
 	CharBlock1 byte = C.TCOD_CHAR_BLOCK1
-	// Char Block 2
+	// CharBlock2 char block 2
 	CharBlock2 byte = C.TCOD_CHAR_BLOCK2
-	// Char Block 3
+	// CharBlock3 char block 3
 	CharBlock3 byte = C.TCOD_CHAR_BLOCK3
 
-	// Char Arrow N
+	// CharArrowN char arrow N
 	CharArrowN byte = C.TCOD_CHAR_ARROW_N
-	// Char Arrow E
+	// CharArrowE char arrow E
 	CharArrowE byte = C.TCOD_CHAR_ARROW_E
-	// Char Arrow S
+	// CharArrowS char arrow S
 	CharArrowS byte = C.TCOD_CHAR_ARROW_S
-	// Char Arrow W
+	// CharArrowW char arrow W
 	CharArrowW byte = C.TCOD_CHAR_ARROW_W
 
-	// Char Arrow No Tail N
+	// CharArrowNTN is char arrow no tail N
 	CharArrowNTN byte = C.TCOD_CHAR_ARROW2_N
-	// Char Arrow No Tail E
+	// CharArrowNTE is char arrow no tail E
 	CharArrowNTE byte = C.TCOD_CHAR_ARROW2_E
-	// Char Arrow No Tail S
+	// CharArrowNTS is char arrow no tail S
 	CharArrowNTS byte = C.TCOD_CHAR_ARROW2_S
-	// Char Arrow No Tail W
+	// CharArrowNTW is char arrow no tail W
 	CharArrowNTW byte = C.TCOD_CHAR_ARROW2_W
 
-	// Char Cross
+	// CharCross is char Cross
 	CharCross byte = C.TCOD_CHAR_CROSS
-	// Char Heart
+	// CharHeart is char Heart
 	CharHeart byte = C.TCOD_CHAR_HEART
-	// Char Diamond
+	// CharDiamond is char Diamond
 	CharDiamond byte = C.TCOD_CHAR_DIAMOND
-	// Char Club
+	// CharClub is char Club
 	CharClub byte = C.TCOD_CHAR_CLUB
-	// Char Spade
+	// CharSpade is char Spade
 	CharSpade byte = C.TCOD_CHAR_SPADE
-	// Char Male
+	// CharMale is char Male
 	CharMale byte = C.TCOD_CHAR_MALE
-	// Char Female
+	// CharFemale is char Female
 	CharFemale byte = C.TCOD_CHAR_FEMALE
-	// Char Light
+	// CharLight is char Light
 	CharLight byte = C.TCOD_CHAR_LIGHT
-	// Char Pilcrow
+	// CharPilcrow is char Pilcrow
 	CharPilcrow byte = C.TCOD_CHAR_PILCROW
-	// Char Section
+	// CharSection is char Section
 	CharSection byte = C.TCOD_CHAR_SECTION
-	// Char Pound
+	// CharPound is char Pound
 	CharPound byte = C.TCOD_CHAR_POUND
-	// Char Multiplication
+	// CharMultiplication is char Multiplication
 	CharMultiplication byte = C.TCOD_CHAR_MULTIPLICATION
-	// Char Function
+	// CharFunction is char Function
 	CharFunction byte = C.TCOD_CHAR_FUNCTION
-	// Char Reserved
+	// CharReserved is char Reserved
 	CharReserved byte = C.TCOD_CHAR_RESERVED
-	// Char Half
+	// CharHalf is char Half
 	CharHalf byte = C.TCOD_CHAR_HALF
-	// Char Cent
+	// CharCent is char Cent
 	CharCent byte = C.TCOD_CHAR_CENT
-	// Char Yen
+	// CharYen is char Yen
 	CharYen byte = C.TCOD_CHAR_YEN
-	// Char Currency
+	// CharCurrency is char Currency
 	CharCurrency byte = C.TCOD_CHAR_CURRENCY
-	// Char Division
+	// CharDivision is char Division
 	CharDivision byte = C.TCOD_CHAR_DIVISION
-	// Char Grade
+	// CharGrade is char Grade
 	CharGrade byte = C.TCOD_CHAR_GRADE
-	// Char Umlaut
+	// CharUmlaut is char Umlaut
 	CharUmlaut byte = C.TCOD_CHAR_UMLAUT
 
 	// Char Pow 1
@@ -190,42 +190,42 @@ var (
 	// Char DArrowV
 	CharDArrowV byte = C.TCOD_CHAR_DARROW_V
 
-	// Char Smilie -
+	// CharSmilie is char Smilie -
 	CharSmilie byte = C.TCOD_CHAR_SMILIE
-	// Char Bullet -
+	// CharBullet is char Bullet -
 	CharBullet byte = C.TCOD_CHAR_BULLET
 
-	// Char Smilie Inv
+	// CharSmilieInv is char Smilie Inv
 	CharSmilieInv byte = C.TCOD_CHAR_SMILIE_INV
-	// Char Bullet Inv
+	// CharBulletInv is char Bullet Inv
 	CharBulletInv byte = C.TCOD_CHAR_BULLET_INV
 
-	// Char Note
+	// CharNote Char Note
 	CharNote byte = C.TCOD_CHAR_NOTE
-	// Char NoteDouble
+	// CharNoteDouble Char NoteDouble
 	CharNoteDouble byte = C.TCOD_CHAR_NOTE_DOUBLE
-	// Char OneQuarter
+	// CharOneQuarter Char OneQuarter
 	CharOneQuarter byte = C.TCOD_CHAR_ONE_QUARTER
-	// Char BulletSquare
+	// CharBulletSquare Char BulletSquare
 	CharBulletSquare byte = C.TCOD_CHAR_BULLET_SQUARE
 )
 
 var (
-	// Renderer OpenGL
+	// RenderOpenGL is renderer OpenGL
 	RenderOpenGL Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL}
-	// Renderer OpenGL2
+	// RenderOpenGL2 is renderer OpenGL2
 	RenderOpenGL2 Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL2}
-	// Renderer SDL
+	// RenderSDL is renderer SDL
 	RenderSDL Renderer = Renderer{renderer: C.TCOD_RENDERER_SDL}
-	// Renderer SDL2
+	// RenderSDL2 is renderer SDL2
 	RenderSDL2 Renderer = Renderer{renderer: C.TCOD_RENDERER_SDL2}
 )
 
 var (
-	// Alignment Left
+	// AlignLeft is alignment Left
 	AlignLeft Alignment = Alignment{alignment: C.TCOD_LEFT}
-	// Alignment Right
+	// AlignRight is alignment Right
 	AlignRight Alignment = Alignment{alignment: C.TCOD_RIGHT}
-	// Alignment Center
+	// AlignCenter is alignment Center
 	AlignCenter Alignment = Alignment{alignment: C.TCOD_CENTER}
 )

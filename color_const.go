@@ -11,361 +11,361 @@ type Color struct {
 
 var (
 
-	// Color desaturated red
+	// DesaturatedRed is color desaturated red
 	DesaturatedRed Color = Color{color: C.TCOD_desaturated_red}
-	// Color desaturated flame
+	// DesaturatedFlame is color desaturated flame
 	DesaturatedFlame Color = Color{color: C.TCOD_desaturated_flame}
-	// Color desaturated orange
+	// DesaturatedOrange is color desaturated orange
 	DesaturatedOrange Color = Color{color: C.TCOD_desaturated_orange}
-	// Color desaturated amber
+	// DesaturatedAmber is color desaturated amber
 	DesaturatedAmber Color = Color{color: C.TCOD_desaturated_amber}
-	// Color desaturated yellow
+	// DesaturatedYellow is color desaturated yellow
 	DesaturatedYellow Color = Color{color: C.TCOD_desaturated_yellow}
-	// Color desaturated lime
+	// DesaturatedLime is color desaturated lime
 	DesaturatedLime Color = Color{color: C.TCOD_desaturated_lime}
-	// Color desaturated chartreuse
+	// DesaturatedChartreuse is color desaturated chartreuse
 	DesaturatedChartreuse Color = Color{color: C.TCOD_desaturated_chartreuse}
-	// Color desaturated green
+	// DesaturatedGreen is color desaturated green
 	DesaturatedGreen Color = Color{color: C.TCOD_desaturated_green}
-	// Color desaturated sea
+	// DesaturatedSea is color desaturated sea
 	DesaturatedSea Color = Color{color: C.TCOD_desaturated_sea}
-	// Color desaturated turquoise
+	// DesaturatedTurquoise is color desaturated turquoise
 	DesaturatedTurquoise Color = Color{color: C.TCOD_desaturated_turquoise}
-	// Color desaturated cyan
+	// DesaturatedCyan is color desaturated cyan
 	DesaturatedCyan Color = Color{color: C.TCOD_desaturated_cyan}
-	// Color desaturated sky
+	// DesaturatedSky is color desaturated sky
 	DesaturatedSky Color = Color{color: C.TCOD_desaturated_sky}
-	// Color desaturated azure
+	// DesaturatedAzure is color desaturated azure
 	DesaturatedAzure Color = Color{color: C.TCOD_desaturated_azure}
-	// Color desaturated blue
+	// DesaturatedBlue is color desaturated blue
 	DesaturatedBlue Color = Color{color: C.TCOD_desaturated_blue}
-	// Color desaturated han
+	// DesaturatedHan is color desaturated han
 	DesaturatedHan Color = Color{color: C.TCOD_desaturated_han}
-	// Color desaturated violet
+	// DesaturatedViolet is color desaturated violet
 	DesaturatedViolet Color = Color{color: C.TCOD_desaturated_violet}
-	// Color desaturated purple
+	// DesaturatedPurple is color desaturated purple
 	DesaturatedPurple Color = Color{color: C.TCOD_desaturated_purple}
-	// Color desaturated fuchsia
+	// DesaturatedFuchsia is color desaturated fuchsia
 	DesaturatedFuchsia Color = Color{color: C.TCOD_desaturated_fuchsia}
-	// Color desaturated magenta
+	// DesaturatedMagenta is color desaturated magenta
 	DesaturatedMagenta Color = Color{color: C.TCOD_desaturated_magenta}
-	// Color desaturated pink
+	// DesaturatedPink is color desaturated pink
 	DesaturatedPink Color = Color{color: C.TCOD_desaturated_pink}
-	// Color desaturated crimson
+	// DesaturatedCrimson is color desaturated crimson
 	DesaturatedCrimson Color = Color{color: C.TCOD_desaturated_crimson}
-	// Color lightest red
+	// LightestRed is color lightest red
 	LightestRed Color = Color{color: C.TCOD_lightest_red}
-	// Color lightest flame
+	// LightestFlame is color lightest flame
 	LightestFlame Color = Color{color: C.TCOD_lightest_flame}
-	// Color lightest orange
+	// LightestOrange is color lightest orange
 	LightestOrange Color = Color{color: C.TCOD_lightest_orange}
-	// Color lightest amber
+	// LightestAmber is color lightest amber
 	LightestAmber Color = Color{color: C.TCOD_lightest_amber}
-	// Color lightest yellow
+	// LightestYellow is color lightest yellow
 	LightestYellow Color = Color{color: C.TCOD_lightest_yellow}
-	// Color lightest lime
+	// LightestLime is color lightest lime
 	LightestLime Color = Color{color: C.TCOD_lightest_lime}
-	// Color lightest chartreuse
+	// LightestChartreuse is color lightest chartreuse
 	LightestChartreuse Color = Color{color: C.TCOD_lightest_chartreuse}
-	// Color lightest green
+	// LightestGreen is color lightest green
 	LightestGreen Color = Color{color: C.TCOD_lightest_green}
-	// Color lightest sea
+	// LightestSea is color lightest sea
 	LightestSea Color = Color{color: C.TCOD_lightest_sea}
-	// Color lightest turquoise
+	// LightestTurquoise is color lightest turquoise
 	LightestTurquoise Color = Color{color: C.TCOD_lightest_turquoise}
-	// Color lightest cyan
+	// LightestCyan is color lightest cyan
 	LightestCyan Color = Color{color: C.TCOD_lightest_cyan}
-	// Color lightest sky
+	// LightestSky is color lightest sky
 	LightestSky Color = Color{color: C.TCOD_lightest_sky}
-	// Color lightest azure
+	// LightestAzure is color lightest azure
 	LightestAzure Color = Color{color: C.TCOD_lightest_azure}
-	// Color lightest blue
+	// LightestBlue is color lightest blue
 	LightestBlue Color = Color{color: C.TCOD_lightest_blue}
-	// Color lightest han
+	// LightestHan is color lightest han
 	LightestHan Color = Color{color: C.TCOD_lightest_han}
-	// Color lightest violet
+	// LightestViolet is color lightest violet
 	LightestViolet Color = Color{color: C.TCOD_lightest_violet}
-	// Color lightest purple
+	// LightestPurple is color lightest purple
 	LightestPurple Color = Color{color: C.TCOD_lightest_purple}
-	// Color lightest fuchsia
+	// LightestFuchsia is color lightest fuchsia
 	LightestFuchsia Color = Color{color: C.TCOD_lightest_fuchsia}
-	// Color lightest magenta
+	// LightestMagenta is color lightest magenta
 	LightestMagenta Color = Color{color: C.TCOD_lightest_magenta}
-	// Color lightest pink
+	// LightestPink is color lightest pink
 	LightestPink Color = Color{color: C.TCOD_lightest_pink}
-	// Color lightest crimson
+	// LightestCrimson is color lightest crimson
 	LightestCrimson Color = Color{color: C.TCOD_lightest_crimson}
-	// Color lighter red
+	// LighterRed is color lighter red
 	LighterRed Color = Color{color: C.TCOD_lighter_red}
-	// Color lighter flame
+	// LighterFlame is color lighter flame
 	LighterFlame Color = Color{color: C.TCOD_lighter_flame}
-	// Color lighter orange
+	// LighterOrange is color lighter orange
 	LighterOrange Color = Color{color: C.TCOD_lighter_orange}
-	// Color lighter amber
+	// LighterAmber is color lighter amber
 	LighterAmber Color = Color{color: C.TCOD_lighter_amber}
-	// Color lighter yellow
+	// LighterYellow is color lighter yellow
 	LighterYellow Color = Color{color: C.TCOD_lighter_yellow}
-	// Color lighter lime
+	// LighterLime is color lighter lime
 	LighterLime Color = Color{color: C.TCOD_lighter_lime}
-	// Color lighter chartreuse
+	// LighterChartreuse is color lighter chartreuse
 	LighterChartreuse Color = Color{color: C.TCOD_lighter_chartreuse}
-	// Color lighter green
+	// LighterGreen is color lighter green
 	LighterGreen Color = Color{color: C.TCOD_lighter_green}
-	// Color lighter sea
+	// LighterSea is color lighter sea
 	LighterSea Color = Color{color: C.TCOD_lighter_sea}
-	// Color lighter turquoise
+	// LighterTurquoise is color lighter turquoise
 	LighterTurquoise Color = Color{color: C.TCOD_lighter_turquoise}
-	// Color lighter cyan
+	// LighterCyan is color lighter cyan
 	LighterCyan Color = Color{color: C.TCOD_lighter_cyan}
-	// Color lighter sky
+	// LighterSky is color lighter sky
 	LighterSky Color = Color{color: C.TCOD_lighter_sky}
-	// Color lighter azure
+	// LighterAzure is color lighter azure
 	LighterAzure Color = Color{color: C.TCOD_lighter_azure}
-	// Color lighter blue
+	// LighterBlue is color lighter blue
 	LighterBlue Color = Color{color: C.TCOD_lighter_blue}
-	// Color lighter han
+	// LighterHan is color lighter han
 	LighterHan Color = Color{color: C.TCOD_lighter_han}
-	// Color lighter violet
+	// LighterViolet is color lighter violet
 	LighterViolet Color = Color{color: C.TCOD_lighter_violet}
-	// Color lighter purple
+	// LighterPurple is color lighter purple
 	LighterPurple Color = Color{color: C.TCOD_lighter_purple}
-	// Color lighter fuchsia
+	// LighterFuchsia is color lighter fuchsia
 	LighterFuchsia Color = Color{color: C.TCOD_lighter_fuchsia}
-	// Color lighter magenta
+	// LighterMagenta is color lighter magenta
 	LighterMagenta Color = Color{color: C.TCOD_lighter_magenta}
-	// Color lighter pink
+	// LighterPink is color lighter pink
 	LighterPink Color = Color{color: C.TCOD_lighter_pink}
-	// Color lighter crimson
+	// LighterCrimson is color lighter crimson
 	LighterCrimson Color = Color{color: C.TCOD_lighter_crimson}
-	// Color light red
+	// LightRed is color light red
 	LightRed Color = Color{color: C.TCOD_light_red}
-	// Color light flame
+	// LightFlame is color light flame
 	LightFlame Color = Color{color: C.TCOD_light_flame}
-	// Color light orange
+	// LightOrange is color light orange
 	LightOrange Color = Color{color: C.TCOD_light_orange}
-	// Color light amber
+	// LightAmber is color light amber
 	LightAmber Color = Color{color: C.TCOD_light_amber}
-	// Color light yellow
+	// LightYellow is color light yellow
 	LightYellow Color = Color{color: C.TCOD_light_yellow}
-	// Color light lime
+	// LightLime is color light lime
 	LightLime Color = Color{color: C.TCOD_light_lime}
-	// Color light chartreuse
+	// LightChartreuse is color light chartreuse
 	LightChartreuse Color = Color{color: C.TCOD_light_chartreuse}
-	// Color light green
+	// LightGreen is color light green
 	LightGreen Color = Color{color: C.TCOD_light_green}
-	// Color light sea
+	// LightSea is color light sea
 	LightSea Color = Color{color: C.TCOD_light_sea}
-	// Color light turquoise
+	// LightTurquoise is color light turquoise
 	LightTurquoise Color = Color{color: C.TCOD_light_turquoise}
-	// Color light cyan
+	// LightCyan is color light cyan
 	LightCyan Color = Color{color: C.TCOD_light_cyan}
-	// Color light sky
+	// LightSky is color light sky
 	LightSky Color = Color{color: C.TCOD_light_sky}
-	// Color light azure
+	// LightAzure is color light azure
 	LightAzure Color = Color{color: C.TCOD_light_azure}
-	// Color light blue
+	// LightBlue is color light blue
 	LightBlue Color = Color{color: C.TCOD_light_blue}
-	// Color light han
+	// LightHan is color light han
 	LightHan Color = Color{color: C.TCOD_light_han}
-	// Color light violet
+	// LightViolet is color light violet
 	LightViolet Color = Color{color: C.TCOD_light_violet}
-	// Color light purple
+	// LightPurple is color light purple
 	LightPurple Color = Color{color: C.TCOD_light_purple}
-	// Color light fuchsia
+	// LightFuchsia is color light fuchsia
 	LightFuchsia Color = Color{color: C.TCOD_light_fuchsia}
-	// Color light magenta
+	// LightMagenta is color light magenta
 	LightMagenta Color = Color{color: C.TCOD_light_magenta}
-	// Color light pink
+	// LightPink is color light pink
 	LightPink Color = Color{color: C.TCOD_light_pink}
-	// Color light crimson
+	// LightCrimson is color light crimson
 	LightCrimson Color = Color{color: C.TCOD_light_crimson}
-	// Color - red
+	// Red is color - red
 	Red Color = Color{color: C.TCOD_red}
-	// Color - flame
+	// Flame is color - flame
 	Flame Color = Color{color: C.TCOD_flame}
-	// Color - orange
+	// Orange is color - orange
 	Orange Color = Color{color: C.TCOD_orange}
-	// Color - amber
+	// Amber is color - amber
 	Amber Color = Color{color: C.TCOD_amber}
-	// Color - yellow
+	// Yellow is color - yellow
 	Yellow Color = Color{color: C.TCOD_yellow}
-	// Color - lime
+	// Lime is color - lime
 	Lime Color = Color{color: C.TCOD_lime}
-	// Color - chartreuse
+	// Chartreuse is color - chartreuse
 	Chartreuse Color = Color{color: C.TCOD_chartreuse}
-	// Color - green
+	// Green is color - green
 	Green Color = Color{color: C.TCOD_green}
-	// Color - sea
+	// Sea is color - sea
 	Sea Color = Color{color: C.TCOD_sea}
-	// Color - turquoise
+	// Turquoise is color - turquoise
 	Turquoise Color = Color{color: C.TCOD_turquoise}
-	// Color - cyan
+	// Cyan is color - cyan
 	Cyan Color = Color{color: C.TCOD_cyan}
-	// Color - sky
+	// Sky is color - sky
 	Sky Color = Color{color: C.TCOD_sky}
-	// Color - azure
+	// Azure is color - azure
 	Azure Color = Color{color: C.TCOD_azure}
-	// Color - blue
+	// Blue is color - blue
 	Blue Color = Color{color: C.TCOD_blue}
-	// Color - han
+	// Han is color - han
 	Han Color = Color{color: C.TCOD_han}
-	// Color - violet
+	// Violet is color - violet
 	Violet Color = Color{color: C.TCOD_violet}
-	// Color - purple
+	// Purple is color - purple
 	Purple Color = Color{color: C.TCOD_purple}
-	// Color - fuchsia
+	// Fuchsia is color - fuchsia
 	Fuchsia Color = Color{color: C.TCOD_fuchsia}
-	// Color - magenta
+	// Magenta is color - magenta
 	Magenta Color = Color{color: C.TCOD_magenta}
-	// Color - pink
+	// Pink is color - pink
 	Pink Color = Color{color: C.TCOD_pink}
-	// Color - crimson
+	// Crimson is color - crimson
 	Crimson Color = Color{color: C.TCOD_crimson}
-	// Color dark red
+	// DarkRed is color dark red
 	DarkRed Color = Color{color: C.TCOD_dark_red}
-	// Color dark flame
+	// DarkFlame is color dark flame
 	DarkFlame Color = Color{color: C.TCOD_dark_flame}
-	// Color dark orange
+	// DarkOrange is color dark orange
 	DarkOrange Color = Color{color: C.TCOD_dark_orange}
-	// Color dark amber
+	// DarkAmber is color dark amber
 	DarkAmber Color = Color{color: C.TCOD_dark_amber}
-	// Color dark yellow
+	// DarkYellow is color dark yellow
 	DarkYellow Color = Color{color: C.TCOD_dark_yellow}
-	// Color dark lime
+	// DarkLime is color dark lime
 	DarkLime Color = Color{color: C.TCOD_dark_lime}
-	// Color dark chartreuse
+	// DarkChartreuse is color dark chartreuse
 	DarkChartreuse Color = Color{color: C.TCOD_dark_chartreuse}
-	// Color dark green
+	// DarkGreen is color dark green
 	DarkGreen Color = Color{color: C.TCOD_dark_green}
-	// Color dark sea
+	// DarkSea is color dark sea
 	DarkSea Color = Color{color: C.TCOD_dark_sea}
-	// Color dark turquoise
+	// DarkTurquoise is color dark turquoise
 	DarkTurquoise Color = Color{color: C.TCOD_dark_turquoise}
-	// Color dark cyan
+	// DarkCyan is color dark cyan
 	DarkCyan Color = Color{color: C.TCOD_dark_cyan}
-	// Color dark sky
+	// DarkSky is color dark sky
 	DarkSky Color = Color{color: C.TCOD_dark_sky}
-	// Color dark azure
+	// DarkAzure is color dark azure
 	DarkAzure Color = Color{color: C.TCOD_dark_azure}
-	// Color dark blue
+	// DarkBlue is color dark blue
 	DarkBlue Color = Color{color: C.TCOD_dark_blue}
-	// Color dark han
+	// DarkHan is color dark han
 	DarkHan Color = Color{color: C.TCOD_dark_han}
-	// Color dark violet
+	// DarkViolet is color dark violet
 	DarkViolet Color = Color{color: C.TCOD_dark_violet}
-	// Color dark purple
+	// DarkPurple is color dark purple
 	DarkPurple Color = Color{color: C.TCOD_dark_purple}
-	// Color dark fuchsia
+	// DarkFuchsia is color dark fuchsia
 	DarkFuchsia Color = Color{color: C.TCOD_dark_fuchsia}
-	// Color dark magenta
+	// DarkMagenta is color dark magenta
 	DarkMagenta Color = Color{color: C.TCOD_dark_magenta}
-	// Color dark pink
+	// DarkPink is color dark pink
 	DarkPink Color = Color{color: C.TCOD_dark_pink}
-	// Color dark crimson
+	// DarkCrimson is color dark crimson
 	DarkCrimson Color = Color{color: C.TCOD_dark_crimson}
-	// Color darker red
+	// DarkerRed is color darker red
 	DarkerRed Color = Color{color: C.TCOD_darker_red}
-	// Color darker flame
+	// DarkerFlame is color darker flame
 	DarkerFlame Color = Color{color: C.TCOD_darker_flame}
-	// Color darker orange
+	// DarkerOrange is color darker orange
 	DarkerOrange Color = Color{color: C.TCOD_darker_orange}
-	// Color darker amber
+	// DarkerAmber is color darker amber
 	DarkerAmber Color = Color{color: C.TCOD_darker_amber}
-	// Color darker yellow
+	// DarkerYellow is color darker yellow
 	DarkerYellow Color = Color{color: C.TCOD_darker_yellow}
-	// Color darker lime
+	// DarkerLime is color darker lime
 	DarkerLime Color = Color{color: C.TCOD_darker_lime}
-	// Color darker chartreuse
+	// DarkerChartreuse is color darker chartreuse
 	DarkerChartreuse Color = Color{color: C.TCOD_darker_chartreuse}
-	// Color darker green
+	// DarkerGreen is color darker green
 	DarkerGreen Color = Color{color: C.TCOD_darker_green}
-	// Color darker sea
+	// DarkerSea is color darker sea
 	DarkerSea Color = Color{color: C.TCOD_darker_sea}
-	// Color darker turquoise
+	// DarkerTurquoise is color darker turquoise
 	DarkerTurquoise Color = Color{color: C.TCOD_darker_turquoise}
-	// Color darker cyan
+	// DarkerCyan is color darker cyan
 	DarkerCyan Color = Color{color: C.TCOD_darker_cyan}
-	// Color darker sky
+	// DarkerSky is color darker sky
 	DarkerSky Color = Color{color: C.TCOD_darker_sky}
-	// Color darker azure
+	// DarkerAzure is color darker azure
 	DarkerAzure Color = Color{color: C.TCOD_darker_azure}
-	// Color darker blue
+	// DarkerBlue is color darker blue
 	DarkerBlue Color = Color{color: C.TCOD_darker_blue}
-	// Color darker han
+	// DarkerHan is color darker han
 	DarkerHan Color = Color{color: C.TCOD_darker_han}
-	// Color darker violet
+	// DarkerViolet is color darker violet
 	DarkerViolet Color = Color{color: C.TCOD_darker_violet}
-	// Color darker purple
+	// DarkerPurple is color darker purple
 	DarkerPurple Color = Color{color: C.TCOD_darker_purple}
-	// Color darker fuchsia
+	// DarkerFuchsia is color darker fuchsia
 	DarkerFuchsia Color = Color{color: C.TCOD_darker_fuchsia}
-	// Color darker magenta
+	// DarkerMagenta is color darker magenta
 	DarkerMagenta Color = Color{color: C.TCOD_darker_magenta}
-	// Color darker pink
+	// DarkerPink is color darker pink
 	DarkerPink Color = Color{color: C.TCOD_darker_pink}
-	// Color darker crimson
+	// DarkerCrimson is color darker crimson
 	DarkerCrimson Color = Color{color: C.TCOD_darker_crimson}
-	// Color darkest red
+	// DarkestRed is color darkest red
 	DarkestRed Color = Color{color: C.TCOD_darkest_red}
-	// Color darkest flame
+	// DarkestFlame is color darkest flame
 	DarkestFlame Color = Color{color: C.TCOD_darkest_flame}
-	// Color darkest orange
+	// DarkestOrange is color darkest orange
 	DarkestOrange Color = Color{color: C.TCOD_darkest_orange}
-	// Color darkest amber
+	// DarkestAmber is color darkest amber
 	DarkestAmber Color = Color{color: C.TCOD_darkest_amber}
-	// Color darkest yellow
+	// DarkestYellow is color darkest yellow
 	DarkestYellow Color = Color{color: C.TCOD_darkest_yellow}
-	// Color darkest lime
+	// DarkestLime is color darkest lime
 	DarkestLime Color = Color{color: C.TCOD_darkest_lime}
-	// Color darkest chartreuse
+	// DarkestChartreuse is color darkest chartreuse
 	DarkestChartreuse Color = Color{color: C.TCOD_darkest_chartreuse}
-	// Color darkest green
+	// DarkestGreen is color darkest green
 	DarkestGreen Color = Color{color: C.TCOD_darkest_green}
-	// Color darkest sea
+	// DarkestSea is color darkest sea
 	DarkestSea Color = Color{color: C.TCOD_darkest_sea}
-	// Color darkest turquoise
+	// DarkestTurquoise is color darkest turquoise
 	DarkestTurquoise Color = Color{color: C.TCOD_darkest_turquoise}
-	// Color darkest cyan
+	// DarkestCyan is color darkest cyan
 	DarkestCyan Color = Color{color: C.TCOD_darkest_cyan}
-	// Color darkest sky
+	// DarkestSky is color darkest sky
 	DarkestSky Color = Color{color: C.TCOD_darkest_sky}
-	// Color darkest azure
+	// DarkestAzure is color darkest azure
 	DarkestAzure Color = Color{color: C.TCOD_darkest_azure}
-	// Color darkest blue
+	// DarkestBlue is color darkest blue
 	DarkestBlue Color = Color{color: C.TCOD_darkest_blue}
-	// Color darkest han
+	// DarkestHan is color darkest han
 	DarkestHan Color = Color{color: C.TCOD_darkest_han}
-	// Color darkest violet
+	// DarkestViolet is color darkest violet
 	DarkestViolet Color = Color{color: C.TCOD_darkest_violet}
-	// Color darkest purple
+	// DarkestPurple is color darkest purple
 	DarkestPurple Color = Color{color: C.TCOD_darkest_purple}
-	// Color darkest fuchsia
+	// DarkestFuchsia is color darkest fuchsia
 	DarkestFuchsia Color = Color{color: C.TCOD_darkest_fuchsia}
-	// Color darkest magenta
+	// DarkestMagenta is color darkest magenta
 	DarkestMagenta Color = Color{color: C.TCOD_darkest_magenta}
-	// Color darkest pink
+	// DarkestPink is color darkest pink
 	DarkestPink Color = Color{color: C.TCOD_darkest_pink}
-	// Color darkest crimson
+	// DarkestCrimson is color darkest crimson
 	DarkestCrimson Color = Color{color: C.TCOD_darkest_crimson}
 
-	// Color brass
+	// Brass is color brass
 	Brass Color = Color{color: C.TCOD_brass}
-	// Color copper
+	// Copper is color copper
 	Copper Color = Color{color: C.TCOD_copper}
-	// Color gold
+	// Gold is color gold
 	Gold Color = Color{color: C.TCOD_gold}
-	// Color silver
+	// Silver is color silver
 	Silver Color = Color{color: C.TCOD_silver}
-	// Color celadon
+	// Celadon is color celadon
 	Celadon Color = Color{color: C.TCOD_celadon}
-	// Color peach
+	// Peach is color peach
 	Peach Color = Color{color: C.TCOD_peach}
-	// Color grey
+	// Grey is color grey
 	Grey Color = Color{color: C.TCOD_grey}
-	// Color sepia
+	// Sepia is color sepia
 	Sepia Color = Color{color: C.TCOD_sepia}
-	// Color black
+	// Black is color black
 	Black Color = Color{color: C.TCOD_black}
-	// Color white
+	// White is color white
 	White Color = Color{color: C.TCOD_white}
 )
