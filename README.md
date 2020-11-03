@@ -51,7 +51,7 @@ func main() {
         i.Check()
         root.Clear()
             root.PrintFrame(0, 0, 80, 50, false, "The adventures of Go")
-        root.Flush()
+        tcod.Flush()
     }
 }
 ```
