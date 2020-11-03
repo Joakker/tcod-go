@@ -59,9 +59,9 @@ func main() {
 
 You should get something more or less like this:
 
-In the future there should be a complete tutorial in this repo's wiki.
-
 ![example](images/example.png)
+
+In the future there should be a complete tutorial in this repo's wiki.
 
 ## Contributing
 
