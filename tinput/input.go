@@ -84,7 +84,7 @@ func (i Input) Ctrl() bool {
 
 // LMeta returns true if the left meta key is being pressed
 func (i Input) LMeta() bool {
-	return  bool(i.key.lmeta)
+	return bool(i.key.lmeta)
 }
 
 // RMeta returns true if the right meta key is being pressed

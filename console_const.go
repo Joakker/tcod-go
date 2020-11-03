@@ -20,122 +20,212 @@ type Alignment struct {
 	alignment C.TCOD_alignment_t
 }
 
-// BgFlags follow
 var (
-	BgNone     BgFlag = BgFlag{flag: C.TCOD_BKGND_NONE}
-	BgSet      BgFlag = BgFlag{flag: C.TCOD_BKGND_SET}
+	// Background none
+	BgNone BgFlag = BgFlag{flag: C.TCOD_BKGND_NONE}
+	// Background set
+	BgSet BgFlag = BgFlag{flag: C.TCOD_BKGND_SET}
+	// Background multiply
 	BgMultiply BgFlag = BgFlag{flag: C.TCOD_BKGND_MULTIPLY}
-	BgLighten  BgFlag = BgFlag{flag: C.TCOD_BKGND_LIGHTEN}
-	BgDarken   BgFlag = BgFlag{flag: C.TCOD_BKGND_DARKEN}
-	BgScreen   BgFlag = BgFlag{flag: C.TCOD_BKGND_SCREEN}
-	BgAdd      BgFlag = BgFlag{flag: C.TCOD_BKGND_ADD}
-	BgBurn     BgFlag = BgFlag{flag: C.TCOD_BKGND_BURN}
-	BgOverlay  BgFlag = BgFlag{flag: C.TCOD_BKGND_OVERLAY}
-	BgDefault  BgFlag = BgFlag{flag: C.TCOD_BKGND_DEFAULT}
+	// Background lighten
+	BgLighten BgFlag = BgFlag{flag: C.TCOD_BKGND_LIGHTEN}
+	// Background darken
+	BgDarken BgFlag = BgFlag{flag: C.TCOD_BKGND_DARKEN}
+	// Background screen
+	BgScreen BgFlag = BgFlag{flag: C.TCOD_BKGND_SCREEN}
+	// Background add
+	BgAdd BgFlag = BgFlag{flag: C.TCOD_BKGND_ADD}
+	// Background burn
+	BgBurn BgFlag = BgFlag{flag: C.TCOD_BKGND_BURN}
+	// Background overlay
+	BgOverlay BgFlag = BgFlag{flag: C.TCOD_BKGND_OVERLAY}
+	// Background default
+	BgDefault BgFlag = BgFlag{flag: C.TCOD_BKGND_DEFAULT}
 )
 
-// Character constants follow
 var (
+	// Char Wall HLine
 	CharHLine byte = C.TCOD_CHAR_HLINE
+	// Char Wall VLine
 	CharVLine byte = C.TCOD_CHAR_VLINE
-	CharNE    byte = C.TCOD_CHAR_NE
-	CharNW    byte = C.TCOD_CHAR_NW
-	CharSE    byte = C.TCOD_CHAR_SE
-	CharSW    byte = C.TCOD_CHAR_SW
-	CharTeeW  byte = C.TCOD_CHAR_TEEW
-	CharTeeE  byte = C.TCOD_CHAR_TEEE
-	CharTeeN  byte = C.TCOD_CHAR_TEEN
-	CharTeeS  byte = C.TCOD_CHAR_TEES
+	// Char Wall NE
+	CharNE byte = C.TCOD_CHAR_NE
+	// Char Wall NW
+	CharNW byte = C.TCOD_CHAR_NW
+	// Char Wall SE
+	CharSE byte = C.TCOD_CHAR_SE
+	// Char Wall SW
+	CharSW byte = C.TCOD_CHAR_SW
+	// Char Wall TeeW
+	CharTeeW byte = C.TCOD_CHAR_TEEW
+	// Char Wall TeeE
+	CharTeeE byte = C.TCOD_CHAR_TEEE
+	// Char Wall TeeN
+	CharTeeN byte = C.TCOD_CHAR_TEEN
+	// Char Wall TeeS
+	CharTeeS byte = C.TCOD_CHAR_TEES
 
+	// Char Double Wall HLine
 	CharDHLine byte = C.TCOD_CHAR_DHLINE
+	// Char Double Wall VLine
 	CharDVLine byte = C.TCOD_CHAR_DVLINE
-	CharDNE    byte = C.TCOD_CHAR_DNE
-	CharDNW    byte = C.TCOD_CHAR_DNW
-	CharDSE    byte = C.TCOD_CHAR_DSE
-	CharDSW    byte = C.TCOD_CHAR_DSW
-	CharDTeeW  byte = C.TCOD_CHAR_DTEEW
-	CharDTeeE  byte = C.TCOD_CHAR_DTEEE
-	CharDTeeN  byte = C.TCOD_CHAR_DTEEN
-	CharDTeeS  byte = C.TCOD_CHAR_DTEES
+	// Char Double Wall NE
+	CharDNE byte = C.TCOD_CHAR_DNE
+	// Char Double Wall NW
+	CharDNW byte = C.TCOD_CHAR_DNW
+	// Char Double Wall SE
+	CharDSE byte = C.TCOD_CHAR_DSE
+	// Char Double Wall SW
+	CharDSW byte = C.TCOD_CHAR_DSW
+	// Char Double Wall TeeW
+	CharDTeeW byte = C.TCOD_CHAR_DTEEW
+	// Char Double Wall TeeE
+	CharDTeeE byte = C.TCOD_CHAR_DTEEE
+	// Char Double Wall TeeN
+	CharDTeeN byte = C.TCOD_CHAR_DTEEN
+	// Char Double Wall TeeS
+	CharDTeeS byte = C.TCOD_CHAR_DTEES
 
-	CharCheckBoxSet   byte = C.TCOD_CHAR_CHECKBOX_SET
+	// Char CheckBox Set
+	CharCheckBoxSet byte = C.TCOD_CHAR_CHECKBOX_SET
+	// Char CheckBox Unset
 	CharCheckBoxUnset byte = C.TCOD_CHAR_CHECKBOX_UNSET
-	CharRadioSet      byte = C.TCOD_CHAR_RADIO_SET
-	CharRadioUnset    byte = C.TCOD_CHAR_RADIO_UNSET
+	// Char Radio Set
+	CharRadioSet byte = C.TCOD_CHAR_RADIO_SET
+	// Char Radio Unset
+	CharRadioUnset byte = C.TCOD_CHAR_RADIO_UNSET
 
-	CharSubpNW   byte = C.TCOD_CHAR_SUBP_NW
-	CharSubpNE   byte = C.TCOD_CHAR_SUBP_NE
-	CharSubpSW   byte = C.TCOD_CHAR_SUBP_SW
-	CharSubpSE   byte = C.TCOD_CHAR_SUBP_SE
+	// Char Subpixel NW
+	CharSubpNW byte = C.TCOD_CHAR_SUBP_NW
+	// Char Subpixel NE
+	CharSubpNE byte = C.TCOD_CHAR_SUBP_NE
+	// Char Subpixel SW
+	CharSubpSW byte = C.TCOD_CHAR_SUBP_SW
+	// Char Subpixel SE
+	CharSubpSE byte = C.TCOD_CHAR_SUBP_SE
+	// Char Subpixel Diag
 	CharSubpDiag byte = C.TCOD_CHAR_SUBP_DIAG
-	CharSubpN    byte = C.TCOD_CHAR_SUBP_N
-	CharSubpE    byte = C.TCOD_CHAR_SUBP_E
+	// Char Subpixel N
+	CharSubpN byte = C.TCOD_CHAR_SUBP_N
+	// Char Subpixel E
+	CharSubpE byte = C.TCOD_CHAR_SUBP_E
 
+	// Char Block 1
 	CharBlock1 byte = C.TCOD_CHAR_BLOCK1
+	// Char Block 2
 	CharBlock2 byte = C.TCOD_CHAR_BLOCK2
+	// Char Block 3
 	CharBlock3 byte = C.TCOD_CHAR_BLOCK3
 
+	// Char Arrow N
 	CharArrowN byte = C.TCOD_CHAR_ARROW_N
+	// Char Arrow E
 	CharArrowE byte = C.TCOD_CHAR_ARROW_E
+	// Char Arrow S
 	CharArrowS byte = C.TCOD_CHAR_ARROW_S
+	// Char Arrow W
 	CharArrowW byte = C.TCOD_CHAR_ARROW_W
 
+	// Char Arrow No Tail N
 	CharArrowNTN byte = C.TCOD_CHAR_ARROW2_N
+	// Char Arrow No Tail E
 	CharArrowNTE byte = C.TCOD_CHAR_ARROW2_E
+	// Char Arrow No Tail S
 	CharArrowNTS byte = C.TCOD_CHAR_ARROW2_S
+	// Char Arrow No Tail W
 	CharArrowNTW byte = C.TCOD_CHAR_ARROW2_W
 
-	CharCross          byte = C.TCOD_CHAR_CROSS
-	CharHeart          byte = C.TCOD_CHAR_HEART
-	CharDiamond        byte = C.TCOD_CHAR_DIAMOND
-	CharClub           byte = C.TCOD_CHAR_CLUB
-	CharSpade          byte = C.TCOD_CHAR_SPADE
-	CharMale           byte = C.TCOD_CHAR_MALE
-	CharFemale         byte = C.TCOD_CHAR_FEMALE
-	CharLight          byte = C.TCOD_CHAR_LIGHT
-	CharPilcrow        byte = C.TCOD_CHAR_PILCROW
-	CharSection        byte = C.TCOD_CHAR_SECTION
-	CharPound          byte = C.TCOD_CHAR_POUND
+	// Char Cross
+	CharCross byte = C.TCOD_CHAR_CROSS
+	// Char Heart
+	CharHeart byte = C.TCOD_CHAR_HEART
+	// Char Diamond
+	CharDiamond byte = C.TCOD_CHAR_DIAMOND
+	// Char Club
+	CharClub byte = C.TCOD_CHAR_CLUB
+	// Char Spade
+	CharSpade byte = C.TCOD_CHAR_SPADE
+	// Char Male
+	CharMale byte = C.TCOD_CHAR_MALE
+	// Char Female
+	CharFemale byte = C.TCOD_CHAR_FEMALE
+	// Char Light
+	CharLight byte = C.TCOD_CHAR_LIGHT
+	// Char Pilcrow
+	CharPilcrow byte = C.TCOD_CHAR_PILCROW
+	// Char Section
+	CharSection byte = C.TCOD_CHAR_SECTION
+	// Char Pound
+	CharPound byte = C.TCOD_CHAR_POUND
+	// Char Multiplication
 	CharMultiplication byte = C.TCOD_CHAR_MULTIPLICATION
-	CharFunction       byte = C.TCOD_CHAR_FUNCTION
-	CharReserved       byte = C.TCOD_CHAR_RESERVED
-	CharHalf           byte = C.TCOD_CHAR_HALF
-	CharCent           byte = C.TCOD_CHAR_CENT
-	CharYen            byte = C.TCOD_CHAR_YEN
-	CharCurrency       byte = C.TCOD_CHAR_CURRENCY
-	CharDivision       byte = C.TCOD_CHAR_DIVISION
-	CharGrade          byte = C.TCOD_CHAR_GRADE
-	CharUmlaut         byte = C.TCOD_CHAR_UMLAUT
+	// Char Function
+	CharFunction byte = C.TCOD_CHAR_FUNCTION
+	// Char Reserved
+	CharReserved byte = C.TCOD_CHAR_RESERVED
+	// Char Half
+	CharHalf byte = C.TCOD_CHAR_HALF
+	// Char Cent
+	CharCent byte = C.TCOD_CHAR_CENT
+	// Char Yen
+	CharYen byte = C.TCOD_CHAR_YEN
+	// Char Currency
+	CharCurrency byte = C.TCOD_CHAR_CURRENCY
+	// Char Division
+	CharDivision byte = C.TCOD_CHAR_DIVISION
+	// Char Grade
+	CharGrade byte = C.TCOD_CHAR_GRADE
+	// Char Umlaut
+	CharUmlaut byte = C.TCOD_CHAR_UMLAUT
 
+	// Char Pow 1
 	CharPow1 byte = C.TCOD_CHAR_POW1
+	// Char Pow 2
 	CharPow2 byte = C.TCOD_CHAR_POW2
+	// Char Pow 3
 	CharPow3 byte = C.TCOD_CHAR_POW3
 
+	// Char DArrowH
 	CharDArrowH byte = C.TCOD_CHAR_DARROW_H
+	// Char DArrowV
 	CharDArrowV byte = C.TCOD_CHAR_DARROW_V
 
+	// Char Smilie -
 	CharSmilie byte = C.TCOD_CHAR_SMILIE
+	// Char Bullet -
 	CharBullet byte = C.TCOD_CHAR_BULLET
 
+	// Char Smilie Inv
 	CharSmilieInv byte = C.TCOD_CHAR_SMILIE_INV
+	// Char Bullet Inv
 	CharBulletInv byte = C.TCOD_CHAR_BULLET_INV
 
-	CharNote         byte = C.TCOD_CHAR_NOTE
-	CharNoteDouble   byte = C.TCOD_CHAR_NOTE_DOUBLE
-	CharOneQuarter   byte = C.TCOD_CHAR_ONE_QUARTER
+	// Char Note
+	CharNote byte = C.TCOD_CHAR_NOTE
+	// Char NoteDouble
+	CharNoteDouble byte = C.TCOD_CHAR_NOTE_DOUBLE
+	// Char OneQuarter
+	CharOneQuarter byte = C.TCOD_CHAR_ONE_QUARTER
+	// Char BulletSquare
 	CharBulletSquare byte = C.TCOD_CHAR_BULLET_SQUARE
 )
 
-// Renderers follow
 var (
-	RenderOpenGL  Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL}
+	// Renderer OpenGL
+	RenderOpenGL Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL}
+	// Renderer OpenGL2
 	RenderOpenGL2 Renderer = Renderer{renderer: C.TCOD_RENDERER_OPENGL2}
-	RenderSDL     Renderer = Renderer{renderer: C.TCOD_RENDERER_SDL}
-	RenderSDL2    Renderer = Renderer{renderer: C.TCOD_RENDERER_SDL2}
+	// Renderer SDL
+	RenderSDL Renderer = Renderer{renderer: C.TCOD_RENDERER_SDL}
+	// Renderer SDL2
+	RenderSDL2 Renderer = Renderer{renderer: C.TCOD_RENDERER_SDL2}
 )
 
 var (
-	AlignLeft   Alignment = Alignment{alignment: C.TCOD_LEFT}
-	AlignRight  Alignment = Alignment{alignment: C.TCOD_RIGHT}
+	// Alignment Left
+	AlignLeft Alignment = Alignment{alignment: C.TCOD_LEFT}
+	// Alignment Right
+	AlignRight Alignment = Alignment{alignment: C.TCOD_RIGHT}
+	// Alignment Center
 	AlignCenter Alignment = Alignment{alignment: C.TCOD_CENTER}
 )

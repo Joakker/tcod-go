@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/OpenPeeDeeP/xdg"
 	"github.com/Joakker/tcod-go/assets"
+	"github.com/OpenPeeDeeP/xdg"
 )
 
 const mapImage = "16x16-rogue-yun.png"
@@ -23,14 +23,14 @@ type Console struct {
 // NewConsole creates a console of size w by h cells
 func NewConsole(w, h int) Console {
 	return Console{
-		console : C.TCOD_console_new(C.int(w), C.int(h)),
+		console: C.TCOD_console_new(C.int(w), C.int(h)),
 	}
 }
 
 // NewConsoleASC creates a console from the .asc image specified by filename
 func NewConsoleASC(filename string) Console {
 	return Console{
-		console : C.TCOD_console_from_file(C.CString(filename)),
+		console: C.TCOD_console_from_file(C.CString(filename)),
 	}
 }
 
@@ -56,7 +56,7 @@ func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Cons
 		C.bool(fullscreen), renderer.renderer,
 	)
 	os.Remove(mapPath)
-	return &Console{ console: nil }, nil
+	return &Console{console: nil}, nil
 }
 
 // Flush renders the screen and presents it to the player
@@ -120,12 +120,12 @@ func CreditsScreen() {
 // of the root console will determine if the coordinates are the center of the
 // image or one of it's corners. The function should be called over multiple
 // frames, as every time, it renders the next frame in the animation. For example:
-// 	endCredits := false
-// 	for !tcod.WindowClosed() {
-// 		if !endCredits {
-// 			endCredits = tcod.CreditsEmbed(25, 25, true)
-// 		}
-// 	}
+//		endCredits := false
+//		for !tcod.WindowClosed() {
+//			if !endCredits {
+//				endCredits = tcod.CreditsEmbed(25, 25, true)
+//			}
+//		}
 // The function will return false while the animation is not finished.
 func CreditsEmbed(x, y int, alpha bool) bool {
 	return bool(C.TCOD_console_credits_render(C.int(x), C.int(y), C.bool(alpha)))
@@ -234,7 +234,7 @@ func (c Console) SetBgFlag(flag BgFlag) {
 
 // GetBgFlag returns the default BgFlag of a console
 func (c Console) GetBgFlag() BgFlag {
-	return BgFlag{ flag: C.TCOD_console_get_background_flag(c.console) }
+	return BgFlag{flag: C.TCOD_console_get_background_flag(c.console)}
 }
 
 // SetAlign sets the console's alignment
@@ -244,7 +244,7 @@ func (c Console) SetAlign(align Alignment) {
 
 // GetAlign returns the console's alignment
 func (c Console) GetAlign() Alignment {
-	return Alignment{ alignment: C.TCOD_console_get_alignment(c.console) }
+	return Alignment{alignment: C.TCOD_console_get_alignment(c.console)}
 }
 
 // VLine renders a vertical line starting at (x, y), and
