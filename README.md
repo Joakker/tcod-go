@@ -5,7 +5,7 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
 
-tcod-go is a port of the libtcod library to the Go language.
+tcod-go is a wrapper of the libtcod library to the Go language.
 
 ## Installation
 
