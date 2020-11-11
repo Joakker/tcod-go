@@ -3,6 +3,8 @@ language: go
 os:
   - linux
 
+dist: xenial
+
 go:
   - 1.9.x
 
