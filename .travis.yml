@@ -8,6 +8,9 @@ dist: focal
 go:
   - 1.9.x
 
+env:
+  - CGO_CFLAGS="-I/usr/include/libtcod"
+
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo apt update -yy;
