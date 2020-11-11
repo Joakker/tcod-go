@@ -211,7 +211,7 @@ func (c Console) GetChar(x, y int) byte {
 // a console, simply call
 //		c := tcod.NewConsole(40, 40)
 //		c.LoadASC("foo.asc")
-// and the file contents will be renderered to that console. Of course, you
+// and the file contents will be rendered to that console. Of course, you
 // still have to blit the console onto the root one to see it.
 func (c *Console) LoadASC(filename string) bool {
 	return bool(
