@@ -8,5 +8,5 @@ type Color struct {
 }
 
 func (c *Color) getNative() C.TCOD_color_t {
-	return C.TCOD_color_RGB(C.uchar(c.R), C.uchar(c.G), C.uchar(c.B))
+	return C.TCOD_color_RGB(C.uint8_t(c.R), C.uint8_t(c.G), C.uint8_t(c.B))
 }

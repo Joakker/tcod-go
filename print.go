@@ -39,7 +39,7 @@ import "fmt"
 // makes the created Console to use the Sky color as its background instead of
 // the default black.
 func (c Console) SetDefaultBg(bg Color) {
-	C.TCOD_console_set_default_background(c.console, bg.color)
+	C.TCOD_console_set_default_background(c.console, bg.getNative())
 }
 
 // SetDefaultFg sets which color a console's foreground should have by default,
@@ -49,7 +49,7 @@ func (c Console) SetDefaultBg(bg Color) {
 // makes the created console to use the Gold color as it's foreground instead of
 // the default white.
 func (c Console) SetDefaultFg(fg Color) {
-	C.TCOD_console_set_default_foreground(c.console, fg.color)
+	C.TCOD_console_set_default_foreground(c.console, fg.getNative())
 }
 
 // Clear wipes out all cells in the console, leaving it completely clean
