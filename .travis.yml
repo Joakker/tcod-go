@@ -3,10 +3,13 @@ language: go
 os:
   - linux
 
+go:
+  - 1.9.x
+
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      sudo apt update -yy
-      sudo apt install libtcod-dev -yy
+      sudo apt update -yy;
+      sudo apt install libtcod-dev -yy;
     fi
 
 install:
