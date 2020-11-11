@@ -34,8 +34,8 @@ import "fmt"
 
 // SetDefaultBg sets which color a console's background should have by default.
 // For example:
-// 	c := tcod.NewConsole(10, 10)
-// 	c.SetDefaultBg(tcod.Sky)
+//		c := tcod.NewConsole(10, 10)
+//		c.SetDefaultBg(tcod.Sky)
 // makes the created Console to use the Sky color as its background instead of
 // the default black.
 func (c Console) SetDefaultBg(bg Color) {
@@ -44,8 +44,8 @@ func (c Console) SetDefaultBg(bg Color) {
 
 // SetDefaultFg sets which color a console's foreground should have by default,
 // similar to SetDefaultBg. For example:
-// 	c := tcod.NewConsole(10, 10)
-// 	c.SetDefaultFg(tcod.Gold)
+//		c := tcod.NewConsole(10, 10)
+//		c.SetDefaultFg(tcod.Gold)
 // makes the created console to use the Gold color as it's foreground instead of
 // the default white.
 func (c Console) SetDefaultFg(fg Color) {

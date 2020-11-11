@@ -10,7 +10,6 @@ function open_file() {
     cat > $file << EOF
         package $package
 
-        // #cgo LDFLAGS: -ltcod
         // #include <libtcod.h>
         import "C"
 

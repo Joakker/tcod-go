@@ -1,6 +1,5 @@
 package tcod
 
-// #cgo LDFLAGS: -ltcod
 // #include <libtcod.h>
 import "C"
 
@@ -106,7 +105,7 @@ func WindowActive() bool {
 // parameters are persistent, so once you call them, they stay
 // like that until you change them again.
 func SetFade(fade byte, color Color) {
-	C.TCOD_console_set_fade(C.uint8_t(fade), color.color)
+	C.TCOD_console_set_fade(C.uint8_t(fade), color.getNative())
 }
 
 // GetFade returns the fading strength of the game window
@@ -116,7 +115,8 @@ func GetFade() byte {
 
 // GetFadeColor returns the fading color of the game window
 func GetFadeColor() Color {
-	return Color{ color: C.TCOD_console_get_fading_color() }
+	c := C.TCOD_console_get_fading_color()
+	return Color{ R: byte(c.r), G: byte(c.g), B: byte(c.b) }
 }
 
 // CreditsScreen presents an animated screen with a message of the form "Powered
@@ -173,26 +173,30 @@ func (c Console) GetH() int {
 
 // GetDefaultBg returns the default background colour of a console
 func (c Console) GetDefaultBg() Color {
-	return Color{ color: C.TCOD_console_get_default_background(c.console)}
+	color := C.TCOD_console_get_default_background(c.console)
+	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
 }
 
 // GetDefaultFg returns the default foreground colour of a console
 func (c Console) GetDefaultFg() Color {
-	return Color{ color: C.TCOD_console_get_default_foreground(c.console)}
+	color := C.TCOD_console_get_default_foreground(c.console)
+	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
 }
 
 // GetCharBg returns the background color at a specific coordinate
 func (c Console) GetCharBg(x, y int) Color {
-	return Color{ color: C.TCOD_console_get_char_background(
+	color:= C.TCOD_console_get_char_background(
 		c.console, C.int(x), C.int(y),
-	) }
+	)
+	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
 }
 
 // GetCharFg returns the foreground color at a specific coordinate
 func (c Console) GetCharFg(x, y int) Color {
-	return Color{ color: C.TCOD_console_get_char_foreground(
+	color:= C.TCOD_console_get_char_foreground(
 		c.console, C.int(x), C.int(y),
-	) }
+	)
+	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
 }
 
 // GetChar returns the ascii code at a specific coordinate
@@ -205,8 +209,8 @@ func (c Console) GetChar(x, y int) byte {
 // Files with the .asc extension are created by the Ascii Paint program. For
 // exaple, suppose you have a foo.asc file, so if you want to load them onto
 // a console, simply call
-// 	c := tcod.NewConsole(40, 40)
-// 	c.LoadASC("foo.asc")
+//		c := tcod.NewConsole(40, 40)
+//		c.LoadASC("foo.asc")
 // and the file contents will be renderered to that console. Of course, you
 // still have to blit the console onto the root one to see it.
 func (c *Console) LoadASC(filename string) bool {
@@ -226,8 +230,8 @@ func (c Console) SaveASC(filename string) bool {
 
 // Blit renders the console's contents to the target, within the specified coordinates.
 // For example:
-// 	c := tcod.NewConsole(100, 100)
-// 	c.Blit(0, 0, 10, 10, root, 5, 5, 5.0f, 5.0f)
+//		c := tcod.NewConsole(100, 100)
+//		c.Blit(0, 0, 10, 10, root, 5, 5, 5.0f, 5.0f)
 // renders the contents of c in the coordinates from (0, 0) to (10, 10), to the root
 // console starting from coordinates (5, 5), using the specified background and
 // foreground alpha.
@@ -240,13 +244,13 @@ func (c Console) Blit(x, y, w, h int, target Console, x2, y2 int, bgAlpha, fgAlp
 
 // SetKeyColor sets which color should be treated as transparent when blitting it
 // onto another console. For example:
-// 	c := tcod.NewConsole(10, 10)
-// 	c.SetKeyColor(tcod.Magenta)
+//		c := tcod.NewConsole(10, 10)
+//		c.SetKeyColor(tcod.Magenta)
 // will tell the program that it should treat any cell with Magenta background
 // as transparent when blitting it to another console. The foreground remmains
 // untouched.
 func (c Console) SetKeyColor(color Color) {
-	C.TCOD_console_set_key_color(c.console, color.color)
+	C.TCOD_console_set_key_color(c.console, color.getNative())
 }
 
 // Delete deletes the console from memory. In most cases you shouldn't have to
@@ -262,13 +266,13 @@ func (c Console) Delete() {
 // SetCellBg sets the background colour and flag at the given
 // coordinates
 func (c Console) SetCellBg(x, y int, color Color, flag BgFlag) {
-	C.TCOD_console_set_char_background(c.console, C.int(x), C.int(y), color.color,
+	C.TCOD_console_set_char_background(c.console, C.int(x), C.int(y), color.getNative(),
 		flag.flag)
 }
 
 // SetCellFg sets the foreground colour at the given coordinates
 func (c Console) SetCellFg(x, y int, color Color) {
-	C.TCOD_console_set_char_foreground(c.console, C.int(x), C.int(y), color.color)
+	C.TCOD_console_set_char_foreground(c.console, C.int(x), C.int(y), color.getNative())
 }
 
 // SetChar renders a single character to the given coordinates
