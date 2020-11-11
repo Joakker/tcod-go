@@ -17,12 +17,14 @@ const mapImage = "16x16-rogue-yun.png"
 // Console is a wrapper around the C struct of the same name.
 type Console struct {
 	console C.TCOD_console_t
+	w, h    int
 }
 
 // NewConsole creates a console of size w by h cells
 func NewConsole(w, h int) Console {
 	return Console{
 		console: C.TCOD_console_new(C.int(w), C.int(h)),
+		w:       w, h: h,
 	}
 }
 
@@ -40,22 +42,28 @@ func NewConsoleASC(filename string) Console {
 // explicitly by calling SetFontImage before calling this function.
 func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Console, error) {
 	mapPath := fmt.Sprintf("%s/%s", xdg.CacheHome(), mapImage)
+
 	file, err := os.Create(mapPath)
+
 	if err != nil {
 		return nil, fmt.Errorf("Error initializing window: %w", err)
 	}
+
 	data, ok := assets.FS.String(fmt.Sprintf("/resources/%s", mapImage))
+
 	if !ok {
 		return nil, errors.New("Error initializing window: Cannot load image data")
 	}
+
 	file.Write([]byte(data))
+
 	C.TCOD_console_set_custom_font(C.CString(mapPath), C.TCOD_FONT_LAYOUT_ASCII_INROW, 16, 16)
 	C.TCOD_console_init_root(
 		C.int(w), C.int(h), C.CString(title),
 		C.bool(fullscreen), renderer.renderer,
 	)
 	os.Remove(mapPath)
-	return &Console{console: nil}, nil
+	return &Console{console: nil, w: w, h: h}, nil
 }
 
 // Flush renders the screen and presents it to the player
@@ -162,13 +170,13 @@ func CreditsReset() {
 }
 
 // GetW returns the width of the console
-func (c Console) GetW() int {
-	return int(C.TCOD_console_get_width(c.console))
+func (c *Console) GetW() int {
+	return c.w
 }
 
 // GetH returns the height of the console
-func (c Console) GetH() int {
-	return int(C.TCOD_console_get_height(c.console))
+func (c *Console) GetH() int {
+	return c.h
 }
 
 // GetDefaultBg returns the default background colour of a console

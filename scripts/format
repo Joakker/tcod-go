@@ -1,0 +1,7 @@
+#!/bin/sh
+
+for file in $(find . -name "*.go"); do
+    echo "Formatting $file"
+    gofmt -w -s $file
+done
+

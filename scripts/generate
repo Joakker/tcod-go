@@ -321,14 +321,15 @@ EOF
     echo ")"
 }
 
-file=$(open_file "color")
-    do_colors >> $file
-    gofmt -w -s $file
+>&2 echo "Don't use this script yet!"
+# file=$(open_file "color")
+#     do_colors >> $file
+#     gofmt -w -s $file
 
-file=$(open_file "tinput/input")
-    do_input >> $file
-    gofmt -w -s $file
+# file=$(open_file "tinput/input")
+#     do_input >> $file
+#     gofmt -w -s $file
 
-file=$(open_file "console")
-    do_console >> $file
-    gofmt -w -s $file
+# file=$(open_file "console")
+#     do_console >> $file
+#     gofmt -w -s $file
