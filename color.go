@@ -37,7 +37,7 @@ func (c Color) Add(o Color) Color {
 	}
 }
 
-// Sub substracts the RGB values of o from c, with a
+// Sub subtracts the RGB values of o from c, with a
 // minimum of 0 for each one
 func (c Color) Sub(o Color) Color {
 	r := uint16(c.R) - uint16(o.R)

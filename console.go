@@ -116,7 +116,7 @@ func GetFade() byte {
 // GetFadeColor returns the fading color of the game window
 func GetFadeColor() Color {
 	c := C.TCOD_console_get_fading_color()
-	return Color{ R: byte(c.r), G: byte(c.g), B: byte(c.b) }
+	return Color{R: byte(c.r), G: byte(c.g), B: byte(c.b)}
 }
 
 // CreditsScreen presents an animated screen with a message of the form "Powered
@@ -174,29 +174,29 @@ func (c Console) GetH() int {
 // GetDefaultBg returns the default background colour of a console
 func (c Console) GetDefaultBg() Color {
 	color := C.TCOD_console_get_default_background(c.console)
-	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
+	return Color{R: byte(color.r), G: byte(color.g), B: byte(color.b)}
 }
 
 // GetDefaultFg returns the default foreground colour of a console
 func (c Console) GetDefaultFg() Color {
 	color := C.TCOD_console_get_default_foreground(c.console)
-	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
+	return Color{R: byte(color.r), G: byte(color.g), B: byte(color.b)}
 }
 
 // GetCharBg returns the background color at a specific coordinate
 func (c Console) GetCharBg(x, y int) Color {
-	color:= C.TCOD_console_get_char_background(
+	color := C.TCOD_console_get_char_background(
 		c.console, C.int(x), C.int(y),
 	)
-	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
+	return Color{R: byte(color.r), G: byte(color.g), B: byte(color.b)}
 }
 
 // GetCharFg returns the foreground color at a specific coordinate
 func (c Console) GetCharFg(x, y int) Color {
-	color:= C.TCOD_console_get_char_foreground(
+	color := C.TCOD_console_get_char_foreground(
 		c.console, C.int(x), C.int(y),
 	)
-	return Color{ R: byte(color.r), G: byte(color.g), B: byte(color.b) }
+	return Color{R: byte(color.r), G: byte(color.g), B: byte(color.b)}
 }
 
 // GetChar returns the ascii code at a specific coordinate
