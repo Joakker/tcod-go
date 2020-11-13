@@ -1,0 +1,9 @@
+#!/usr/bin/awk -f
+
+BEGIN   { print "package tcod" > OFILE }
+BEGIN   { print > OFILE }
+BEGIN   { print "var (" > OFILE }
+        { printf "\t// %s color\n", $1 > OFILE }
+        { printf "\t%s\t\t= Color{R: 0x%02x, G: 0x%02x, B: 0x%02x}\n", $1, $2, $3, $4 > OFILE}
+END     { print ")" > OFILE}
+
