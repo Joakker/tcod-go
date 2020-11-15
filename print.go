@@ -75,8 +75,8 @@ func (c Console) PrintEx(x, y int, flag BgFlag,
 	alignment Alignment, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
 	C._TCOD_console_print_ex(
-		c.console, C.int(x), C.int(y), flag.flag,
-		alignment.alignment, C.CString(final),
+		c.console, C.int(x), C.int(y), C.TCOD_bkgnd_flag_t(flag),
+		C.TCOD_alignment_t(alignment), C.CString(final),
 	)
 }
 

@@ -1,5 +1,8 @@
 package tcod
 
+//go:generate scripts/makecconst -v OFILE=console_const.go resources/console_const
+//go:generate gofmt -w -s console_const.go
+
 // #include <libtcod.h>
 import "C"
 
@@ -17,22 +20,27 @@ const mapImage = "16x16-rogue-yun.png"
 // Console is a wrapper around the C struct of the same name.
 type Console struct {
 	console C.TCOD_console_t
-	w, h    int
 }
 
 // NewConsole creates a console of size w by h cells
 func NewConsole(w, h int) Console {
-	return Console{
+	c := Console{
 		console: C.TCOD_console_new(C.int(w), C.int(h)),
-		w:       w, h: h,
 	}
+	c.SetDefaultFg(White)
+	c.SetDefaultBg(Black)
+	c.Clear()
+	return c
 }
 
 // NewConsoleASC creates a console from the .asc image specified by filename
 func NewConsoleASC(filename string) Console {
-	return Console{
+	c := Console{
 		console: C.TCOD_console_from_file(C.CString(filename)),
 	}
+	c.SetDefaultFg(White)
+	c.SetDefaultBg(Black)
+	return c
 }
 
 // InitRoot initializes the game window, also known as the root console. It creates a console
@@ -60,10 +68,13 @@ func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Cons
 	C.TCOD_console_set_custom_font(C.CString(mapPath), C.TCOD_FONT_LAYOUT_ASCII_INROW, 16, 16)
 	C.TCOD_console_init_root(
 		C.int(w), C.int(h), C.CString(title),
-		C.bool(fullscreen), renderer.renderer,
+		C.bool(fullscreen), C.TCOD_renderer_t(renderer),
 	)
 	os.Remove(mapPath)
-	return &Console{console: nil, w: w, h: h}, nil
+	c := &Console{console: nil}
+	c.SetDefaultFg(White)
+	c.SetDefaultBg(Black)
+	return c, nil
 }
 
 // Flush renders the screen and presents it to the player
@@ -171,12 +182,18 @@ func CreditsReset() {
 
 // GetW returns the width of the console
 func (c *Console) GetW() int {
-	return c.w
+	if c.console == nil {
+		return int(C.TCOD_console_get_width(c.console))
+	}
+	return int(c.console.w)
 }
 
 // GetH returns the height of the console
 func (c *Console) GetH() int {
-	return c.h
+	if c.console == nil {
+		return int(C.TCOD_console_get_height(c.console))
+	}
+	return int(c.console.h)
 }
 
 // GetDefaultBg returns the default background colour of a console
@@ -275,7 +292,7 @@ func (c Console) Delete() {
 // coordinates
 func (c Console) SetCellBg(x, y int, color Color, flag BgFlag) {
 	C.TCOD_console_set_char_background(c.console, C.int(x), C.int(y), color.getNative(),
-		flag.flag)
+		C.TCOD_bkgnd_flag_t(flag))
 }
 
 // SetCellFg sets the foreground colour at the given coordinates
@@ -290,37 +307,37 @@ func (c Console) SetChar(x, y int, b byte) {
 
 // PutChar sets the character of a cell and it's background flag
 func (c Console) PutChar(x, y int, b byte, flag BgFlag) {
-	C.TCOD_console_put_char(c.console, C.int(x), C.int(y), C.int(b), flag.flag)
+	C.TCOD_console_put_char(c.console, C.int(x), C.int(y), C.int(b), C.TCOD_bkgnd_flag_t(flag))
 }
 
 // SetBgFlag sets the default BgFlag of a console
 func (c Console) SetBgFlag(flag BgFlag) {
-	C.TCOD_console_set_background_flag(c.console, flag.flag)
+	C.TCOD_console_set_background_flag(c.console, C.TCOD_bkgnd_flag_t(flag))
 }
 
 // GetBgFlag returns the default BgFlag of a console
 func (c Console) GetBgFlag() BgFlag {
-	return BgFlag{flag: C.TCOD_console_get_background_flag(c.console)}
+	return BgFlag(C.TCOD_console_get_background_flag(c.console))
 }
 
 // SetAlign sets the console's alignment
 func (c Console) SetAlign(align Alignment) {
-	C.TCOD_console_set_alignment(c.console, align.alignment)
+	C.TCOD_console_set_alignment(c.console, C.TCOD_alignment_t(align))
 }
 
 // GetAlign returns the console's alignment
 func (c Console) GetAlign() Alignment {
-	return Alignment{alignment: C.TCOD_console_get_alignment(c.console)}
+	return Alignment(C.TCOD_console_get_alignment(c.console))
 }
 
 // VLine renders a vertical line starting at (x, y), and
 // extending downward for l cells
 func (c Console) VLine(x, y, l int, flag BgFlag) {
-	C.TCOD_console_vline(c.console, C.int(x), C.int(y), C.int(l), flag.flag)
+	C.TCOD_console_vline(c.console, C.int(x), C.int(y), C.int(l), C.TCOD_bkgnd_flag_t(flag))
 }
 
 // HLine renders a horizontal line starting at (x, y) and
 // extending leftward for l cells
 func (c Console) HLine(x, y, l int, flag BgFlag) {
-	C.TCOD_console_hline(c.console, C.int(x), C.int(y), C.int(l), flag.flag)
+	C.TCOD_console_hline(c.console, C.int(x), C.int(y), C.int(l), C.TCOD_bkgnd_flag_t(flag))
 }
