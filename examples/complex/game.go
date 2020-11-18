@@ -76,7 +76,7 @@ func GameScreen(con *tcod.Console) {
 	PrintBgFrame(con)
 
 	player.DrawDataOnto(DataConsole)
-	player.DrawOnto(*con)
+	player.DrawOnto(GameConsole)
 
 	for _, e := range EnemyList {
 		e.DrawOnto(GameConsole)

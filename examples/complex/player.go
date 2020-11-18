@@ -25,7 +25,7 @@ func (p Player) DrawDataOnto(con tcod.Console) {
 func MakePlayer() {
 	player = Player{
 		Creature: Creature{
-			X: 1, Y: 1, Char: '@',
+			X: 5, Y: 5, Char: '@',
 			Color: tcod.Green,
 			Name:  InputBuffer,
 			Hp:    NewStat(10),

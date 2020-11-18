@@ -48,19 +48,19 @@ func NewConsoleASC(filename string) Console {
 // renderer, and in fullscreen if so desired. The newly created window will make use of the
 // default font image, bundled with this library in binary form, if no image has been selected
 // explicitly by calling SetFontImage before calling this function.
-func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Console, error) {
+func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (Console, error) {
 	mapPath := fmt.Sprintf("%s/%s", xdg.CacheHome(), mapImage)
 
 	file, err := os.Create(mapPath)
 
 	if err != nil {
-		return nil, fmt.Errorf("Error initializing window: %w", err)
+		return Console{}, fmt.Errorf("Error initializing window: %w", err)
 	}
 
 	data, ok := assets.FS.String(fmt.Sprintf("/resources/%s", mapImage))
 
 	if !ok {
-		return nil, errors.New("Error initializing window: Cannot load image data")
+		return Console{}, errors.New("Error initializing window: Cannot load image data")
 	}
 
 	file.Write([]byte(data))
@@ -71,7 +71,7 @@ func InitRoot(w, h int, title string, fullscreen bool, renderer Renderer) (*Cons
 		C.bool(fullscreen), C.TCOD_renderer_t(renderer),
 	)
 	os.Remove(mapPath)
-	c := &Console{console: nil}
+	c := Console{console: nil}
 	c.SetDefaultFg(White)
 	c.SetDefaultBg(Black)
 	return c, nil
