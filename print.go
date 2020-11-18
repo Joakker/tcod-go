@@ -1,7 +1,7 @@
 package tcod
 
 /*
-	#cgo LDFLAGS: -ltcod
+	#cgo pkg-config: libtcod
 	#include <libtcod.h>
 
 	void _TCOD_console_print(

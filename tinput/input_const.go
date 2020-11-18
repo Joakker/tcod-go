@@ -1,6 +1,6 @@
 package tinput
 
-// #cgo LDFLAGS: -ltcod
+// #cgo pkg-config: libtcod
 // #include <libtcod.h>
 import "C"
 

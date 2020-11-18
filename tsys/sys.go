@@ -1,7 +1,7 @@
 package tsys
 
-// #cgo LDFLAGS: -ltcod -lSDL2
-// #include <SDL2/SDL.h>
+// #cgo pkg-config: libtcod sdl2
+// #include <SDL.h>
 // #include <libtcod.h>
 import "C"
 import "github.com/Joakker/tcod-go"

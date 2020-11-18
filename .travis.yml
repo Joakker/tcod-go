@@ -14,7 +14,7 @@ env:
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo apt update -yy;
-      sudo apt install libtcod-dev -yy;
+      sudo apt install libtcod-dev libsdl2-dev -yy;
     fi
 
 install:
