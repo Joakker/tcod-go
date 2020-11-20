@@ -20,8 +20,25 @@ func GetClipboard() string {
 func GetResolution() (w, h int32) {
 	var cx, cy C.int
 	C.TCOD_sys_get_current_resolution(&cx, &cy)
-	w = int32(cx)
-	h = int32(cy)
+	w, h = int32(cx), int32(cy)
+	return
+}
+
+func ForceFullscreenResolution(w, h int32) {
+	C.TCOD_sys_force_fullscreen_resolution(C.int(w), C.int(h))
+}
+
+func GetFullscreenOffset() (x, y int32) {
+	var cx, cy C.int
+	C.TCOD_sys_get_fullscreen_offsets(&cx, &cy)
+	x, y = int32(cx), int32(cy)
+	return
+}
+
+func GetCharSize() (w, h int32) {
+	var cx, cy C.int
+	C.TCOD_sys_get_char_size(&cx, &cy)
+	w, h = int32(cx), int32(cy)
 	return
 }
 
