@@ -53,7 +53,7 @@ func (p *Player) CheckInput() {
 }
 
 // DrawUpon draws the player onto c as a green '@' sign
-func (p Player) DrawUpon(c *tcod.Console) {
+func (p Player) DrawUpon(c tcod.Console) {
 	c.PutChar(p.X, p.Y, p.Char, tcod.BgNone)
 	c.SetCellFg(p.X, p.Y, p.Color)
 }
