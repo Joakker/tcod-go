@@ -14,7 +14,7 @@ var (
 
 var TurnCount = uint64(0)
 
-func PrintBgFrame(con *tcod.Console) {
+func PrintBgFrame(con tcod.Console) {
 	con.PrintFrame(0, 0, WinW, WinH, false, player.Name)
 	x := DataConsole.GetW() + 1
 	con.VLine(x, 1, WinH-2, tcod.BgNone)
@@ -41,7 +41,7 @@ func IsTurn(i tinput.Input) bool {
 	}
 }
 
-func GameScreen(con *tcod.Console) {
+func GameScreen(con tcod.Console) {
 	if i := tinput.NewInput(); i.Check() == tinput.EvKeyPress {
 		if IsTurn(i) {
 			TurnCount++
@@ -82,6 +82,6 @@ func GameScreen(con *tcod.Console) {
 		e.DrawOnto(GameConsole)
 	}
 
-	GameConsole.Blit(0, 0, 0, 0, *con, DataConsole.GetW()+2, 1, 1.0, 1.0)
-	DataConsole.Blit(0, 0, 0, 0, *con, 1, 1, 1.0, 1.0)
+	GameConsole.Blit(0, 0, 0, 0, con, DataConsole.GetW()+2, 1, 1.0, 1.0)
+	DataConsole.Blit(0, 0, 0, 0, con, 1, 1, 1.0, 1.0)
 }

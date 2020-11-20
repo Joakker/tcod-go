@@ -5,7 +5,7 @@ import (
 	"github.com/Joakker/tcod-go/tinput"
 )
 
-func DefeatScreen(con *tcod.Console) {
+func DefeatScreen(con tcod.Console) {
 	if i := tinput.NewInput(); i.Check() == tinput.EvKeyPress &&
 		i.GetVk() == tinput.KeyEnter {
 		UpdateFunc = TitleScreen

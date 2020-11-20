@@ -15,7 +15,7 @@ const (
 )
 
 var (
-	UpdateFunc  func(*tcod.Console)
+	UpdateFunc  func(tcod.Console)
 	InputBuffer string
 )
 

@@ -7,7 +7,7 @@ import (
 
 var AnimFlag = false
 
-func TitleScreen(con *tcod.Console) {
+func TitleScreen(con tcod.Console) {
 	if i := tinput.NewInput(); i.Check() == tinput.EvKeyPress {
 		switch i.GetVk() {
 		case tinput.KeyText:
