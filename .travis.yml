@@ -8,12 +8,13 @@ dist: focal
 go:
   - 1.9.x
 
+env:
+  - CGO_CFLAGS=-I/usr/include/libtcod
+
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo apt update -yy;
-      sudo apt install libtcod-dev libsdl2-dev pkg-config -yy;
-      export CGO_CFLAGS=$(pkg-config libtcod sdl2 --cflags);
-      export CGO_LDFLAGS=$(pkg-config libtcod sdl2 --ldflags);
+      sudo apt install libtcod-dev libsdl2-dev -yy;
     fi
 
 install:
