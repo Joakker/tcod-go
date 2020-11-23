@@ -3,11 +3,11 @@ package tmap
 // #include <libtcod.h>
 import "C"
 
-type FovType int
+type FovFlag int
 
 var (
-	FovBasic       FovType = C.FOV_BASIC
-	FovDiamond     FovType = C.FOV_DIAMOND
-	FovShadow      FovType = C.FOV_SHADOW
-	FovRestrictive FovType = C.FOV_RESTRICTIVE
+	Basic       FovFlag = C.FOV_BASIC
+	Diamond     FovFlag = C.FOV_DIAMOND
+	Shadow      FovFlag = C.FOV_SHADOW
+	Restrictive FovFlag = C.FOV_RESTRICTIVE
 )

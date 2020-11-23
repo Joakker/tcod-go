@@ -1,6 +1,6 @@
 package tmap
 
-//go:generate ../scripts/makefovconst -v OFILE=map_const.go ../resources/fov
+//go:generate ../scripts/makeenum -v GTYPE=FovFlag -v OFILE=map_const.go -v CPREFIX=FOV_ ../resources/fov
 
 // #cgo pkg-config: libtcod
 // #include <libtcod.h>
@@ -49,7 +49,7 @@ func (m Map) CopyTo(dest Map) {
 	C.TCOD_map_copy(m.m, dest.m)
 }
 
-func (m Map) ComputeFOV(x, y, radius int, lightWalls bool, algorithm FovType) {
+func (m Map) ComputeFOV(x, y, radius int, lightWalls bool, algorithm FovFlag) {
 	C.TCOD_map_compute_fov(
 		m.m, C.int(x), C.int(y), C.int(radius), C.bool(lightWalls),
 		C.TCOD_fov_algorithm_t(algorithm),

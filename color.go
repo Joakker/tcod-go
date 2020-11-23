@@ -1,7 +1,6 @@
 package tcod
 
 //go:generate scripts/makecolors -v OFILE=color_const.go resources/colors
-//go:generate gofmt -w -s color_const.go
 
 // #include <libtcod.h>
 import "C"

@@ -61,7 +61,9 @@ func (c Console) Clear() {
 // (x, y) as a starting point. The console's alignment will tell whether to
 // use it as the center of the text, or one of it's ends.
 // You can use Go style escape sequences in the format parameter to have
-// them formatted like in fmt.Sprintf.
+// them formatted like in fmt.Sprintf. This means, however, that you are
+// currently unable to format in Char* constants, as Sprintf won't render
+// them as their binary values, but instead will put a space in it's place.
 func (c Console) Print(x, y int, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
 	C._TCOD_console_print(c.console, C.int(x), C.int(y), C.CString(final))
@@ -70,7 +72,9 @@ func (c Console) Print(x, y int, format string, values ...interface{}) {
 // PrintEx renders the given text to the console, using the specified
 // background flag and alignment.
 // You can use Go style escape sequences in the format parameter to have
-// them formatted like in fmt.Sprintf.
+// them formatted like in fmt.Sprintf. This means, however, that you are
+// currently unable to format in Char* constants, as Sprintf won't render
+// them as their binary values, but instead will put a space in it's place.
 func (c Console) PrintEx(x, y int, flag BgFlag,
 	alignment Alignment, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
@@ -83,7 +87,9 @@ func (c Console) PrintEx(x, y int, flag BgFlag,
 // PrintRect renders a string to the console within the given bounds, that is,
 // with autowrap.
 // You can use Go style escape sequences in the format parameter to have
-// them formatted like in fmt.Sprintf.
+// them formatted like in fmt.Sprintf. This means, however, that you are
+// currently unable to format in Char* constants, as Sprintf won't render
+// them as their binary values, but instead will put a space in it's place.
 func (c Console) PrintRect(x, y, w, h int, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
 	C._TCOD_console_print_rect(
@@ -95,7 +101,9 @@ func (c Console) PrintRect(x, y, w, h int, format string, values ...interface{})
 // to print the string specified by title. The argument clear tells whether
 // the region within the frame should be cleared out or left alone.
 // You can use Go style escape sequences in the format parameter to have
-// them formatted like in fmt.Sprintf.
+// them formatted like in fmt.Sprintf. This means, however, that you are
+// currently unable to format in Char* constants, as Sprintf won't render
+// them as their binary values, but instead will put a space in it's place.
 func (c Console) PrintFrame(x, y, w, h int, clear bool,
 	format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)

@@ -1,7 +1,8 @@
 package tcod
 
-//go:generate scripts/makecconst -v OFILE=console_const.go resources/console_const
-//go:generate gofmt -w -s console_const.go
+//go:generate scripts/makeenum -v PACKAGE=tcod -v OFILE=render_const.go -v CPREFIX=TCOD_RENDERER_ -v GPREFIX=Render -v GTYPE=Renderer resources/renderer
+//go:generate scripts/makeenum -v PACKAGE=tcod -v OFILE=bg_const.go -v CPREFIX=TCOD_BKGND_ -v GPREFIX=Bg -v GTYPE=BgFlag resources/bgflag
+//go:generate scripts/makeenum -v PACKAGE=tcod -v OFILE=align_const.go -v GPREFIX=Align -v GTYPE=Alignment resources/align
 
 // #include <libtcod.h>
 import "C"

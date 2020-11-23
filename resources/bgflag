@@ -1,7 +1,3 @@
-Center
-Left
-Right
-
 None
 Set
 Multiply
@@ -12,8 +8,3 @@ Add
 Burn
 Overlay
 Default
-
-SDL
-SDL2
-OpenGL
-OpenGL2

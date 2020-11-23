@@ -1,0 +1,40 @@
+#!/bin/awk -f
+
+# Variables used:
+#   - GPREFIX:  Prefix for the resulting go variable
+#   - CPREFIX:  Prefix for the C variable that is getting transformed.
+#               Defaults to TCOD_
+#   - GTYPE:    Name for the enum type
+#   - PACKAGE:  Name of the package, default is `basename $PWD`
+#   - OFILE:    Output, default is PACKAGE_const.go
+
+BEGIN   {
+    if (length(PACKAGE) == 0) {
+        cmd="basename $PWD"
+        cmd | getline PACKAGE
+        close(cmd)
+    }
+    if (length(OFILE) == 0) {
+        OFILE = PACKAGE "_const.go"
+    }
+    if (length(CPREFIX) == 0) {
+        CPREFIX = "TCOD_"
+    }
+    if (length(GTYPE) == 0) {
+        GTYPE = "Enum"
+    }
+    # print "\t", OFILE
+    print "package", PACKAGE, "\n"      > OFILE
+    print "// #include <libtcod.h>"     > OFILE
+    print "import \"C\"\n"              > OFILE
+    print "type", GTYPE, "int\n"        > OFILE
+    print "var ("                       > OFILE
+}
+
+{
+    printf "\t%s%s %s = C.%s%s\n", GPREFIX, $1, GTYPE, CPREFIX, toupper($1) > OFILE
+}
+
+END     {
+    print ")" > OFILE
+}

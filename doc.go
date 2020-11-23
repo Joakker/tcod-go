@@ -7,7 +7,7 @@ trees, line-of-sight, and pathfinding calculations.
 Prerequisites
 
 This library requires you to have the libtcod C library already installed
-on your system, as it depends on being able to link the -ltcod library
+on your system, as it depends on being able to link the -ltcod library.
 
 Minimal Program
 
