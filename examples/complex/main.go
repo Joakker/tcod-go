@@ -43,7 +43,7 @@ func main() {
 
 	for !tcod.WindowClosed() {
 		root.Clear()
-			UpdateFunc(root)
+		UpdateFunc(root)
 		tcod.Flush()
 	}
 }

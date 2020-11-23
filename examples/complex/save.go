@@ -16,7 +16,7 @@ type SaveData struct {
 }
 
 func SaveGame() {
-	s := SaveData{Player: player, Enemies: EnemyList,TurnCount:TurnCount}
+	s := SaveData{Player: player, Enemies: EnemyList, TurnCount: TurnCount}
 	data, err := json.MarshalIndent(s, "", "    ")
 
 	if err != nil {
