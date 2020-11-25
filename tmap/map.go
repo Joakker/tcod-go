@@ -1,6 +1,6 @@
 package tmap
 
-//go:generate ../scripts/makeenum -v GTYPE=FovFlag -v OFILE=map_const.go -v CPREFIX=FOV_ ../resources/fov
+//go:generate ../scripts/makeenum -v GPREFIX=Fov -v GTYPE=FovFlag -v OFILE=map_const.go -v CPREFIX=FOV_ ../resources/fov
 
 // #cgo pkg-config: libtcod
 // #include <libtcod.h>

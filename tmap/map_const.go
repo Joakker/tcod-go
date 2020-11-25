@@ -6,8 +6,8 @@ import "C"
 type FovFlag int
 
 var (
-	Basic       FovFlag = C.FOV_BASIC
-	Diamond     FovFlag = C.FOV_DIAMOND
-	Shadow      FovFlag = C.FOV_SHADOW
-	Restrictive FovFlag = C.FOV_RESTRICTIVE
+	FovBasic       FovFlag = C.FOV_BASIC
+	FovDiamond     FovFlag = C.FOV_DIAMOND
+	FovShadow      FovFlag = C.FOV_SHADOW
+	FovRestrictive FovFlag = C.FOV_RESTRICTIVE
 )
