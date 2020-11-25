@@ -1,10 +1,10 @@
-None
-Set
-Multiply
-Lighten
-Darken
-Screen
-Add
-Burn
-Overlay
-Default
+None        no changes
+Set         replaces the cell's background color with the default
+Multiply    multiplies the current background color with the default
+Lighten     makes the background the lightest between the old and current
+Darken      makes the background the darkest between the old and current
+Screen      makes the background the inverse of Multiply
+Add         adds the current and old background colors
+Burn        apply a burn effect
+Overlay     overlays both colors
+Default     default background

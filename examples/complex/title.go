@@ -5,8 +5,11 @@ import (
 	"github.com/Joakker/tcod-go/tinput"
 )
 
+// AnimFlag holds the state of the animation.
+// If true, the animation has finished
 var AnimFlag = false
 
+// TitleScreen runs the commands to draw and manage the title screen
 func TitleScreen(con tcod.Console) {
 	if i := tinput.NewInput(); i.Check() == tinput.EvKeyPress {
 		switch i.GetVk() {

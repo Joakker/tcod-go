@@ -4,6 +4,7 @@ import (
 	"github.com/Joakker/tcod-go"
 )
 
+// Player represents the player as a creature
 type Player struct {
 	Creature
 	Money int
@@ -11,6 +12,7 @@ type Player struct {
 
 var player Player
 
+// DrawDataOnto draws the player statistics to the specified screen
 func (p Player) DrawDataOnto(con tcod.Console) {
 	con.Print(0, 0, "HP: %3d/%3d", player.Hp.Cur, player.Hp.Max)
 	con.Print(0, 1, "MP: %3d/%3d", player.Mp.Cur, player.Mp.Max)

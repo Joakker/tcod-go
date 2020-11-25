@@ -1,4 +1,4 @@
-package tcod
+package tcod 
 
 // #include <libtcod.h>
 import "C"
@@ -6,8 +6,12 @@ import "C"
 type Renderer int
 
 var (
-	RenderSDL     Renderer = C.TCOD_RENDERER_SDL
-	RenderSDL2    Renderer = C.TCOD_RENDERER_SDL2
-	RenderOpenGL  Renderer = C.TCOD_RENDERER_OPENGL
+	// Renderrenderer
+	RenderSDL Renderer = C.TCOD_RENDERER_SDL
+	// Renderrenderer
+	RenderSDL2 Renderer = C.TCOD_RENDERER_SDL2
+	// Renderrenderer
+	RenderOpenGL Renderer = C.TCOD_RENDERER_OPENGL
+	// Renderrenderer
 	RenderOpenGL2 Renderer = C.TCOD_RENDERER_OPENGL2
 )

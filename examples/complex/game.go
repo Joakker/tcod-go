@@ -8,12 +8,17 @@ import (
 )
 
 var (
+	// GameConsole is the part of the screen in which the map is drawn
 	GameConsole tcod.Console
+	// DataConsole is the part of the screen in which the player data is drawn
 	DataConsole tcod.Console
 )
 
+// TurnCount keeps track of how many turns have elapsed since the start of
+// the game
 var TurnCount = uint64(0)
 
+// PrintBgFrame prints the background onto the root console
 func PrintBgFrame(con tcod.Console) {
 	con.PrintFrame(0, 0, WinW, WinH, false, player.Name)
 	x := DataConsole.GetW() + 1
@@ -22,6 +27,7 @@ func PrintBgFrame(con tcod.Console) {
 	con.SetChar(x, WinH-1, tcod.CharTeeN)
 }
 
+// InitGame initializes the main game state
 func InitGame() {
 	MakePlayer()
 	SetupEnemies()

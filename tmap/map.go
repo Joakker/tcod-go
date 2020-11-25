@@ -49,6 +49,7 @@ func (m Map) CopyTo(dest Map) {
 	C.TCOD_map_copy(m.m, dest.m)
 }
 
+// ComputeFOV calculates wether each cell within the radius is visible
 func (m Map) ComputeFOV(x, y, radius int, lightWalls bool, algorithm FovFlag) {
 	C.TCOD_map_compute_fov(
 		m.m, C.int(x), C.int(y), C.int(radius), C.bool(lightWalls),
@@ -56,10 +57,12 @@ func (m Map) ComputeFOV(x, y, radius int, lightWalls bool, algorithm FovFlag) {
 	)
 }
 
+// IsVisible returns true if the cell at position (x, y) is visible
 func (m Map) IsVisible(x, y int) bool {
 	return bool(C.TCOD_map_is_in_fov(m.m, C.int(x), C.int(y)))
 }
 
+// Transparent returns true if the cell at position (x, y) is transparent
 func (m Map) Transparent(x, y int) bool {
 	return bool(C.TCOD_map_is_transparent(m.m, C.int(x), C.int(y)))
 }

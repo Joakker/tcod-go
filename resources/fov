@@ -1,4 +1,4 @@
-Basic
+Basic           basic fov algorithm
 Diamond
-Shadow
-Restrictive
+Shadow          FOV using recursive shadowcasting
+Restrictive     Mingos' Restrictive Precise Angle Shadowcasting (MRPAS)

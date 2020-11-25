@@ -9,12 +9,14 @@ import (
 	"github.com/Joakker/tcod-go"
 )
 
+// SaveData holds the game data that will be (de)serialized
 type SaveData struct {
 	TurnCount uint64
 	Player    Player
 	Enemies   []*Enemy
 }
 
+// SaveGame saves the game data to a file called 'save.json'
 func SaveGame() {
 	s := SaveData{Player: player, Enemies: EnemyList, TurnCount: TurnCount}
 	data, err := json.MarshalIndent(s, "", "    ")
@@ -28,12 +30,13 @@ func SaveGame() {
 	file.Close()
 }
 
+// LoadGame loads the game data from a file called 'save.json'
 func LoadGame() {
 	file, err := os.Open("save.json")
 	if err != nil {
 		log.Fatal(err)
 	}
-	data, err := ioutil.ReadAll(file)
+	data, _ := ioutil.ReadAll(file)
 	file.Close()
 
 	s := SaveData{}

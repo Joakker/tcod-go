@@ -24,10 +24,14 @@ func GetResolution() (w, h int32) {
 	return
 }
 
+// ForceFullscreenResolution forces the window to take the
+// resolution w x h when in fullscreen mode
 func ForceFullscreenResolution(w, h int32) {
 	C.TCOD_sys_force_fullscreen_resolution(C.int(w), C.int(h))
 }
 
+// GetFullscreenOffset returns the offset of the window
+// in fullscreen mode.
 func GetFullscreenOffset() (x, y int32) {
 	var cx, cy C.int
 	C.TCOD_sys_get_fullscreen_offsets(&cx, &cy)
@@ -35,6 +39,8 @@ func GetFullscreenOffset() (x, y int32) {
 	return
 }
 
+// GetCharSize returns the width and height of a single cell
+// in pixels
 func GetCharSize() (w, h int32) {
 	var cx, cy C.int
 	C.TCOD_sys_get_char_size(&cx, &cy)

@@ -1,4 +1,4 @@
-package tcod
+package tcod 
 
 // #include <libtcod.h>
 import "C"
@@ -6,7 +6,10 @@ import "C"
 type Alignment int
 
 var (
+	// Alignmakes everything align at the center
 	AlignCenter Alignment = C.TCOD_CENTER
-	AlignLeft   Alignment = C.TCOD_LEFT
-	AlignRight  Alignment = C.TCOD_RIGHT
+	// Alignmakes everything align to the left
+	AlignLeft Alignment = C.TCOD_LEFT
+	// Alignmakes everything align to the right
+	AlignRight Alignment = C.TCOD_RIGHT
 )

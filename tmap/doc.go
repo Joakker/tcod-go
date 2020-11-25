@@ -1,5 +1,5 @@
 /*
-	Package tmap defines utility functions to work with
-	maps
+Package tmap defines utility functions to work with
+maps
 */
 package tmap

@@ -9,16 +9,25 @@ import (
 )
 
 const (
-	WinW  = 50
-	WinH  = 30
+	// WinW is the width of the game window in tiles
+	WinW = 50
+	// WinH is the height of the game window in tiles
+	WinH = 30
+	// Title is the title of the game window
 	Title = "The Adventures of Go"
 )
 
 var (
-	UpdateFunc  func(tcod.Console)
+	// UpdateFunc is the function that will be called every frame
+	// to update the game
+	UpdateFunc func(tcod.Console)
+	// InputBuffer is the buffer in which the text that the
+	// player introduces is stored
 	InputBuffer string
 )
 
+// FileExists is a utility function that returns true
+// if there is a file with the specified path
 func FileExists(path string) bool {
 	info, err := os.Stat(path)
 	if os.IsNotExist(err) {

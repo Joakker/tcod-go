@@ -32,6 +32,10 @@ BEGIN   {
 }
 
 {
+    printf "\t// %s", GPREFIX             > OFILE
+    for (i = 2; i < NF; i++)
+        printf $i " "                   > OFILE
+    print $NF                           > OFILE
     printf "\t%s%s %s = C.%s%s\n", GPREFIX, $1, GTYPE, CPREFIX, toupper($1) > OFILE
 }
 

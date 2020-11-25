@@ -1,4 +1,4 @@
-SDL
-SDL2
-OpenGL
-OpenGL2
+SDL         renderer
+SDL2        renderer
+OpenGL      renderer
+OpenGL2     renderer
