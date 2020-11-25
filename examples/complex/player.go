@@ -24,6 +24,7 @@ func (p Player) DrawDataOnto(con tcod.Console) {
 	con.Print(2, con.GetH()-2, " %4d", player.Money)
 }
 
+// }MakePlayer creates a new player struct
 func MakePlayer() {
 	player = Player{
 		Creature: Creature{

@@ -37,6 +37,7 @@ func InitGame() {
 	GameConsole = tcod.NewConsole(WinW-(DataConsole.GetW()+3), WinH-2)
 }
 
+// IsTurn returns true if the key press constitutes a turn
 func IsTurn(i tinput.Input) bool {
 	switch i.GetVk() {
 	case tinput.KeyUp, tinput.KeyDown,
@@ -47,6 +48,7 @@ func IsTurn(i tinput.Input) bool {
 	}
 }
 
+// GameScreen runs the commands to manage and draw the main game screen
 func GameScreen(con tcod.Console) {
 	if i := tinput.NewInput(); i.Check() == tinput.EvKeyPress {
 		if IsTurn(i) {
