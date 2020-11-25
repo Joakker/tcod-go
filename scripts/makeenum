@@ -27,6 +27,7 @@ BEGIN   {
     print "package", PACKAGE, "\n"      > OFILE
     print "// #include <libtcod.h>"     > OFILE
     print "import \"C\"\n"              > OFILE
+    print "// %s enum", GTYPE           > OFILE
     print "type", GTYPE, "int\n"        > OFILE
     print "var ("                       > OFILE
 }

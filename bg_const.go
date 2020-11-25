@@ -3,6 +3,7 @@ package tcod
 // #include <libtcod.h>
 import "C"
 
+// %s enum BgFlag
 type BgFlag int
 
 var (

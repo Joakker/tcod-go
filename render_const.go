@@ -3,6 +3,7 @@ package tcod
 // #include <libtcod.h>
 import "C"
 
+// %s enum Renderer
 type Renderer int
 
 var (

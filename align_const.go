@@ -3,6 +3,7 @@ package tcod
 // #include <libtcod.h>
 import "C"
 
+// %s enum Alignment
 type Alignment int
 
 var (
