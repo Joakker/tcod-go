@@ -6,24 +6,24 @@ import "C"
 type BgFlag int
 
 var (
-	// Bgno changes
+	// BgNone no changes
 	BgNone BgFlag = C.TCOD_BKGND_NONE
-	// Bgreplaces the cell's background color with the default
+	// BgSet replaces the cell's background color with the default
 	BgSet BgFlag = C.TCOD_BKGND_SET
-	// Bgmultiplies the current background color with the default
+	// BgMultiply multiplies the current background color with the default
 	BgMultiply BgFlag = C.TCOD_BKGND_MULTIPLY
-	// Bgmakes the background the lightest between the old and current
+	// BgLighten makes the background the lightest between the old and current
 	BgLighten BgFlag = C.TCOD_BKGND_LIGHTEN
-	// Bgmakes the background the darkest between the old and current
+	// BgDarken makes the background the darkest between the old and current
 	BgDarken BgFlag = C.TCOD_BKGND_DARKEN
-	// Bgmakes the background the inverse of Multiply
+	// BgScreen makes the background the inverse of Multiply
 	BgScreen BgFlag = C.TCOD_BKGND_SCREEN
-	// Bgadds the current and old background colors
+	// BgAdd adds the current and old background colors
 	BgAdd BgFlag = C.TCOD_BKGND_ADD
-	// Bgapply a burn effect
+	// BgBurn apply a burn effect
 	BgBurn BgFlag = C.TCOD_BKGND_BURN
-	// Bgoverlays both colors
+	// BgOverlay overlays both colors
 	BgOverlay BgFlag = C.TCOD_BKGND_OVERLAY
-	// Bgdefault background
+	// BgDefault default background
 	BgDefault BgFlag = C.TCOD_BKGND_DEFAULT
 )

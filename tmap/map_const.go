@@ -1,4 +1,4 @@
-package tmap
+package tmap 
 
 // #include <libtcod.h>
 import "C"
@@ -6,8 +6,12 @@ import "C"
 type FovFlag int
 
 var (
-	FovBasic       FovFlag = C.FOV_BASIC
-	FovDiamond     FovFlag = C.FOV_DIAMOND
-	FovShadow      FovFlag = C.FOV_SHADOW
+	// FovBasic basic fov algorithm
+	FovBasic FovFlag = C.FOV_BASIC
+	// FovDiamond Diamond
+	FovDiamond FovFlag = C.FOV_DIAMOND
+	// FovShadow FOV using recursive shadowcasting
+	FovShadow FovFlag = C.FOV_SHADOW
+	// FovRestrictive Mingos' Restrictive Precise Angle Shadowcasting (MRPAS)
 	FovRestrictive FovFlag = C.FOV_RESTRICTIVE
 )

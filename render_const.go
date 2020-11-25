@@ -6,12 +6,12 @@ import "C"
 type Renderer int
 
 var (
-	// Renderrenderer
+	// RenderSDL renderer
 	RenderSDL Renderer = C.TCOD_RENDERER_SDL
-	// Renderrenderer
+	// RenderSDL2 renderer
 	RenderSDL2 Renderer = C.TCOD_RENDERER_SDL2
-	// Renderrenderer
+	// RenderOpenGL renderer
 	RenderOpenGL Renderer = C.TCOD_RENDERER_OPENGL
-	// Renderrenderer
+	// RenderOpenGL2 renderer
 	RenderOpenGL2 Renderer = C.TCOD_RENDERER_OPENGL2
 )

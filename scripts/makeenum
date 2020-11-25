@@ -32,7 +32,7 @@ BEGIN   {
 }
 
 {
-    printf "\t// %s", GPREFIX             > OFILE
+    printf "\t// %s%s ", GPREFIX, $1    > OFILE
     for (i = 2; i < NF; i++)
         printf $i " "                   > OFILE
     print $NF                           > OFILE
