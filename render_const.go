@@ -1,9 +1,9 @@
-package tcod 
+package tcod
 
 // #include <libtcod.h>
 import "C"
 
-// %s enum Renderer
+// Renderer enum
 type Renderer int
 
 var (

@@ -1,8 +1,9 @@
-package tmap 
+package tmap
 
 // #include <libtcod.h>
 import "C"
 
+// FovFlag enum
 type FovFlag int
 
 var (
