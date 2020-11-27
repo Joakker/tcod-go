@@ -10,7 +10,7 @@ var (
 	// FovBasic basic fov algorithm
 	FovBasic FovFlag = C.FOV_BASIC
 	// FovDiamond Diamond
-	FovDiamond FovFlag = C.FOV_DIAMOND
+	FovDiamond FovFlag = 1
 	// FovShadow FOV using recursive shadowcasting
 	FovShadow FovFlag = C.FOV_SHADOW
 	// FovRestrictive Mingos' Restrictive Precise Angle Shadowcasting (MRPAS)

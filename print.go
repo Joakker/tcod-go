@@ -32,6 +32,8 @@ package tcod
 import "C"
 import "fmt"
 
+//go:generate scripts/makeenum -v OFILE=char_const.go -v GPREFIX=Char -v PACKAGE=tcod resources/chars
+
 // SetDefaultBg sets which color a console's background should have by default.
 // For example:
 //		c := tcod.NewConsole(10, 10)

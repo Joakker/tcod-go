@@ -21,23 +21,32 @@ BEGIN   {
         CPREFIX = "TCOD_"
     }
     if (length(GTYPE) == 0) {
-        GTYPE = "Enum"
+        GTYPE = "byte"
     }
-    # print "\t", OFILE
+    counter = 0
     print  "package", PACKAGE, "\n"     > OFILE
     print  "// #include <libtcod.h>"    > OFILE
     print  "import \"C\"\n"             > OFILE
     printf "// %s enum\n", GTYPE        > OFILE
-    print  "type", GTYPE, "int\n"       > OFILE
+    if (GTYPE != "byte") {
+        print  "type", GTYPE, "int\n"   > OFILE
+    }
     print  "var ("                      > OFILE
 }
 
 {
-    printf "\t// %s%s ", GPREFIX, $1    > OFILE
-    for (i = 2; i < NF; i++)
-        printf $i " "                   > OFILE
-    print $NF                           > OFILE
-    printf "\t%s%s %s = C.%s%s\n", GPREFIX, $1, GTYPE, CPREFIX, toupper($1) > OFILE
+    if (length($2) != 0) {
+        printf "\t// %s%s ", GPREFIX, $1    > OFILE
+        for (i = 2; i < NF; i++)
+            printf $i " "                   > OFILE
+        print $NF                           > OFILE
+        printf "\t%s%s %s = C.%s%s\n", GPREFIX, $1, GTYPE, CPREFIX, toupper($1) > OFILE
+    } else if ($1 != "-") {
+        printf "\t// %s%s ", GPREFIX, $1    > OFILE
+        print                               > OFILE
+        printf "\t%s%s %s = %d\n", GPREFIX, $1, GTYPE, counter > OFILE
+    }
+    counter++
 }
 
 END     {
