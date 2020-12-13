@@ -3,6 +3,7 @@
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/Joakker/tcod-go)](https://pkg.go.dev/github.com/Joakker/tcod-go)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Joakker/tcod-go)](https://goreportcard.com/report/github.com/Joakker/tcod-go)
 [![Build Status](https://travis-ci.com/Joakker/tcod-go.svg?branch=main)](https://travis-ci.com/Joakker/tcod-go)
+[![codecov](https://codecov.io/gh/Joakker/tcod-go/branch/main/graph/badge.svg?token=5UIST15TBZ)](https://codecov.io/gh/Joakker/tcod-go)
 
 [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
 
