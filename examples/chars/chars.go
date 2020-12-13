@@ -179,13 +179,15 @@ var charNames = map[string]byte{
 }
 
 var (
-	all  bool
-	name bool
+	all   bool
+	name  bool
+	input bool
 )
 
 func init() {
 	flag.BoolVar(&all, "all", false, "View all the characters")
 	flag.BoolVar(&name, "name", false, "Enter a character's name to see it rendered")
+	flag.BoolVar(&input, "input", false, "Display the input string")
 	l := flag.Bool("list", false, "List all the non-ASCII characters")
 
 	flag.Parse()
@@ -235,6 +237,25 @@ func main() {
 			i.Check()
 			root.Clear()
 			root.SetChar(1, 1, charNames[name])
+			tcod.Flush()
+		}
+	} else if input {
+		reader := bufio.NewReader(os.Stdin)
+		line, err := reader.ReadString('\n')
+		if err != nil {
+			log.Fatal(err)
+		}
+		line = line[:len(line)-1]
+		fmt.Println(line)
+		root, err := tcod.InitRoot(20, 5, line, false, tcod.RenderSDL2)
+		if err != nil {
+			log.Fatal(err)
+		}
+		for !tcod.WindowClosed() {
+			i := tinput.NewInput()
+			i.Check()
+			root.Clear()
+			root.Print(1, 1, line)
 			tcod.Flush()
 		}
 	} else {

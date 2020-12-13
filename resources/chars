@@ -1,35 +1,36 @@
 -
-Smiley
-SmileyInv
-Heart
-Diamon
-Club
-Spade
-Bullet
-BulletActive
-BulletInv
-BulletInvActive
-Male
-Female
-Note
-DoubleNote
-Star
-TriangleArrowR
-TriangleArrowL
-DoubleArrowV
-DoubleExclamation
+Smiley                      263A
+SmileyInv                   263B
+Heart                       2665
+Diamond                     2666
+Club                        2663
+Spade                       2660
+Bullet                      2022
+BulletActive                25D8
+BulletInv                   25CB
+BulletInvActive             25D9
+Male                        2642
+Female                      2640
+Note                        266A
+DoubleNote                  266B
+Star                        263C
+TriangleArrowR              25BA
+TriangleArrowL              25C4
+DoubleArrowV                2195
+DoubleExclamation           203C
+Pilcrow                     00B6
+Lamp                        00A7
+UnderBlock                  25AC
+DoubleArrowVertUnderscore   21A8
+ArrowUp                     2191
+ArrowDown                   2193
+ArrowRight                  2192
+ArrowLeft                   2190
+RightAngle                  221F
+DoubleArrowH                2194
+TriangleArrowU              25B2
+TriangleArrowD              25BC
 -
-Lamp
-UnderBlock
-DoubleArrowVertUnderscore
-ArrowUp
-ArrowDown
-ArrowRight
-ArrowLeft
-RightAngle
-DoubleArrowH
-TriangleArrowU
-TriangleArrowD
 -
 -
 -
@@ -37,7 +38,6 @@ TriangleArrowD
 -
 -
 -
-Tick
 -
 -
 -
@@ -92,7 +92,6 @@ Tick
 -
 -
 -
-Pilcrow
 -
 -
 -
@@ -125,7 +124,8 @@ Pilcrow
 -
 -
 -
-House
+-
+House                       2302
 UpperCedilla
 ULowermlaut
 ELowerAcute
@@ -153,104 +153,104 @@ ULowerGrave
 YLowerUmlaut
 OUpperUmlaut
 UUpperUmlaut
-Cent
-Pound
-Yen
-Point
-Function
+Cent                        00A2
+Pound                       00A3
+Yen                         00A5
+Point                       20A7
+Function                    0192
 ALowerAcute
 ILowerAccute
 OLowerAccute
 ULowerAccute
 NTildeLower
 NTildeUpper
-ExpA
-ExpO
-InvQuestion
-LogicalNot
-LogicalNotInv
-Half
-Quarter
-InvExclamation
-DoubleArrowL
-DoubleArrowR
-Block1
-Block2
-Block3
-WallV
-TeeW
-TeeHDoubleW
-TeeVDoubleW
-CornerVDoubleNE
-CornerHDoubleNE
-TeeDoubleW
-WallDoubleV
-CornerDoubleNE
-CornerDoubleSE
-CornerVDoubleSE
-CornerHDoubleSE
-CornerNE
-CornerSW
-TeeN
-TeeS
-TeeE
-WallH
-WallCross
-TeeHDoubleE
-TeeVDoubleE
-CornerDoubleSW
-CornerDoubleNW
-TeeDoubleN
-TeeDoubleS
-TeeDoubleE
-WallDoubleH
-WallDoubleCross
-TeeHDoubleN
-TeeVDoubleN
-TeeHDoubleS
-TeeVDoubleS
-CornerVDoubleSW
-CornerHdoubleSW
-CornerHDoubleNW
-CornerVDoubleNW
-WallVDoubleCross
-WallHDoubleCross
-CornerSE
-CornerNW
-Block4
-SubpDown
-SubpLeft
-SubpRight
-SubpUp
-Alpha
-Beta
-Gamma
-Pi
-SigmaUpper
-SigmaLower
-Mi
-Tau
-PhiUpper
-Theta
-Omega
-Delta
-Infinite
-PhiLower
-Epsilon
-Arc
-List
-PlusMinus
-GreaterEqual
-LowerEqual
-IntegralUp
-IntegralDown
-Division
-AlmostEqual
-Degree
-Dot1
-Dot2
-Root
-ExpN
-Exp2
-Square
-SquareInv
+ExpA                        00AA
+ExpO                        00BA
+InvQuestion                 00BF
+LogicalNot                  2310
+LogicalNotInv               00AC
+Half                        00BD
+Quarter                     00BC
+InvExclamation              00A1
+DoubleArrowL                00AB
+DoubleArrowR                00BB
+Block1                      2591
+Block2                      2592
+Block3                      2593
+WallV                       2502
+TeeW                        2524
+TeeHDoubleW                 2561
+TeeVDoubleW                 2562
+CornerVDoubleNE             2556
+CornerHDoubleNE             2555
+TeeDoubleW                  2563
+WallDoubleV                 2551
+CornerDoubleNE              2557
+CornerDoubleSE              255D
+CornerVDoubleSE             255C
+CornerHDoubleSE             255B
+CornerNE                    2510
+CornerSW                    2514
+TeeN                        2534
+TeeS                        252C
+TeeE                        251C
+WallH                       2500
+WallCross                   253C
+TeeHDoubleE                 255E
+TeeVDoubleE                 255F
+CornerDoubleSW              255A
+CornerDoubleNW              2554
+TeeDoubleN                  2569
+TeeDoubleS                  2566
+TeeDoubleE                  2560
+WallDoubleH                 2550
+WallDoubleCross             256C
+TeeHDoubleN                 2567
+TeeVDoubleN                 2568
+TeeHDoubleS                 2564
+TeeVDoubleS                 2565
+CornerVDoubleSW             2559
+CornerHdoubleSW             2558
+CornerHDoubleNW             2552
+CornerVDoubleNW             2553
+WallVDoubleCross            256B
+WallHDoubleCross            256A
+CornerSE                    2518
+CornerNW                    250C
+Block4                      2588
+SubpDown                    2584
+SubpLeft                    258C
+SubpRight                   2590
+SubpUp                      2580
+Alpha                       03B1
+Beta                        00DF
+Gamma                       0393
+Pi                          03C0
+SigmaUpper                  03A3
+SigmaLower                  03C3
+Mi                          00B5
+Tau                         03C4
+PhiUpper                    03A6
+Theta                       0398
+Omega                       03A9
+Delta                       03B4
+Infinite                    221E
+PhiLower                    03C6
+Epsilon                     03B5
+Arc                         2229
+List                        2261
+PlusMinus                   00B1
+GreaterEqual                2265
+LowerEqual                  2264
+IntegralUp                  2320
+IntegralDown                2321
+Division                    00F7
+AlmostEqual                 2248
+Degree                      00B0
+Dot1                        2219
+Dot2                        00B7
+Root                        221A
+ExpN                        207F
+Exp2                        00B2
+Square                      25A0
+SquareInv                   00A0

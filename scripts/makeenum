@@ -7,6 +7,7 @@
 #   - GTYPE:    Name for the enum type
 #   - PACKAGE:  Name of the package, default is `basename $PWD`
 #   - OFILE:    Output, default is PACKAGE_const.go
+#   - CFILE:    Conversion file, default is char_conv.go
 
 BEGIN   {
     if (length(PACKAGE) == 0) {
@@ -21,26 +22,29 @@ BEGIN   {
         CPREFIX = "TCOD_"
     }
     if (length(GTYPE) == 0) {
-        GTYPE = "byte"
+        GTYPE = "rune"
     }
     counter = 0
     print  "package", PACKAGE, "\n"     > OFILE
     print  "// #include <libtcod.h>"    > OFILE
     print  "import \"C\"\n"             > OFILE
     printf "// %s enum\n", GTYPE        > OFILE
-    if (GTYPE != "byte") {
+    if (GTYPE != "byte" && length(DODEFAULT) == 0) {
         print  "type", GTYPE, "int\n"   > OFILE
     }
     print  "var ("                      > OFILE
 }
 
 {
-    if (length($2) != 0) {
+    if (length($2) != 0 && length(DODEFAULT) == 0) {
         printf "\t// %s%s ", GPREFIX, $1    > OFILE
         for (i = 2; i < NF; i++)
             printf $i " "                   > OFILE
         print $NF                           > OFILE
         printf "\t%s%s %s = C.%s%s\n", GPREFIX, $1, GTYPE, CPREFIX, toupper($1) > OFILE
+    } else if (length($2) != 0) {
+        printf "// %s%s is Char 0x%s\n", GPREFIX, $1, $2    > OFILE
+        printf "\t%s%s %s = 0x%s\n", GPREFIX, $1, GTYPE, $2 > OFILE
     } else if ($1 != "-") {
         printf "\t// %s%s ", GPREFIX, $1    > OFILE
         print                               > OFILE

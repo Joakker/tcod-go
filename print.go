@@ -32,30 +32,31 @@ package tcod
 import "C"
 import "fmt"
 
-//go:generate scripts/makeenum -v OFILE=char_const.go -v GPREFIX=Char -v PACKAGE=tcod resources/chars
+//go:generate scripts/makeenum -v OFILE=char_const.go -v GPREFIX=Char -v DODEFAULT=true -v PACKAGE=tcod resources/chars
+//go:generate scripts/makeconv resources/chars
 
 // SetDefaultBg sets which color a console's background should have by default.
 // For example:
-//		c := tcod.NewConsole(10, 10)
+//		c := tcod.New*Console(10, 10)
 //		c.SetDefaultBg(tcod.Sky)
-// makes the created Console to use the Sky color as its background instead of
+// makes the created *Console to use the Sky color as its background instead of
 // the default black.
-func (c Console) SetDefaultBg(bg Color) {
+func (c *Console) SetDefaultBg(bg Color) {
 	C.TCOD_console_set_default_background(c.console, bg.getNative())
 }
 
 // SetDefaultFg sets which color a console's foreground should have by default,
 // similar to SetDefaultBg. For example:
-//		c := tcod.NewConsole(10, 10)
+//		c := tcod.New*Console(10, 10)
 //		c.SetDefaultFg(tcod.Gold)
 // makes the created console to use the Gold color as it's foreground instead of
 // the default white.
-func (c Console) SetDefaultFg(fg Color) {
+func (c *Console) SetDefaultFg(fg Color) {
 	C.TCOD_console_set_default_foreground(c.console, fg.getNative())
 }
 
 // Clear wipes out all cells in the console, leaving it completely clean
-func (c Console) Clear() {
+func (c *Console) Clear() {
 	C.TCOD_console_clear(c.console)
 }
 
@@ -66,7 +67,7 @@ func (c Console) Clear() {
 // them formatted like in fmt.Sprintf. This means, however, that you are
 // currently unable to format in Char* constants, as Sprintf won't render
 // them as their binary values, but instead will put a space in it's place.
-func (c Console) Print(x, y int, format string, values ...interface{}) {
+func (c *Console) Print(x, y int, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
 	C._TCOD_console_print(c.console, C.int(x), C.int(y), C.CString(final))
 }
@@ -77,7 +78,7 @@ func (c Console) Print(x, y int, format string, values ...interface{}) {
 // them formatted like in fmt.Sprintf. This means, however, that you are
 // currently unable to format in Char* constants, as Sprintf won't render
 // them as their binary values, but instead will put a space in it's place.
-func (c Console) PrintEx(x, y int, flag BgFlag,
+func (c *Console) PrintEx(x, y int, flag BgFlag,
 	alignment Alignment, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
 	C._TCOD_console_print_ex(
@@ -92,7 +93,7 @@ func (c Console) PrintEx(x, y int, flag BgFlag,
 // them formatted like in fmt.Sprintf. This means, however, that you are
 // currently unable to format in Char* constants, as Sprintf won't render
 // them as their binary values, but instead will put a space in it's place.
-func (c Console) PrintRect(x, y, w, h int, format string, values ...interface{}) {
+func (c *Console) PrintRect(x, y, w, h int, format string, values ...interface{}) {
 	final := fmt.Sprintf(format, values...)
 	C._TCOD_console_print_rect(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h), C.CString(final),
@@ -106,11 +107,11 @@ func (c Console) PrintRect(x, y, w, h int, format string, values ...interface{})
 // them formatted like in fmt.Sprintf. This means, however, that you are
 // currently unable to format in Char* constants, as Sprintf won't render
 // them as their binary values, but instead will put a space in it's place.
-func (c Console) PrintFrame(x, y, w, h int, clear bool,
+func (c *Console) PrintFrame(x, y, w, h int, clear bool,
 	format string, values ...interface{}) {
-	final := fmt.Sprintf(format, values...)
+	final := convertString(fmt.Sprintf(format, values...))
 	C._TCOD_console_print_frame(
 		c.console, C.int(x), C.int(y), C.int(w), C.int(h),
-		C.bool(clear), C.TCOD_BKGND_NONE, C.CString(final),
+		C.bool(clear), C.TCOD_BKGND_NONE, final,
 	)
 }

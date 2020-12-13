@@ -1,0 +1,29 @@
+#!/bin/awk -f
+
+
+# Used specifically to convert between the UTF-8 encoding of Go strings
+# and the CP-437 encoding the library uses. Generates the file "char_conv.go"
+# with the function `convertRune`
+
+BEGIN {
+    print "package tcod\n\n"            > "char_conv.go"
+
+    print "func convertRune(r rune) byte {" > "char_conv.go"
+    print "\tswitch (r) {" > "char_conv.go"
+
+    counter = 0
+}
+
+{
+    if ($1 != "-") {
+        printf "\tcase Char%s:\n", $1 > "char_conv.go"
+        print "\t\treturn byte(", counter, ")" > "char_conv.go"
+    }
+    counter++
+}
+
+END {
+    print "\tdefault:\n\t\treturn byte(r)" > "char_conv.go"
+    print "\t}" > "char_conv.go"
+    print "}" > "char_conv.go"
+}
