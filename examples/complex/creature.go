@@ -6,7 +6,7 @@ import "github.com/Joakker/tcod-go"
 // the player themself
 type Creature struct {
 	X, Y   int
-	Char   byte
+	Char   rune
 	Color  tcod.Color
 	Name   string
 	Hp, Mp Stat

@@ -18,7 +18,7 @@ const (
 // Player represents the player character
 type Player struct {
 	X, Y  int
-	Char  byte
+	Char  rune
 	Color tcod.Color
 }
 

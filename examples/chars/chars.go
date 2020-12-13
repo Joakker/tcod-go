@@ -14,7 +14,7 @@ import (
 	"github.com/Joakker/tcod-go/tinput"
 )
 
-var charNames = map[string]byte{
+var charNames = map[string]int{
 	"CharSmiley":                    1,
 	"CharSmileyInv":                 2,
 	"CharHeart":                     3,
@@ -216,7 +216,7 @@ func main() {
 			root.Clear()
 			for i := 0; i < 16; i++ {
 				for j := 0; j < 16; j++ {
-					root.SetChar(i, j, byte(i+16*j))
+					root.SetChar(i, j, rune(i+16*j))
 				}
 			}
 			tcod.Flush()
@@ -236,7 +236,7 @@ func main() {
 			i := tinput.NewInput()
 			i.Check()
 			root.Clear()
-			root.SetChar(1, 1, charNames[name])
+			root.SetChar(1, 1, rune(charNames[name]))
 			tcod.Flush()
 		}
 	} else if input {
@@ -260,7 +260,7 @@ func main() {
 		}
 	} else {
 		reader := bufio.NewReader(os.Stdin)
-		c, err := reader.ReadByte()
+		c, _, err := reader.ReadRune()
 		if err != nil {
 			log.Fatal(err)
 		}

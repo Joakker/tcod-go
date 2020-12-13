@@ -302,12 +302,12 @@ func (c Console) SetCellFg(x, y int, color Color) {
 }
 
 // SetChar renders a single character to the given coordinates
-func (c Console) SetChar(x, y int, b byte) {
+func (c Console) SetChar(x, y int, b rune) {
 	C.TCOD_console_set_char(c.console, C.int(x), C.int(y), C.int(b))
 }
 
 // PutChar sets the character of a cell and it's background flag
-func (c Console) PutChar(x, y int, b byte, flag BgFlag) {
+func (c Console) PutChar(x, y int, b rune, flag BgFlag) {
 	C.TCOD_console_put_char(c.console, C.int(x), C.int(y), C.int(b), C.TCOD_bkgnd_flag_t(flag))
 }
 
