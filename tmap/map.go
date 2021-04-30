@@ -66,3 +66,9 @@ func (m Map) IsVisible(x, y int) bool {
 func (m Map) Transparent(x, y int) bool {
 	return bool(C.TCOD_map_is_transparent(m.m, C.int(x), C.int(y)))
 }
+
+// IsWalkable returns true if the cell at position (x, y) is walkable
+func (m Map) IsWalkable(x, y int) bool {
+    return bool(C.TCOD_map_is_walkable(m.m, C.int(x), C.int(y)))
+}
+
